@@ -10,7 +10,6 @@ function formatearTextoInteligente(texto) {
         .replace(/([a-zA-Z])(\d)/g, '$1 $2')
         .replace(/(\d)([a-zA-Z])/g, '$1 $2');
     
-    // Paso 2: Analizar palabras individualmente
     const palabras = resultado.split(' ').filter(p => p);
     
     const formateadas = palabras.map((palabra, idx) => {
@@ -137,18 +136,14 @@ fetch('list.json')
 // ==== FIN OPCION 3 ===//
    
     files.forEach(f => {
-      // separar jerarquía de carpetas y archivo
       const parts = f.file.replace('html/', '').replace('.html', '').split('/');
-      const capitulo = parts.pop();  // último elemento siempre es el botón
+      const capitulo = parts.pop(); 
       
-      // Si parts está vacío, es un archivo raíz
       if (parts.length === 0) {
-          // Crear un h2 especial para archivos raíz
           const h = document.createElement('h2');
           h.textContent = formatearTextoInteligente(capitulo) + ":";
           container.appendChild(h);
       } else {
-          // agregar títulos según la jerarquía de carpetas
           parts.forEach((level, idx) => {
             if (currentLevels[idx] !== level) {
               const hTag = idx === 0 ? 'h2' : 'h3';
@@ -156,13 +151,11 @@ fetch('list.json')
               h.textContent = formatearTextoInteligente(level) + ":";
               container.appendChild(h);
               currentLevels[idx] = level;
-              // limpiar niveles más profundos si cambiaron
               currentLevels = currentLevels.slice(0, idx + 1);
             }
           });
       }
     
-      // crear el botón
       const btn = document.createElement('a');
       btn.href = f.file;
       btn.textContent = formatearTextoInteligente(capitulo);
@@ -170,3 +163,4 @@ fetch('list.json')
       container.appendChild(btn);
     });
 });
+
