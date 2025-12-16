@@ -240,8 +240,7 @@
 <div id="451adbb4-e22a-4678-ac70-bd56f96d8143" class="cell markdown">
 <h1 id="suma-inferior-base">Suma Inferior base</h1>
 </div>
-<div id="c87cbe8a-bcd2-49e3-8b8d-cd63df581251" class="cell code"
-data-execution_count="8">
+<div id="c87cbe8a-bcd2-49e3-8b8d-cd63df581251" class="cell code">
 <div class="sourceCode" id="cb1"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -287,116 +286,73 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a hr
 <div id="5cd0b0f8-4074-46e4-93b3-6a8a6b830bf0" class="cell markdown">
 <h1 id="ejecución">Ejecución</h1>
 </div>
-<div id="a5e1cb11-b6d8-4dc6-ad8c-60dd1fb11307" class="cell code"
-data-execution_count="9">
+<div id="a5e1cb11-b6d8-4dc6-ad8c-60dd1fb11307" class="cell code">
 <div class="sourceCode" id="cb2"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x<span class="op">**</span><span class="dv">2</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>sumaInferior(f, <span class="dv">0</span>, <span class="dv">2</span>,<span class="dv">10</span>)</span></code></pre></div>
-<div class="output execute_result" data-execution_count="9">
-<pre><code>2.2800000000000007</code></pre>
-</div>
 </div>
 <div id="9661a125-98b5-410d-9490-6476dbf1f85b" class="cell markdown">
 <h1 id="entablar">Entablar</h1>
 </div>
-<div id="285f778a-41a6-4e8f-989b-4af750876e89" class="cell code"
-data-execution_count="10">
+<div id="285f778a-41a6-4e8f-989b-4af750876e89" class="cell code">
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dash</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dash <span class="im">import</span> html</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dash_bootstrap_components <span class="im">as</span> dbc</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>datos<span class="op">=</span> pd.DataFrame({}) <span class="co"># Data Frame de Pandas vacio</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>app <span class="op">=</span> dash.Dash(<span class="va">__name__</span>, external_stylesheets<span class="op">=</span>[dbc.themes.BOOTSTRAP]) <span class="co"># Creación de la Dash app con estilo bootstrap</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>tabla <span class="op">=</span> dbc.Table.from_dataframe(datos, striped <span class="op">=</span> <span class="va">True</span>, bordered <span class="op">=</span> <span class="va">True</span>, hover <span class="op">=</span> <span class="va">True</span>,) <span class="co"># Tabla</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>app.layout <span class="op">=</span> html.Div([tabla]) <span class="co"># La web dash app con su contenido una tabla sin columanas ni filas o sea ni una tabla</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    app.run(port<span class="op">=</span><span class="st">&quot;8050&quot;</span>,debug<span class="op">=</span><span class="va">False</span>) <span class="co"># Levantar web server para ejecutar la app</span></span></code></pre></div>
+</div>
+<div id="6d42fdc0-386d-4660-af60-450b028ab041" class="cell markdown">
+<h1 id="encolumnando">Encolumnando</h1>
+</div>
+<div id="f43e3919-4856-4f31-be89-27cae6268920" class="cell code">
 <div class="sourceCode" id="cb4"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dash</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dash <span class="im">import</span> html</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dash_bootstrap_components <span class="im">as</span> dbc</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>datos<span class="op">=</span> pd.DataFrame({}) <span class="co"># Data Frame de Pandas vacio</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>datos<span class="op">=</span> pd.DataFrame(columns<span class="op">=</span>[<span class="st">&quot;Columna 1&quot;</span>, <span class="st">&quot;Columna 2&quot;</span>, <span class="st">&quot;Columna 3&quot;</span>]) <span class="co"># Data Frame de Pandas con columas a traves de una lista</span></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>app <span class="op">=</span> dash.Dash(<span class="va">__name__</span>, external_stylesheets<span class="op">=</span>[dbc.themes.BOOTSTRAP]) <span class="co"># Creación de la Dash app con estilo bootstrap</span></span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>tabla <span class="op">=</span> dbc.Table.from_dataframe(datos, striped <span class="op">=</span> <span class="va">True</span>, bordered <span class="op">=</span> <span class="va">True</span>, hover <span class="op">=</span> <span class="va">True</span>,) <span class="co"># Tabla</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>app.layout <span class="op">=</span> html.Div([tabla]) <span class="co"># La web dash app con su contenido una tabla sin columanas ni filas o sea ni una tabla</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    app.run(debug<span class="op">=</span><span class="va">False</span>) <span class="co"># Levantar web server para ejecutar la app</span></span></code></pre></div>
-<div class="output display_data">
-
-        <iframe
-            width="100%"
-            height="650"
-            src="http://127.0.0.1:8050/"
-            frameborder="0"
-            allowfullscreen
-            
-        ></iframe>
-        
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>tabla <span class="op">=</span> dbc.Table.from_dataframe(datos, striped <span class="op">=</span> <span class="va">True</span>, bordered <span class="op">=</span> <span class="va">True</span>, hover <span class="op">=</span> <span class="va">True</span>,) <span class="co"># Tabla ahora con columnas</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>app.layout <span class="op">=</span> html.Div([tabla]) <span class="co"># La web dash app con su contenido una tabla solo con columnas</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    app.run(port<span class="op">=</span><span class="st">&quot;8051&quot;</span>,debug<span class="op">=</span><span class="va">False</span>) <span class="co"># Levantar web server para ejecutar la app</span></span></code></pre></div>
 </div>
+<div id="ec471294-5c83-4156-a849-31506425e5cd" class="cell markdown">
+<h1 id="enfilando">Enfilando</h1>
 </div>
-<div id="6d42fdc0-386d-4660-af60-450b028ab041" class="cell markdown">
-<h1 id="encolumnando">Encolumnando</h1>
-</div>
-<div id="f43e3919-4856-4f31-be89-27cae6268920" class="cell code"
-data-execution_count="11">
+<div id="b44bc066-e481-4d74-85dd-ce99ff2da47a" class="cell code">
 <div class="sourceCode" id="cb5"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dash</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dash <span class="im">import</span> html</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dash_bootstrap_components <span class="im">as</span> dbc</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>datos<span class="op">=</span> pd.DataFrame(columns<span class="op">=</span>[<span class="st">&quot;Columna 1&quot;</span>, <span class="st">&quot;Columna 2&quot;</span>, <span class="st">&quot;Columna 3&quot;</span>]) <span class="co"># Data Frame de Pandas con columas a traves de una lista</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>datos<span class="op">=</span> pd.DataFrame({<span class="st">&quot;Columna 1&quot;</span>: [<span class="st">&quot;Fila 1&quot;</span>, <span class="st">&quot;Fila 2&quot;</span>, <span class="dv">3</span>], <span class="st">&quot;Columna 2&quot;</span>: [<span class="st">&quot;Fila 1&quot;</span>, <span class="st">&quot;Fila 2&quot;</span>, <span class="dv">3</span>], <span class="st">&quot;Columna 3&quot;</span>: [<span class="st">&quot;Fila 1&quot;</span>, <span class="st">&quot;Fila 2&quot;</span>, <span class="dv">3</span>]}) <span class="co"># Data Frame de Pandas Cambia de lista a diccionario con la forma {columna:[filas]} y no requiere declarar columns(palabra reservada)</span></span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>app <span class="op">=</span> dash.Dash(<span class="va">__name__</span>, external_stylesheets<span class="op">=</span>[dbc.themes.BOOTSTRAP]) <span class="co"># Creación de la Dash app con estilo bootstrap</span></span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>tabla <span class="op">=</span> dbc.Table.from_dataframe(datos, striped <span class="op">=</span> <span class="va">True</span>, bordered <span class="op">=</span> <span class="va">True</span>, hover <span class="op">=</span> <span class="va">True</span>,) <span class="co"># Tabla ahora con columnas</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>tabla <span class="op">=</span> dbc.Table.from_dataframe(datos, striped <span class="op">=</span> <span class="va">True</span>, bordered <span class="op">=</span> <span class="va">True</span>, hover <span class="op">=</span> <span class="va">True</span>,) <span class="co"># Tabla ahora con columnas y filas</span></span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>app.layout <span class="op">=</span> html.Div([tabla]) <span class="co"># La web dash app con su contenido una tabla solo con columnas</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>app.layout <span class="op">=</span> html.Div([tabla]) <span class="co"># La web dash app con su contenido una tabla con columnas y filas</span></span>
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    app.run(debug<span class="op">=</span><span class="va">False</span>) <span class="co"># Levantar web server para ejecutar la app</span></span></code></pre></div>
-<div class="output display_data">
-
-        <iframe
-            width="100%"
-            height="650"
-            src="http://127.0.0.1:8050/"
-            frameborder="0"
-            allowfullscreen
-            
-        ></iframe>
-        
-</div>
-</div>
-<div id="ec471294-5c83-4156-a849-31506425e5cd" class="cell markdown">
-<h1 id="enfilando">Enfilando</h1>
-</div>
-<div id="b44bc066-e481-4d74-85dd-ce99ff2da47a" class="cell code"
-data-execution_count="12">
-<div class="sourceCode" id="cb6"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dash</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dash <span class="im">import</span> html</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dash_bootstrap_components <span class="im">as</span> dbc</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>datos<span class="op">=</span> pd.DataFrame({<span class="st">&quot;Columna 1&quot;</span>: [<span class="st">&quot;Fila 1&quot;</span>, <span class="st">&quot;Fila 2&quot;</span>, <span class="dv">3</span>], <span class="st">&quot;Columna 2&quot;</span>: [<span class="st">&quot;Fila 1&quot;</span>, <span class="st">&quot;Fila 2&quot;</span>, <span class="dv">3</span>], <span class="st">&quot;Columna 3&quot;</span>: [<span class="st">&quot;Fila 1&quot;</span>, <span class="st">&quot;Fila 2&quot;</span>, <span class="dv">3</span>]}) <span class="co"># Data Frame de Pandas Cambia de lista a diccionario con la forma {columna:[filas]} y no requiere declarar columns(palabra reservada)</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>app <span class="op">=</span> dash.Dash(<span class="va">__name__</span>, external_stylesheets<span class="op">=</span>[dbc.themes.BOOTSTRAP]) <span class="co"># Creación de la Dash app con estilo bootstrap</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>tabla <span class="op">=</span> dbc.Table.from_dataframe(datos, striped <span class="op">=</span> <span class="va">True</span>, bordered <span class="op">=</span> <span class="va">True</span>, hover <span class="op">=</span> <span class="va">True</span>,) <span class="co"># Tabla ahora con columnas y filas</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>app.layout <span class="op">=</span> html.Div([tabla]) <span class="co"># La web dash app con su contenido una tabla con columnas y filas</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    app.run(debug<span class="op">=</span><span class="va">False</span>)</span></code></pre></div>
-<div class="output display_data">
-
-        <iframe
-            width="100%"
-            height="650"
-            src="http://127.0.0.1:8050/"
-            frameborder="0"
-            allowfullscreen
-            
-        ></iframe>
-        
-</div>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    app.run(port<span class="op">=</span><span class="st">&quot;8052&quot;</span>,debug<span class="op">=</span><span class="va">False</span>)</span></code></pre></div>
 </div>
 <div id="494b46e4-0f60-42f6-bcf7-b06273a410bc" class="cell markdown">
 <h1 id="creación-de-datos-mediante-función-ya-hecha">Creación de datos
@@ -407,91 +363,77 @@ da esa iteracion, actualmente la funcioón da la sumaInferior resultante
 en el intervalo dado para n rectangulos de la función dada, no se
 guardan los datos previos, asi que se deben almacenar.</p>
 </div>
-<div id="5c8d4c5f-aba7-4cf1-b110-202c0e4af336" class="cell code"
-data-execution_count="13">
+<div id="5c8d4c5f-aba7-4cf1-b110-202c0e4af336" class="cell code">
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>entradas <span class="op">=</span> {</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;sen&quot;</span>: <span class="st">&quot;math.sin&quot;</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;sin&quot;</span>: <span class="st">&quot;math.sin&quot;</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;cos&quot;</span>: <span class="st">&quot;math.cos&quot;</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;tan&quot;</span>: <span class="st">&quot;math.tan&quot;</span>,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;e^&quot;</span>: <span class="st">&quot;math.exp&quot;</span>,</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;ln&quot;</span>: <span class="st">&quot;math.log&quot;</span>,</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;log&quot;</span>: <span class="st">&quot;math.log10&quot;</span>,</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;x^&quot;</span>: <span class="st">&quot;x**&quot;</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sanitizar(sintaxis):</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> clave, valor <span class="kw">in</span> entradas.items():</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>        sintaxis <span class="op">=</span> sintaxis.replace(clave, valor)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sintaxis</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sumaInferior(funcion, desde, hasta, rectangulos):</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> rectangulos <span class="op">&lt;=</span> <span class="dv">0</span>:</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">&quot;En la primaria no te enseñaron que no podes dividir algo por cero?&quot;</span>)</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> hasta <span class="op">&lt;=</span> desde:</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">&quot;Estas en tu casa y para ir a la Uni, vas desde la Uni a tu Casa?&quot;</span>)</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> desde</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> hasta</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> rectangulos</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>    delta <span class="op">=</span> (b <span class="op">-</span> a) <span class="op">/</span> n</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    sumatoria <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> [] <span class="co"># El almacen </span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>        izq <span class="op">=</span> a <span class="op">+</span> k <span class="op">*</span> delta</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>        der <span class="op">=</span> izq <span class="op">+</span> delta</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>        <span class="co"># m_k = min(funcion(izq), funcion(der)) Nos oculta el valor de x ganador asi que toca reevaluar</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>        f_izq <span class="op">=</span> funcion(izq)</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>        f_der <span class="op">=</span> funcion(der)</span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>        m_k, x_ganador <span class="op">=</span> (f_izq, izq) <span class="cf">if</span> f_izq <span class="op">&lt;=</span> f_der <span class="cf">else</span> (f_der, der) <span class="co"># Según se cumpla la coindicion central, se asigna (la altura f_izq o f_der en m_k, x ganador izq o der en x_ganador)</span></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>        sumatoria <span class="op">+=</span> m_k <span class="op">*</span> delta</span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>        data.append({<span class="st">&quot;Iteración&quot;</span>: k <span class="op">+</span> <span class="dv">1</span>, <span class="st">&quot;x evaluado&quot;</span>: <span class="bu">round</span>(x_ganador, <span class="dv">4</span>), <span class="st">&quot;f(x)&quot;</span>: <span class="bu">round</span>(m_k, <span class="dv">4</span>), <span class="st">&quot;Delta x&quot;</span>: <span class="bu">round</span>(delta, <span class="dv">4</span>), <span class="st">&quot;Área parcial&quot;</span>: <span class="bu">round</span>(m_k <span class="op">*</span> delta, <span class="dv">6</span>), <span class="st">&quot;Suma inferior hasta el momento&quot;</span>: <span class="bu">round</span>(sumatoria, <span class="dv">6</span>)}) <span class="co"># Para agregar al almacen</span></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sumatoria, data <span class="co"># Al almacen!</span></span></code></pre></div>
+</div>
+<div id="65374288-fdfb-4d2f-aaa9-1f0812cd3482" class="cell code">
 <div class="sourceCode" id="cb7"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>entradas <span class="op">=</span> {</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;sen&quot;</span>: <span class="st">&quot;math.sin&quot;</span>,</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;sin&quot;</span>: <span class="st">&quot;math.sin&quot;</span>,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;cos&quot;</span>: <span class="st">&quot;math.cos&quot;</span>,</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;tan&quot;</span>: <span class="st">&quot;math.tan&quot;</span>,</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;e^&quot;</span>: <span class="st">&quot;math.exp&quot;</span>,</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;ln&quot;</span>: <span class="st">&quot;math.log&quot;</span>,</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;log&quot;</span>: <span class="st">&quot;math.log10&quot;</span>,</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;x^&quot;</span>: <span class="st">&quot;x**&quot;</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>}</span>
+class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dash</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dash <span class="im">import</span> html</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dash_bootstrap_components <span class="im">as</span> dbc</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> math.sin(x) <span class="co"># ponemos una funcion</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>suma, datitos <span class="op">=</span> sumaInferior(f, <span class="dv">0</span>, <span class="dv">2</span><span class="op">*</span>math.pi, <span class="dv">10</span>)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>datos<span class="op">=</span> pd.DataFrame(datitos) <span class="co"># Data Frame de Pandas Cambia de lista a diccionario con la forma {columna:[filas]} y no requiere declarar columns(palabra reservada)</span></span>
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sanitizar(sintaxis):</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> clave, valor <span class="kw">in</span> entradas.items():</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>        sintaxis <span class="op">=</span> sintaxis.replace(clave, valor)</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sintaxis</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sumaInferior(funcion, desde, hasta, rectangulos):</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> rectangulos <span class="op">&lt;=</span> <span class="dv">0</span>:</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">&quot;En la primaria no te enseñaron que no podes dividir algo por cero?&quot;</span>)</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> hasta <span class="op">&lt;=</span> desde:</span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">&quot;Estas en tu casa y para ir a la Uni, vas desde la Uni a tu Casa?&quot;</span>)</span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> desde</span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> hasta</span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> rectangulos</span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>    delta <span class="op">=</span> (b <span class="op">-</span> a) <span class="op">/</span> n</span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>    sumatoria <span class="op">=</span> <span class="fl">0.0</span></span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> [] <span class="co"># El almacen </span></span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(n):</span>
-<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>        izq <span class="op">=</span> a <span class="op">+</span> k <span class="op">*</span> delta</span>
-<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>        der <span class="op">=</span> izq <span class="op">+</span> delta</span>
-<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>        <span class="co"># m_k = min(funcion(izq), funcion(der)) Nos oculta el valor de x ganador asi que toca reevaluar</span></span>
-<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>        f_izq <span class="op">=</span> funcion(izq)</span>
-<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>        f_der <span class="op">=</span> funcion(der)</span>
-<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>        m_k, x_ganador <span class="op">=</span> (f_izq, izq) <span class="cf">if</span> f_izq <span class="op">&lt;=</span> f_der <span class="cf">else</span> (f_der, der) <span class="co"># Según se cumpla la coindicion central, se asigna (la altura f_izq o f_der en m_k, x ganador izq o der en x_ganador)</span></span>
-<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>        sumatoria <span class="op">+=</span> m_k <span class="op">*</span> delta</span>
-<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>        data.append({<span class="st">&quot;Iteración&quot;</span>: k <span class="op">+</span> <span class="dv">1</span>, <span class="st">&quot;x evaluado&quot;</span>: <span class="bu">round</span>(x_ganador, <span class="dv">4</span>), <span class="st">&quot;f(x)&quot;</span>: <span class="bu">round</span>(m_k, <span class="dv">4</span>), <span class="st">&quot;Delta x&quot;</span>: <span class="bu">round</span>(delta, <span class="dv">4</span>), <span class="st">&quot;Área parcial&quot;</span>: <span class="bu">round</span>(m_k <span class="op">*</span> delta, <span class="dv">6</span>), <span class="st">&quot;Suma inferior hasta el momento&quot;</span>: <span class="bu">round</span>(sumatoria, <span class="dv">6</span>)}) <span class="co"># Para agregar al almacen</span></span>
-<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sumatoria, data <span class="co"># Al almacen!</span></span></code></pre></div>
-</div>
-<div id="65374288-fdfb-4d2f-aaa9-1f0812cd3482" class="cell code"
-data-execution_count="14">
-<div class="sourceCode" id="cb8"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dash</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dash <span class="im">import</span> html</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dash_bootstrap_components <span class="im">as</span> dbc</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> math.sin(x) <span class="co"># ponemos una funcion</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>suma, datitos <span class="op">=</span> sumaInferior(f, <span class="dv">0</span>, <span class="dv">2</span><span class="op">*</span>math.pi, <span class="dv">10</span>)</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>datos<span class="op">=</span> pd.DataFrame(datitos) <span class="co"># Data Frame de Pandas Cambia de lista a diccionario con la forma {columna:[filas]} y no requiere declarar columns(palabra reservada)</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>app <span class="op">=</span> dash.Dash(<span class="va">__name__</span>, external_stylesheets<span class="op">=</span>[dbc.themes.BOOTSTRAP]) <span class="co"># Creación de la Dash app con estilo bootstrap</span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>tabla <span class="op">=</span> dbc.Table.from_dataframe(datos, striped <span class="op">=</span> <span class="va">True</span>, bordered <span class="op">=</span> <span class="va">True</span>, hover <span class="op">=</span> <span class="va">True</span>,) <span class="co"># Tabla ahora con columnas y filas alimentadas por la funcion</span></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>app.layout <span class="op">=</span> html.Div([tabla]) <span class="co"># La web dash app con su contenido una tabla con columnas y filas</span></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    app.run(debug<span class="op">=</span><span class="va">False</span>) <span class="co"># Levantar web server para ejecutar la app</span></span></code></pre></div>
-<div class="output display_data">
-
-        <iframe
-            width="100%"
-            height="650"
-            src="http://127.0.0.1:8050/"
-            frameborder="0"
-            allowfullscreen
-            
-        ></iframe>
-        
-</div>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>app <span class="op">=</span> dash.Dash(<span class="va">__name__</span>, external_stylesheets<span class="op">=</span>[dbc.themes.BOOTSTRAP]) <span class="co"># Creación de la Dash app con estilo bootstrap</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>tabla <span class="op">=</span> dbc.Table.from_dataframe(datos, striped <span class="op">=</span> <span class="va">True</span>, bordered <span class="op">=</span> <span class="va">True</span>, hover <span class="op">=</span> <span class="va">True</span>,) <span class="co"># Tabla ahora con columnas y filas alimentadas por la funcion</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>app.layout <span class="op">=</span> html.Div([tabla]) <span class="co"># La web dash app con su contenido una tabla con columnas y filas</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    app.run(port<span class="op">=</span><span class="st">&quot;8053&quot;</span>,debug<span class="op">=</span><span class="va">False</span>) <span class="co"># Levantar web server para ejecutar la app</span></span></code></pre></div>
 </div>
 <script src="js/script.js"></script>
 <footer class="nav-footer">
