@@ -311,6 +311,11 @@ ol, ul {
     margin: 0;
 }
 
+.main-logo img {
+    width: 64px;
+}
+
+
 .footer-bottom {
     text-align: center;
     padding-top: 20px;
