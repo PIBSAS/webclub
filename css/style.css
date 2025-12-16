@@ -25,6 +25,31 @@ body:not(.index-body) {
         /* border: 3px solid red !important; Linea comentada es solo para ver el tamaño real de la pagina*/
       }
 
+/* Celda de código */
+.cell.code {
+    background-color: #f5f7fa;
+    border-left: 4px solid #3776ab; /* azul python */
+    margin: 1.5em 0;
+    padding: 0.5em;
+    border-radius: 6px;
+}
+
+/* Bloque de código */
+.cell.code .sourceCode {
+    background-color: #f5f7fa;
+}
+
+/* pre */
+.cell.code pre {
+    background-color: transparent;
+    margin: 0;
+}
+
+/* texto */
+.cell.code code {
+    font-family: "JetBrains Mono", "Fira Code", monospace;
+    font-size: 0.9em;
+}
 header, footer {
     text-align: center;
     margin: 2em 0;
