@@ -176,7 +176,7 @@ ol, ul {
 }
 
 .sidebar-info p {
-    color: #cacc0f;
+    color: #666;
     line-height: 1.6;
     margin: 0;
 }
@@ -224,7 +224,7 @@ ol, ul {
 }
 
 .content-info {
-    background: #f8f9fa;
+    background: #daeaf9;
     padding: 20px;
     border-radius: 10px;
     margin-top: 30px;
@@ -241,7 +241,7 @@ ol, ul {
 
 /* ===== FOOTER ESPECÍFICO PARA INDEX ===== */
 .index-footer {
-    background: linear-gradient(135deg, #d3c1af, #e5e5d1);
+    background: linear-gradient(135deg, #092981, #a38c38);
     color: white;
     padding: 40px 0 20px;
     border-top: 5px solid #306998;
