@@ -241,7 +241,7 @@
 <h1 id="suma-inferior-base">Suma Inferior base</h1>
 </div>
 <div id="c87cbe8a-bcd2-49e3-8b8d-cd63df581251" class="cell code"
-data-execution_count="1">
+data-execution_count="8">
 <div class="sourceCode" id="cb1"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -288,12 +288,12 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a hr
 <h1 id="ejecución">Ejecución</h1>
 </div>
 <div id="a5e1cb11-b6d8-4dc6-ad8c-60dd1fb11307" class="cell code"
-data-execution_count="5">
+data-execution_count="9">
 <div class="sourceCode" id="cb2"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x<span class="op">**</span><span class="dv">2</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>sumaInferior(f, <span class="dv">0</span>, <span class="dv">2</span>,<span class="dv">10</span>)</span></code></pre></div>
-<div class="output execute_result" data-execution_count="5">
+<div class="output execute_result" data-execution_count="9">
 <pre><code>2.2800000000000007</code></pre>
 </div>
 </div>
@@ -301,7 +301,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a hr
 <h1 id="entablar">Entablar</h1>
 </div>
 <div id="285f778a-41a6-4e8f-989b-4af750876e89" class="cell code"
-data-execution_count="8">
+data-execution_count="10">
 <div class="sourceCode" id="cb4"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dash</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dash <span class="im">import</span> html</span>
@@ -318,7 +318,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a hr
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>app.layout <span class="op">=</span> html.Div([tabla]) <span class="co"># La web dash app con su contenido una tabla sin columanas ni filas o sea ni una tabla</span></span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    app.run(debug<span class="op">=</span><span class="va">True</span>) <span class="co"># Levantar web server para ejecutar la app</span></span></code></pre></div>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    app.run(debug<span class="op">=</span><span class="va">False</span>) <span class="co"># Levantar web server para ejecutar la app</span></span></code></pre></div>
 <div class="output display_data">
 
         <iframe
@@ -336,7 +336,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a hr
 <h1 id="encolumnando">Encolumnando</h1>
 </div>
 <div id="f43e3919-4856-4f31-be89-27cae6268920" class="cell code"
-data-execution_count="9">
+data-execution_count="11">
 <div class="sourceCode" id="cb5"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dash</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dash <span class="im">import</span> html</span>
@@ -351,7 +351,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a hr
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>app.layout <span class="op">=</span> html.Div([tabla]) <span class="co"># La web dash app con su contenido una tabla solo con columnas</span></span>
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    app.run(debug<span class="op">=</span><span class="va">True</span>) <span class="co"># Levantar web server para ejecutar la app</span></span></code></pre></div>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    app.run(debug<span class="op">=</span><span class="va">False</span>) <span class="co"># Levantar web server para ejecutar la app</span></span></code></pre></div>
 <div class="output display_data">
 
         <iframe
@@ -369,7 +369,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a hr
 <h1 id="enfilando">Enfilando</h1>
 </div>
 <div id="b44bc066-e481-4d74-85dd-ce99ff2da47a" class="cell code"
-data-execution_count="10">
+data-execution_count="12">
 <div class="sourceCode" id="cb6"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dash</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dash <span class="im">import</span> html</span>
@@ -384,7 +384,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a hr
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>app.layout <span class="op">=</span> html.Div([tabla]) <span class="co"># La web dash app con su contenido una tabla con columnas y filas</span></span>
 <span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    app.run(debug<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    app.run(debug<span class="op">=</span><span class="va">False</span>)</span></code></pre></div>
 <div class="output display_data">
 
         <iframe
@@ -408,7 +408,7 @@ en el intervalo dado para n rectangulos de la función dada, no se
 guardan los datos previos, asi que se deben almacenar.</p>
 </div>
 <div id="5c8d4c5f-aba7-4cf1-b110-202c0e4af336" class="cell code"
-data-execution_count="16">
+data-execution_count="13">
 <div class="sourceCode" id="cb7"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -458,7 +458,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a hr
 <span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sumatoria, data <span class="co"># Al almacen!</span></span></code></pre></div>
 </div>
 <div id="65374288-fdfb-4d2f-aaa9-1f0812cd3482" class="cell code"
-data-execution_count="17">
+data-execution_count="14">
 <div class="sourceCode" id="cb8"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dash</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dash <span class="im">import</span> html</span>
@@ -479,7 +479,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a hr
 <span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>app.layout <span class="op">=</span> html.Div([tabla]) <span class="co"># La web dash app con su contenido una tabla con columnas y filas</span></span>
 <span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    app.run(debug<span class="op">=</span><span class="va">True</span>) <span class="co"># Levantar web server para ejecutar la app</span></span></code></pre></div>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    app.run(debug<span class="op">=</span><span class="va">False</span>) <span class="co"># Levantar web server para ejecutar la app</span></span></code></pre></div>
 <div class="output display_data">
 
         <iframe
@@ -492,10 +492,6 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a hr
         ></iframe>
         
 </div>
-</div>
-<div id="4debce59-0bfc-4d90-94eb-d5dbebb928d4" class="cell code">
-<div class="sourceCode" id="cb9"><pre
-class="sourceCode python"><code class="sourceCode python"></code></pre></div>
 </div>
 <script src="js/script.js"></script>
 <footer class="nav-footer">
