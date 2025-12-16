@@ -1,4 +1,4 @@
-name: Convert TEX to HTML and Build Index, Archivos 
+name: Convert IPYNB to HTML and Build Index, Archivos 
 
 on:
   push:
@@ -38,22 +38,22 @@ jobs:
           rm -rf html
           mkdir html
 
-      - name: Convert TEX to HTML
+      - name: Make dirs, search files, convert IPYNB to HTML, insert tags
         run: |
           mkdir -p html/css
           mkdir -p html/js
           cp -r css/* html/css/
           cp -r js/* html/js/
           
-          find tex -type f \( -iname "*.png" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.gif" \) | while read IMG ; do
-              OUT="html/${IMG#tex/}"
+          find notebooks -type f \( -iname "*.png" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.gif" \) | while read IMG ; do
+              OUT="html/${IMG#notebooks/}"
               mkdir -p "$(dirname "$OUT")"
               cp "$IMG" "$OUT"
           done
             
-          find tex -name "*.tex" | while read FILE ; do
-            OUT="html/${FILE#tex/}"
-            OUT="${OUT%.tex}.html"
+          find notebooks -name "*.ipynb" | while read FILE ; do
+            OUT="html/${FILE#notebooks/}"
+            OUT="${OUT%.ipynb}.html"
             mkdir -p "$(dirname "$OUT")"
 
             DIR_DEPTH=$(dirname "$OUT" | tr -cd '/' | wc -c)
@@ -61,12 +61,6 @@ jobs:
             for ((i=0; i<DIR_DEPTH; i++)); do REL="../$REL"; done
 
             pandoc "$FILE" -s -o "$OUT" --mathjax="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"
-
-          # awk -v s="<script id=\"MathJax-script\" async src=\"https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js\"></script>" '
-          #    /<\/head>/ { print s; }
-           #   { print; }
-           # ' "$OUT" > "$OUT.tmp"
-            #mv "$OUT.tmp" "$OUT"
 
             awk -v s="<script src=\"${REL}js/script.js\"></script>" '
               /<\/body>/ { print s; }
@@ -131,7 +125,7 @@ jobs:
           git config --global user.name "github-actions"
           git config --global user.email "actions@users.noreply.github.com"
           git add .
-          git diff --cached --quiet || git commit -m "Rebuild HTML from TEX"
+          git diff --cached --quiet || git commit -m "Rebuild HTML from IPYNB"
           git push
 
       - name: Upload artifact for GitHub Pages
