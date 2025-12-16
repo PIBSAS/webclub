@@ -312,7 +312,7 @@ ol, ul {
 }
 
 .main-logo img {
-    width: 64px;
+    width: 48px;
 }
 
 
@@ -495,6 +495,10 @@ ol, ul {
     .main-logo h3 {
         font-size: 1.4em;
     }
+
+    .main-logo img {
+        width: 48px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -514,6 +518,10 @@ ol, ul {
         min-width: 180px;
         margin-bottom: 0;
         
+    }
+
+    .main-logo img {
+        width: 40px;
     }
 }
 
@@ -565,6 +573,10 @@ ol, ul {
     .main-logo i {
         font-size: 1.8em;
         margin-bottom: 10px;
+    }
+
+    .main-logo img {
+        width: 36px;
     }
     
     .main-logo h3 {
@@ -620,6 +632,10 @@ ol, ul {
     .main-logo h3 {
         font-size: 1.1em;
     }
+
+    .main-logo img {
+        width: 32px;
+    }
 }
 
 @media (max-width: 380px) {
@@ -634,6 +650,10 @@ ol, ul {
         max-width: none;
         display: flex;
         justify-content: center;
+    }
+
+    .main-logo img {
+        width: 28px;
     }
 }
 
