@@ -17,7 +17,7 @@
 body:not(.index-body) {
         font-family: "Helvetica Neue", Arial, sans-serif;
         line-height: 1.6;
-        max-width: 36em;
+        max-width: 70em;
         margin: 2em auto;
         padding: 0 1em;
         color: #1a1a1a;
