@@ -50,14 +50,14 @@ ol, ul {
     text-align: center;
     margin: 3em 0 1em 0;
     padding: 20px 0;
-    border-top: 2px solid #ff2754;
+    border-top: 2px solid #306998;
 }
 
 .nav-footer .nav-btn {
     display: inline-block;
     margin: 0 10px;
     padding: 10px 20px;
-    background: #ff2754;
+    background: #306998;
     color: white;
     text-decoration: none;
     border-radius: 6px;
@@ -68,7 +68,7 @@ ol, ul {
 }
 
 .nav-footer .nav-btn:hover {
-    background: #00d8d7;
+    background: #FFD43B;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
@@ -100,15 +100,15 @@ ol, ul {
     border-radius: 15px;
     padding: 25px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-    border-left: 5px solid #ff2754;
+    border-left: 5px solid #306998;
     height: fit-content;
     position: sticky;
     top: 30px;
 }
 
 .sidebar-title {
-    color: #ff2754;
-    border-bottom: 2px solid #ff2754;
+    color: #306998;
+    border-bottom: 2px solid #306998;
     padding-bottom: 10px;
     margin-bottom: 20px;
     font-size: 1.4em;
@@ -147,9 +147,9 @@ ol, ul {
 }
 
 .sidebar-links a:hover {
-    background: #ff2754;
+    background: #306998;
     color: white;
-    border-left-color: #00d8d7;
+    border-left-color: #FFD43B;
     box-shadow: 0 4px 8px rgba(0,123,35,0.2);
 }
 
@@ -168,7 +168,7 @@ ol, ul {
 }
 
 .sidebar-info h3 {
-    color: #ff2754;
+    color: #306998;
     margin-top: 0;
     display: flex;
     align-items: center;
@@ -204,7 +204,7 @@ ol, ul {
 .main-content .html-container a.nav-btn {
     display: block;
     padding: 12px 16px;
-    background: #ff2754;
+    background: #306998;
     margin: 8px 0;
     border-radius: 8px;
     text-decoration: none;
@@ -214,7 +214,7 @@ ol, ul {
 }
 
 .main-content .html-container a.nav-btn:hover {
-    background: #00d8d7;
+    background: #FFD43B;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
@@ -228,7 +228,7 @@ ol, ul {
     padding: 20px;
     border-radius: 10px;
     margin-top: 30px;
-    border-left: 4px solid #ff2754;
+    border-left: 4px solid #306998;
 }
 
 .content-info p {
@@ -244,7 +244,7 @@ ol, ul {
     background: linear-gradient(135deg, #d3c1af, #e5e5d1);
     color: white;
     padding: 40px 0 20px;
-    border-top: 5px solid #ff2754;
+    border-top: 5px solid #306998;
 }
 
 .footer-content {
@@ -297,7 +297,7 @@ ol, ul {
 }
 
 .main-logo i {
-    color: #ff2754;
+    color: #306998;
     margin-bottom: 15px;
 }
 
@@ -333,7 +333,7 @@ ol, ul {
     top: 20px;
     left: 20px;
     z-index: 1000;
-    background: #ff2754;
+    background: #306998;
     color: white;
     border: none;
     border-radius: 8px;
@@ -348,7 +348,7 @@ ol, ul {
 }
 
 .menu-toggle:hover {
-    background: #00d8d7;
+    background: #FFD43B;
     transform: scale(1.05);
 }
 
@@ -357,7 +357,7 @@ ol, ul {
     position: absolute;
     top: 15px;
     right: 15px;
-    background: #ff2754;
+    background: #306998;
     color: white;
     border: none;
     border-radius: 50%;
@@ -371,7 +371,7 @@ ol, ul {
 }
 
 .close-menu:hover {
-    background: #00d8d7;
+    background: #FFD43B;
 }
 
 .menu-overlay {
