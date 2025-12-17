@@ -107,7 +107,7 @@
             
             <blockquote>En Windows, si nunca metiste mano, es probable que aun tengas la política de ejecución de Scripts de PowerShell desactivada
                 y para que esto funcione como muchas otras cosas, debes activarla, Abris PowerShell o Terminal como Administrador e ingresas:
-                <code>Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser</code>
+                <code class="cmd">Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser</code>
                 reinicias la pc y listo.
             </blockquote>
             
@@ -120,8 +120,8 @@
             <pre><code>.ami\Scripts\activate</code></pre> 
             
             <p>
-                Veremos que la terminal cambia agregando <code>(.ami)</code> a lo que normalmente muestra que es <code>PS C:\Users\usuario></code>.
-                Por lo tanto veremos: <code>(.ami) PS C:\Users\usuario></code>.
+                Veremos que la terminal cambia agregando <code class="cmd">(.ami)</code> a lo que normalmente muestra que es <code class="cmd">PS C:\Users\usuario></code>.
+                Por lo tanto veremos: <code class="cmd">(.ami) PS C:\Users\usuario></code>.
             </p>
             
             <p>
@@ -151,8 +151,8 @@
             <pre><code>source .ami/bin/activate</code></pre> 
             
             <p>
-                Veremos que la terminal cambia agregando <code>(.ami)</code> a lo que normalmente muestra que es <code>user@hostname:~$</code>.
-                Por lo tanto veremos: <code>(.ami) user@hostname:~$</code>.
+                Veremos que la terminal cambia agregando <code class="cmd">(.ami)</code> a lo que normalmente muestra que es <code class="cmd">user@hostname:~$</code>.
+                Por lo tanto veremos: <code class="section-code">(.ami) user@hostname:~$</code>.
             </p>
             
             <p>
