@@ -65,8 +65,8 @@ jobs:
 
             awk -v rel="$REL" '
               /<\/head>/ {
-                print "    <link rel=\"icon\" href=\"" rel "/logo.webp\" type=\"image/webp\">"
-                print "    <link rel=\"shortcut icon\" href=\"" rel "/logo.webp\">"
+                print "    <link rel=\"icon\" href=\"" rel "..${REL}logo.webp\" type=\"image/webp\">"
+                print "    <link rel=\"shortcut icon\" href=\"" rel "$..{REL}logo.webp\">"
               }
               { print }
             ' "$OUT" > "$OUT.tmp"
