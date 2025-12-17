@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>2_Objetivo Suma_de_Riemann</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"
+  type="text/javascript"></script>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<section id="dependencias" class="cell markdown" id="2G1odJIEGGXF">
+<h1><strong>Dependencias</strong>:</h1>
+<ul>
+<li>Dash</li>
+<li>Dash BootStrap Components</li>
+<li>Pandas</li>
+</ul>
+</section>
+<div class="cell code"
+data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}"
+id="SCv_WjHXGGuz" data-outputId="68738bd4-42ba-4723-c586-04e1a6952a4f">
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install dash</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install dash_bootstrap_components</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install pandas</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>Collecting dash
+  Downloading dash-3.3.0-py3-none-any.whl.metadata (11 kB)
+Requirement already satisfied: Flask&lt;3.2,&gt;=1.0.4 in /usr/local/lib/python3.12/dist-packages (from dash) (3.1.2)
+Requirement already satisfied: Werkzeug&lt;3.2 in /usr/local/lib/python3.12/dist-packages (from dash) (3.1.3)
+Requirement already satisfied: plotly&gt;=5.0.0 in /usr/local/lib/python3.12/dist-packages (from dash) (5.24.1)
+Requirement already satisfied: importlib-metadata in /usr/local/lib/python3.12/dist-packages (from dash) (8.7.0)
+Requirement already satisfied: typing_extensions&gt;=4.1.1 in /usr/local/lib/python3.12/dist-packages (from dash) (4.15.0)
+Requirement already satisfied: requests in /usr/local/lib/python3.12/dist-packages (from dash) (2.32.4)
+Collecting retrying (from dash)
+  Downloading retrying-1.4.2-py3-none-any.whl.metadata (5.5 kB)
+Requirement already satisfied: nest-asyncio in /usr/local/lib/python3.12/dist-packages (from dash) (1.6.0)
+Requirement already satisfied: setuptools in /usr/local/lib/python3.12/dist-packages (from dash) (75.2.0)
+Requirement already satisfied: blinker&gt;=1.9.0 in /usr/local/lib/python3.12/dist-packages (from Flask&lt;3.2,&gt;=1.0.4-&gt;dash) (1.9.0)
+Requirement already satisfied: click&gt;=8.1.3 in /usr/local/lib/python3.12/dist-packages (from Flask&lt;3.2,&gt;=1.0.4-&gt;dash) (8.3.0)
+Requirement already satisfied: itsdangerous&gt;=2.2.0 in /usr/local/lib/python3.12/dist-packages (from Flask&lt;3.2,&gt;=1.0.4-&gt;dash) (2.2.0)
+Requirement already satisfied: jinja2&gt;=3.1.2 in /usr/local/lib/python3.12/dist-packages (from Flask&lt;3.2,&gt;=1.0.4-&gt;dash) (3.1.6)
+Requirement already satisfied: markupsafe&gt;=2.1.1 in /usr/local/lib/python3.12/dist-packages (from Flask&lt;3.2,&gt;=1.0.4-&gt;dash) (3.0.3)
+Requirement already satisfied: tenacity&gt;=6.2.0 in /usr/local/lib/python3.12/dist-packages (from plotly&gt;=5.0.0-&gt;dash) (8.5.0)
+Requirement already satisfied: packaging in /usr/local/lib/python3.12/dist-packages (from plotly&gt;=5.0.0-&gt;dash) (25.0)
+Requirement already satisfied: zipp&gt;=3.20 in /usr/local/lib/python3.12/dist-packages (from importlib-metadata-&gt;dash) (3.23.0)
+Requirement already satisfied: charset_normalizer&lt;4,&gt;=2 in /usr/local/lib/python3.12/dist-packages (from requests-&gt;dash) (3.4.4)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/local/lib/python3.12/dist-packages (from requests-&gt;dash) (3.11)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /usr/local/lib/python3.12/dist-packages (from requests-&gt;dash) (2.5.0)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/local/lib/python3.12/dist-packages (from requests-&gt;dash) (2025.10.5)
+Downloading dash-3.3.0-py3-none-any.whl (7.9 MB)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 7.9/7.9 MB 47.6 MB/s eta 0:00:00
+ponents
+  Downloading dash_bootstrap_components-2.0.4-py3-none-any.whl.metadata (18 kB)
+Requirement already satisfied: dash&gt;=3.0.4 in /usr/local/lib/python3.12/dist-packages (from dash_bootstrap_components) (3.3.0)
+Requirement already satisfied: Flask&lt;3.2,&gt;=1.0.4 in /usr/local/lib/python3.12/dist-packages (from dash&gt;=3.0.4-&gt;dash_bootstrap_components) (3.1.2)
+Requirement already satisfied: Werkzeug&lt;3.2 in /usr/local/lib/python3.12/dist-packages (from dash&gt;=3.0.4-&gt;dash_bootstrap_components) (3.1.3)
+Requirement already satisfied: plotly&gt;=5.0.0 in /usr/local/lib/python3.12/dist-packages (from dash&gt;=3.0.4-&gt;dash_bootstrap_components) (5.24.1)
+Requirement already satisfied: importlib-metadata in /usr/local/lib/python3.12/dist-packages (from dash&gt;=3.0.4-&gt;dash_bootstrap_components) (8.7.0)
+Requirement already satisfied: typing_extensions&gt;=4.1.1 in /usr/local/lib/python3.12/dist-packages (from dash&gt;=3.0.4-&gt;dash_bootstrap_components) (4.15.0)
+Requirement already satisfied: requests in /usr/local/lib/python3.12/dist-packages (from dash&gt;=3.0.4-&gt;dash_bootstrap_components) (2.32.4)
+Requirement already satisfied: retrying in /usr/local/lib/python3.12/dist-packages (from dash&gt;=3.0.4-&gt;dash_bootstrap_components) (1.4.2)
+Requirement already satisfied: nest-asyncio in /usr/local/lib/python3.12/dist-packages (from dash&gt;=3.0.4-&gt;dash_bootstrap_components) (1.6.0)
+Requirement already satisfied: setuptools in /usr/local/lib/python3.12/dist-packages (from dash&gt;=3.0.4-&gt;dash_bootstrap_components) (75.2.0)
+Requirement already satisfied: blinker&gt;=1.9.0 in /usr/local/lib/python3.12/dist-packages (from Flask&lt;3.2,&gt;=1.0.4-&gt;dash&gt;=3.0.4-&gt;dash_bootstrap_components) (1.9.0)
+Requirement already satisfied: click&gt;=8.1.3 in /usr/local/lib/python3.12/dist-packages (from Flask&lt;3.2,&gt;=1.0.4-&gt;dash&gt;=3.0.4-&gt;dash_bootstrap_components) (8.3.0)
+Requirement already satisfied: itsdangerous&gt;=2.2.0 in /usr/local/lib/python3.12/dist-packages (from Flask&lt;3.2,&gt;=1.0.4-&gt;dash&gt;=3.0.4-&gt;dash_bootstrap_components) (2.2.0)
+Requirement already satisfied: jinja2&gt;=3.1.2 in /usr/local/lib/python3.12/dist-packages (from Flask&lt;3.2,&gt;=1.0.4-&gt;dash&gt;=3.0.4-&gt;dash_bootstrap_components) (3.1.6)
+Requirement already satisfied: markupsafe&gt;=2.1.1 in /usr/local/lib/python3.12/dist-packages (from Flask&lt;3.2,&gt;=1.0.4-&gt;dash&gt;=3.0.4-&gt;dash_bootstrap_components) (3.0.3)
+Requirement already satisfied: tenacity&gt;=6.2.0 in /usr/local/lib/python3.12/dist-packages (from plotly&gt;=5.0.0-&gt;dash&gt;=3.0.4-&gt;dash_bootstrap_components) (8.5.0)
+Requirement already satisfied: packaging in /usr/local/lib/python3.12/dist-packages (from plotly&gt;=5.0.0-&gt;dash&gt;=3.0.4-&gt;dash_bootstrap_components) (25.0)
+Requirement already satisfied: zipp&gt;=3.20 in /usr/local/lib/python3.12/dist-packages (from importlib-metadata-&gt;dash&gt;=3.0.4-&gt;dash_bootstrap_components) (3.23.0)
+Requirement already satisfied: charset_normalizer&lt;4,&gt;=2 in /usr/local/lib/python3.12/dist-packages (from requests-&gt;dash&gt;=3.0.4-&gt;dash_bootstrap_components) (3.4.4)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/local/lib/python3.12/dist-packages (from requests-&gt;dash&gt;=3.0.4-&gt;dash_bootstrap_components) (3.11)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /usr/local/lib/python3.12/dist-packages (from requests-&gt;dash&gt;=3.0.4-&gt;dash_bootstrap_components) (2.5.0)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/local/lib/python3.12/dist-packages (from requests-&gt;dash&gt;=3.0.4-&gt;dash_bootstrap_components) (2025.10.5)
+Downloading dash_bootstrap_components-2.0.4-py3-none-any.whl (204 kB)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 204.0/204.0 kB 6.5 MB/s eta 0:00:00
+ponents
+Successfully installed dash_bootstrap_components-2.0.4
+Requirement already satisfied: pandas in /usr/local/lib/python3.12/dist-packages (2.2.2)
+Requirement already satisfied: numpy&gt;=1.26.0 in /usr/local/lib/python3.12/dist-packages (from pandas) (2.0.2)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in /usr/local/lib/python3.12/dist-packages (from pandas) (2.9.0.post0)
+Requirement already satisfied: pytz&gt;=2020.1 in /usr/local/lib/python3.12/dist-packages (from pandas) (2025.2)
+Requirement already satisfied: tzdata&gt;=2022.7 in /usr/local/lib/python3.12/dist-packages (from pandas) (2025.2)
+Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.12/dist-packages (from python-dateutil&gt;=2.8.2-&gt;pandas) (1.17.0)
+</code></pre>
+</div>
+</div>
+<div class="cell markdown" id="DTnFjVDCAOXz">
+<h1 id="la-suma-de-riemann"><strong>La suma de Riemann</strong></h1>
+<p>Es el nombre que recibe el cálculo aproximado de una integral
+definida, mediante una sumatoria discreta con un número de términos
+finito. Una aplicación común es la aproximación del área de funciones en
+un gráfico.</p>
+<p>Fue el matemático alemán Georg Friedrich Bernhard Riemann (1826-1866)
+quien ofreció por primera vez una definición rigurosa de la integral de
+una función en un intervalo dado. La dio a conocer en un artículo
+publicado en 1854.</p>
+<p><br></p>
+<p><img
+src="data:image/jpeg;base64,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"
+alt="Suma-de-Riemann-01.jpg" /></p>
+<p>La suma de Riemann se define sobre una función <span
+class="math inline">\(y = f(x)\)</span>, con <span
+class="math inline">\(x\)</span> perteneciente al intervalo cerrado [a,
+b]. Sobre este intervalo se efectúa una partición P de n elementos:</p>
+<p><span class="math display">\[P = \lbrace{x_0=a, x_1, x_2, ..., x_n=b
+\rbrace}\]</span></p>
+<p>Esto significa que el intervalo se divide de la siguiente manera:</p>
+<p><span class="math display">\[S(f, n) = \sum_{k = 1}^{n} f(t_k)(x_k -
+x_{k-1})\]</span> <br> Aquí <span class="math inline">\(t_k\)</span>
+está comprendido entre <span class="math inline">\(x_{k-1}\)</span> y
+<span class="math inline">\(x_k\)</span>: <span
+class="math inline">\(x_{k-1} \leq t_k \leq x_k\)</span></p>
+<p>En la figura 1 se muestra gráficamente la suma de Riemann de la
+función f en el intervalo <span class="math inline">\([x_0,
+x_4]\)</span> sobre una partición de cuatro subintervalos, los
+rectángulos de color gris.</p>
+<p>La suma representa el área total de los rectángulos y el resultado de
+esta suma se aproxima numéricamente al área bajo la curva <span
+class="math inline">\(f\)</span>, entre las abscisas <span
+class="math inline">\(x=x_0\)</span> y <span
+class="math inline">\(x=x_4\)</span>.</p>
+<p>Desde luego, la aproximación al área bajo la curva mejora muchísimo
+en la medida que el número n de particiones sea mayor. De esta manera la
+suma converge al área bajo la curva, cuando el número <span
+class="math inline">\(n\)</span> de particiones tiende a infinito.</p>
+<h1 id="fórmulas-y-propiedades">Fórmulas y propiedades</h1>
+<p>La suma de Riemann de la función f(x) sobre la partición:</p>
+<p><span class="math display">\[P = \lbrace{x_0=a, x_1, x_2, ..., x_n=b
+\rbrace}\]</span></p>
+<p>Definida sobre el intervalo <span class="math inline">\([a,
+b]\)</span>, está dada por:</p>
+<p><span class="math display">\[S(P, f) = \sum_{k = 1}^{n} f(t_k)(x_k -
+x_{k-1})\]</span></p>
+<p>Donde <span class="math inline">\(tk\)</span> es un valor en el
+intervalo <span class="math inline">\([x_k, x_{k-1}]\)</span>. En la
+suma de Riemann se suelen usar intervalos regulares de ancho <span
+class="math inline">\(\Delta x = \frac{\left( b - a
+\right)}{n}\)</span>, donde <span class="math inline">\(a\)</span> y
+<span class="math inline">\(b\)</span> son los valores mínimo y máximo
+de la abscisa, mientras que <span class="math inline">\(n\)</span> es el
+número de subdivisiones.</p>
+<h2 id="fuente">Fuente:</h2>
+<p><a
+href="https://www.lifeder.com/suma-de-riemann/">https://www.lifeder.com/suma-de-riemann/</a></p>
+<p>Suma inferior queda definida como:</p>
+<p><span class="math display">\[S_{inf}(f, P) = \sum_{k=1}^{n} m_k \cdot
+(x_k - x_{k-1})\]</span></p>
+<p>Donde en cada subintervalo <span class="math inline">\([x_{k-1},
+x_k]\)</span>, se considera el <em>mínimo valor</em> que toma la funcion
+<span class="math inline">\(f(x)\)</span>:</p>
+<p><span class="math display">\[m_{k} = \min_{x \in \left[x_{k-1},
+x_k\right]} f(x)\]</span></p>
+<p>Animación, la imaginación! <br></p>
+<p><img
+src="https://drive.google.com/uc?export=view&amp;id=16ypgTpBxcl-wdSUogNTS9T-_qGXV14MN"
+alt="Suma Inferior Animacion" /></p>
+<p>Donde en cada subintervalo <span class="math inline">\([x_{k-1},
+x_k]\)</span>, se considera el <em>máximo valor</em> que toma la funcion
+<span class="math inline">\(f(x)\)</span>:</p>
+<p><span class="math display">\[M_{k} = \max_{x \in \left[x_{k-1},
+x_k\right]} f(x)\]</span></p>
+<p><br></p>
+<p><img
+src="https://drive.google.com/uc?export=view&amp;id=1SnBi2WDNIObW3tiGQpSyeHdKHLae34QC"
+alt="Suma Superior Animacion" /></p>
+</div>
+<section id="objetivos" class="cell markdown" id="pxV1iHMMJ5n2">
+<h1><strong>Objetivos:</strong></h1>
+<p>Realizar 2 programas que muestren el mismo resultado que muestran los
+comandos de GeoGebra:</p>
+<ul>
+<li>SumaInferior</li>
+<li>SumaSuperior</li>
+</ul>
+<p>Se presentan dos prototipos de funciones a modo de ejemplo, la
+palabra definida <em>pass</em> se utiliza en Python cuando realizamos
+métodos que aun no definimos, de esta forma, el programa no falla, ya
+que el método aun no hace nada, al crear los métodos(asi se llaman a las
+funciones pertenecientes a una clase en Python) esa palabra reservada se
+eliminará.</p>
+</section>
+<section id="suma-inferior" class="cell markdown" id="5ID_tguhKO_L">
+<h1>Suma Inferior:</h1>
+</section>
+<div class="cell code" id="2z7KJd3HKM-w">
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sumaInferior(funcion, desde, hasta, rectangulos):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">pass</span></span></code></pre></div>
+</div>
+<section id="suma-superior" class="cell markdown" id="2KeBKExGKfIk">
+<h1>Suma Superior:</h1>
+</section>
+<div class="cell code" id="uaiOq4GrKs7t">
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sumaSuperior(funcion, desde, hasta, rectangulos):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">pass</span></span></code></pre></div>
+</div>
+<section id="propuesta-1-suma-inferior" class="cell markdown"
+id="MWEVI7GugGXm">
+<h1><strong>Propuesta 1</strong> Suma Inferior:</h1>
+</section>
+<div class="cell code" id="24Llkd-igFDR">
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sumaInferior(funcion, desde, hasta, rectangulos):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> rectangulos <span class="op">&lt;=</span> <span class="dv">0</span>:</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">&quot;En la primaria no te enseñaron que no podes dividir algo por cero?&quot;</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> hasta <span class="op">&lt;=</span> desde:</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">&quot;Estas en tu casa y para ir a la Uni, vas desde la Uni a tu Casa?&quot;</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> desde</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> hasta</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> rectangulos</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    delta <span class="op">=</span> (b <span class="op">-</span> a) <span class="op">/</span> n</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    sumatoria <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        izq <span class="op">=</span> a <span class="op">+</span> k <span class="op">*</span> delta</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>        der <span class="op">=</span> izq <span class="op">+</span> delta</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>        m_k <span class="op">=</span> <span class="bu">min</span>(funcion(izq), funcion(der))</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>        sumatoria <span class="op">+=</span> m_k <span class="op">*</span> delta</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sumatoria</span></code></pre></div>
+</div>
+<div class="cell markdown" id="fF4mjc5Ml-A3">
+<p><strong>Ejecución:</strong></p>
+<p>Definimos una función de Python que devuelva una función
+matemática</p>
+</div>
+<div class="cell code"
+data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}"
+id="F71M_yZqmL4K" data-outputId="35ac81e5-8031-479c-af0c-35f50bd15cd6">
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sumaInferior(f, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">20</span>))</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>2.4700000000000006
+</code></pre>
+</div>
+</div>
+<section id="propuesta-1-v2-suma-inferior" class="cell markdown"
+id="UA9K1wIpmpYf">
+<h1><strong>Propuesta 1 v2</strong> Suma Inferior:</h1>
+<p>Se solicita introducir la función con ejemplos de como ingresarla,
+luego se formatea la entrada para que Python pueda realizar los
+calculos.</p>
+</section>
+<div class="cell code" id="M-n6DrnimR4U">
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>entradas <span class="op">=</span> {</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;sen&quot;</span>: <span class="st">&quot;math.sin&quot;</span>,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;sin&quot;</span>: <span class="st">&quot;math.sin&quot;</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;cos&quot;</span>: <span class="st">&quot;math.cos&quot;</span>,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;tan&quot;</span>: <span class="st">&quot;math.tan&quot;</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;e^&quot;</span>: <span class="st">&quot;math.exp&quot;</span>,</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;ln&quot;</span>: <span class="st">&quot;math.log&quot;</span>,</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;log&quot;</span>: <span class="st">&quot;math.log10&quot;</span>,</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;x^&quot;</span>: <span class="st">&quot;x**&quot;</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>} <span class="co"># Diccionario &quot;Posible entrada&quot;:&quot;Entrada formateada&quot;</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Función que formatea a una sintaxis correcta</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sanitizar(sintaxis):</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> clave, valor <span class="kw">in</span> entradas.items():</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>        sintaxis <span class="op">=</span> sintaxis.replace(clave, valor)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sintaxis</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="co"># La función definida previamente</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sumaInferior(funcion, desde, hasta, rectangulos):</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> rectangulos <span class="op">&lt;=</span> <span class="dv">0</span>:</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">&quot;En la primaria no te enseñaron que no podes dividir algo por cero?&quot;</span>)</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> hasta <span class="op">&lt;=</span> desde:</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">&quot;Estas en tu casa y para ir a la Uni, vas desde la Uni a tu Casa?&quot;</span>)</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> desde</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> hasta</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> rectangulos</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>    delta <span class="op">=</span> (b <span class="op">-</span> a) <span class="op">/</span> n</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>    sumatoria <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>        izq <span class="op">=</span> a <span class="op">+</span> k <span class="op">*</span> delta</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>        der <span class="op">=</span> izq <span class="op">+</span> delta</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>        m_k <span class="op">=</span> <span class="bu">min</span>(funcion(izq), funcion(der))</span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>        sumatoria <span class="op">+=</span> m_k <span class="op">*</span> delta</span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sumatoria</span></code></pre></div>
+</div>
+<div class="cell markdown" id="m5ScQBV4nyuN">
+<p><strong>Ejecución:</strong></p>
+</div>
+<div class="cell code"
+data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}"
+id="aPhSQVsPmnJ5" data-outputId="2e4b7d41-689c-4b14-a5cd-8267918c58bc">
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> main():</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;Suma Inferior de Riemann&quot;</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    ingreso <span class="op">=</span> <span class="bu">input</span>(<span class="st">&quot;Ingrese la función f(x) [Ejemplo: x^3, sin(x), e^x, ln(x), log(x)]: &quot;</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    f <span class="op">=</span> sanitizar(ingreso)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    funcion <span class="op">=</span> <span class="kw">lambda</span> x: <span class="bu">eval</span>(f, {<span class="st">&quot;x&quot;</span>: x, <span class="st">&quot;math&quot;</span>: math})</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    desde <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">&quot;Desde (a): &quot;</span>))</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    hasta <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">&quot;Hasta (b): &quot;</span>))</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    rectangulos <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">&quot;Número de rectángulos: &quot;</span>))</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    inferior <span class="op">=</span> sumaInferior(funcion, desde, hasta, rectangulos)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&quot;</span><span class="ch">\n</span><span class="ss">La suma inferior de Riemann es: </span><span class="sc">{</span>inferior<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>main()</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>Suma Inferior de Riemann
+Ingrese la función f(x) [Ejemplo: x^3, sin(x), e^x, ln(x), log(x)]: x^2
+Desde (a): 0
+Hasta (b): 2
+Número de rectángulos: 10
+
+La suma inferior de Riemann es: 2.2800000000000007
+</code></pre>
+</div>
+</div>
+<section id="propuesta-1-v3-suma-inferior" class="cell markdown"
+id="vggy5iuWqYRL">
+<h1><strong>Propuesta 1 v3</strong> Suma Inferior:</h1>
+<p>En lugar de mostrar con un print el resultado final, mostrar cada
+iteración en una tabla, mediante el uso de Plotly Dash.</p>
+<p>En el código original solo nos interesaba replicar GeoGebra, es
+decir, ingresamos los parámetros a la función y que nos dé la solución
+para los <span class="math inline">\(n\)</span> rectángulos en un
+intervalo [a, b].</p>
+<p>Ahora nos interesa conocer cada cálculo intermedio al que llegó, no
+sólo la última iteración, estos valores debemos guardarlos para ser
+utilizados por esto, debemos modificar un poco lo realizado.</p>
+</section>
+<div class="cell code" id="jHhCYFGSq28j">
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>entradas <span class="op">=</span> {</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;sen&quot;</span>: <span class="st">&quot;math.sin&quot;</span>,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;sin&quot;</span>: <span class="st">&quot;math.sin&quot;</span>,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;cos&quot;</span>: <span class="st">&quot;math.cos&quot;</span>,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;tan&quot;</span>: <span class="st">&quot;math.tan&quot;</span>,</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;e^&quot;</span>: <span class="st">&quot;math.exp&quot;</span>,</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;ln&quot;</span>: <span class="st">&quot;math.log&quot;</span>,</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;log&quot;</span>: <span class="st">&quot;math.log10&quot;</span>,</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;x^&quot;</span>: <span class="st">&quot;x**&quot;</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sanitizar(sintaxis):</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> clave, valor <span class="kw">in</span> entradas.items():</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>        sintaxis <span class="op">=</span> sintaxis.replace(clave, valor)</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sintaxis</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sumaInferior(funcion, desde, hasta, rectangulos):</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> rectangulos <span class="op">&lt;=</span> <span class="dv">0</span>:</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">&quot;En la primaria no te enseñaron que no podes dividir algo por cero?&quot;</span>)</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> hasta <span class="op">&lt;=</span> desde:</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">&quot;Estas en tu casa y para ir a la Uni, vas desde la Uni a tu Casa?&quot;</span>)</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> desde</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> hasta</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> rectangulos</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>    delta <span class="op">=</span> (b <span class="op">-</span> a) <span class="op">/</span> n</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>    sumatoria <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> [] <span class="co"># El almacén. Nueva línea!</span></span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>        izq <span class="op">=</span> a <span class="op">+</span> k <span class="op">*</span> delta</span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>        der <span class="op">=</span> izq <span class="op">+</span> delta</span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>        <span class="co"># m_k = min(funcion(izq), funcion(der))</span></span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>        <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a><span class="co">        min(a,b) Nos oculta el valor de x ganador asi que toca reevaluar,</span></span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a><span class="co">        antes no nos importaba este dato, solo saber cual era el valor mínimo al evaluar x por izquierda o por derecha, ahora si nos interesa.</span></span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a><span class="co">        Es por eso, que debemos desahcer la eficacia de min(valor a, valor b) por un ternario o un bucle if.</span></span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a><span class="co">        &quot;&quot;&quot;</span></span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Nuevas líneas</span></span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>        f_izq <span class="op">=</span> funcion(izq) <span class="co"># Guardamos el f(x) para x izquierda</span></span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a>        f_der <span class="op">=</span> funcion(der) <span class="co"># Guardamos el f(x) para x derecha</span></span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a>        m_k, x_ganador <span class="op">=</span> (f_izq, izq) <span class="cf">if</span> f_izq <span class="op">&lt;=</span> f_der <span class="cf">else</span> (f_der, der) <span class="co"># Según se cumpla la coindicion central, se asigna (la altura f_izq o f_der en m_k, x ganador izq o der en x_ganador)</span></span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a>        sumatoria <span class="op">+=</span> m_k <span class="op">*</span> delta</span>
+<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Nueva línea</span></span>
+<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a>        <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a><span class="co">        Agrega a la lista de datos (data)</span></span>
+<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a><span class="co">        - Cada iteración k</span></span>
+<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a><span class="co">        - El valor del x que fue mínimo al evaluar f(izq) y f(der)</span></span>
+<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a><span class="co">        - El mínimo valor f(x) guardado en m_k</span></span>
+<span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a><span class="co">        - El delta x.</span></span>
+<span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a><span class="co">        - El área parcial.</span></span>
+<span id="cb11-58"><a href="#cb11-58" aria-hidden="true" tabindex="-1"></a><span class="co">        - La suma inferior parcial en cada iteración.</span></span>
+<span id="cb11-59"><a href="#cb11-59" aria-hidden="true" tabindex="-1"></a><span class="co">        &quot;&quot;&quot;</span></span>
+<span id="cb11-60"><a href="#cb11-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-61"><a href="#cb11-61" aria-hidden="true" tabindex="-1"></a>        data.append({<span class="st">&quot;Iteración&quot;</span>: k <span class="op">+</span> <span class="dv">1</span>, <span class="st">&quot;x evaluado&quot;</span>: <span class="bu">round</span>(x_ganador, <span class="dv">4</span>), <span class="st">&quot;f(x)=(x evaluado)^2&quot;</span>: <span class="bu">round</span>(m_k, <span class="dv">4</span>), <span class="st">&quot;Delta x&quot;</span>: <span class="bu">round</span>(delta, <span class="dv">4</span>), <span class="st">&quot;Área parcial=f(x) * Delta x&quot;</span>: <span class="bu">round</span>(m_k <span class="op">*</span> delta, <span class="dv">6</span>), <span class="st">&quot;Suma inferior hasta el momento = S_n + s_(n-1)&quot;</span>: <span class="bu">round</span>(sumatoria, <span class="dv">6</span>)}) <span class="co"># Para agregar al almacen</span></span>
+<span id="cb11-62"><a href="#cb11-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-63"><a href="#cb11-63" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sumatoria, data <span class="co"># Al almacen! Se agrega data como lo que retorna nuestra función.</span></span></code></pre></div>
+</div>
+<div class="cell markdown" id="L7kc2Mh9vCN-">
+<p><strong>Crear tabla con Dash</strong></p>
+<p>Acá comenzamos a requerir dependencias:</p>
+<ul>
+<li>Dash, Dash Bootstrap Components</li>
+<li>Pandas (Porque usamos un data frame que es en lo que se convierte la
+lista data)</li>
+</ul>
+<p>Para esto debemos indicar a a la VM de Google Colab que instale los
+requerimientos. Mediante pip, pero como estamos en Jupyter Notebook los
+comandos se introducen con un signo de exclamación al inicio, en nuestra
+PC si no utilizamos Jupyter, esa exclamación no va.</p>
+</div>
+<div class="cell code"
+data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}"
+id="hjZfl_V3wbfh" data-outputId="f718788d-a117-44ec-e7df-1ecf37b1f7b9">
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install dash</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install dash_bootstrap_components</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install pandas</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Que copada la AI relleno esto sola</span></span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>Collecting dash
+  Downloading dash-3.2.0-py3-none-any.whl.metadata (10 kB)
+Requirement already satisfied: Flask&lt;3.2,&gt;=1.0.4 in /usr/local/lib/python3.12/dist-packages (from dash) (3.1.2)
+Requirement already satisfied: Werkzeug&lt;3.2 in /usr/local/lib/python3.12/dist-packages (from dash) (3.1.3)
+Requirement already satisfied: plotly&gt;=5.0.0 in /usr/local/lib/python3.12/dist-packages (from dash) (5.24.1)
+Requirement already satisfied: importlib-metadata in /usr/local/lib/python3.12/dist-packages (from dash) (8.7.0)
+Requirement already satisfied: typing-extensions&gt;=4.1.1 in /usr/local/lib/python3.12/dist-packages (from dash) (4.15.0)
+Requirement already satisfied: requests in /usr/local/lib/python3.12/dist-packages (from dash) (2.32.4)
+Collecting retrying (from dash)
+  Downloading retrying-1.4.2-py3-none-any.whl.metadata (5.5 kB)
+Requirement already satisfied: nest-asyncio in /usr/local/lib/python3.12/dist-packages (from dash) (1.6.0)
+Requirement already satisfied: setuptools in /usr/local/lib/python3.12/dist-packages (from dash) (75.2.0)
+Requirement already satisfied: blinker&gt;=1.9.0 in /usr/local/lib/python3.12/dist-packages (from Flask&lt;3.2,&gt;=1.0.4-&gt;dash) (1.9.0)
+Requirement already satisfied: click&gt;=8.1.3 in /usr/local/lib/python3.12/dist-packages (from Flask&lt;3.2,&gt;=1.0.4-&gt;dash) (8.3.0)
+Requirement already satisfied: itsdangerous&gt;=2.2.0 in /usr/local/lib/python3.12/dist-packages (from Flask&lt;3.2,&gt;=1.0.4-&gt;dash) (2.2.0)
+Requirement already satisfied: jinja2&gt;=3.1.2 in /usr/local/lib/python3.12/dist-packages (from Flask&lt;3.2,&gt;=1.0.4-&gt;dash) (3.1.6)
+Requirement already satisfied: markupsafe&gt;=2.1.1 in /usr/local/lib/python3.12/dist-packages (from Flask&lt;3.2,&gt;=1.0.4-&gt;dash) (3.0.3)
+Requirement already satisfied: tenacity&gt;=6.2.0 in /usr/local/lib/python3.12/dist-packages (from plotly&gt;=5.0.0-&gt;dash) (8.5.0)
+Requirement already satisfied: packaging in /usr/local/lib/python3.12/dist-packages (from plotly&gt;=5.0.0-&gt;dash) (25.0)
+Requirement already satisfied: zipp&gt;=3.20 in /usr/local/lib/python3.12/dist-packages (from importlib-metadata-&gt;dash) (3.23.0)
+Requirement already satisfied: charset_normalizer&lt;4,&gt;=2 in /usr/local/lib/python3.12/dist-packages (from requests-&gt;dash) (3.4.4)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/local/lib/python3.12/dist-packages (from requests-&gt;dash) (3.11)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /usr/local/lib/python3.12/dist-packages (from requests-&gt;dash) (2.5.0)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/local/lib/python3.12/dist-packages (from requests-&gt;dash) (2025.10.5)
+Downloading dash-3.2.0-py3-none-any.whl (7.9 MB)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 7.9/7.9 MB 65.2 MB/s eta 0:00:00
+ponents
+  Downloading dash_bootstrap_components-2.0.4-py3-none-any.whl.metadata (18 kB)
+Requirement already satisfied: dash&gt;=3.0.4 in /usr/local/lib/python3.12/dist-packages (from dash_bootstrap_components) (3.2.0)
+Requirement already satisfied: Flask&lt;3.2,&gt;=1.0.4 in /usr/local/lib/python3.12/dist-packages (from dash&gt;=3.0.4-&gt;dash_bootstrap_components) (3.1.2)
+Requirement already satisfied: Werkzeug&lt;3.2 in /usr/local/lib/python3.12/dist-packages (from dash&gt;=3.0.4-&gt;dash_bootstrap_components) (3.1.3)
+Requirement already satisfied: plotly&gt;=5.0.0 in /usr/local/lib/python3.12/dist-packages (from dash&gt;=3.0.4-&gt;dash_bootstrap_components) (5.24.1)
+Requirement already satisfied: importlib-metadata in /usr/local/lib/python3.12/dist-packages (from dash&gt;=3.0.4-&gt;dash_bootstrap_components) (8.7.0)
+Requirement already satisfied: typing-extensions&gt;=4.1.1 in /usr/local/lib/python3.12/dist-packages (from dash&gt;=3.0.4-&gt;dash_bootstrap_components) (4.15.0)
+Requirement already satisfied: requests in /usr/local/lib/python3.12/dist-packages (from dash&gt;=3.0.4-&gt;dash_bootstrap_components) (2.32.4)
+Requirement already satisfied: retrying in /usr/local/lib/python3.12/dist-packages (from dash&gt;=3.0.4-&gt;dash_bootstrap_components) (1.4.2)
+Requirement already satisfied: nest-asyncio in /usr/local/lib/python3.12/dist-packages (from dash&gt;=3.0.4-&gt;dash_bootstrap_components) (1.6.0)
+Requirement already satisfied: setuptools in /usr/local/lib/python3.12/dist-packages (from dash&gt;=3.0.4-&gt;dash_bootstrap_components) (75.2.0)
+Requirement already satisfied: blinker&gt;=1.9.0 in /usr/local/lib/python3.12/dist-packages (from Flask&lt;3.2,&gt;=1.0.4-&gt;dash&gt;=3.0.4-&gt;dash_bootstrap_components) (1.9.0)
+Requirement already satisfied: click&gt;=8.1.3 in /usr/local/lib/python3.12/dist-packages (from Flask&lt;3.2,&gt;=1.0.4-&gt;dash&gt;=3.0.4-&gt;dash_bootstrap_components) (8.3.0)
+Requirement already satisfied: itsdangerous&gt;=2.2.0 in /usr/local/lib/python3.12/dist-packages (from Flask&lt;3.2,&gt;=1.0.4-&gt;dash&gt;=3.0.4-&gt;dash_bootstrap_components) (2.2.0)
+Requirement already satisfied: jinja2&gt;=3.1.2 in /usr/local/lib/python3.12/dist-packages (from Flask&lt;3.2,&gt;=1.0.4-&gt;dash&gt;=3.0.4-&gt;dash_bootstrap_components) (3.1.6)
+Requirement already satisfied: markupsafe&gt;=2.1.1 in /usr/local/lib/python3.12/dist-packages (from Flask&lt;3.2,&gt;=1.0.4-&gt;dash&gt;=3.0.4-&gt;dash_bootstrap_components) (3.0.3)
+Requirement already satisfied: tenacity&gt;=6.2.0 in /usr/local/lib/python3.12/dist-packages (from plotly&gt;=5.0.0-&gt;dash&gt;=3.0.4-&gt;dash_bootstrap_components) (8.5.0)
+Requirement already satisfied: packaging in /usr/local/lib/python3.12/dist-packages (from plotly&gt;=5.0.0-&gt;dash&gt;=3.0.4-&gt;dash_bootstrap_components) (25.0)
+Requirement already satisfied: zipp&gt;=3.20 in /usr/local/lib/python3.12/dist-packages (from importlib-metadata-&gt;dash&gt;=3.0.4-&gt;dash_bootstrap_components) (3.23.0)
+Requirement already satisfied: charset_normalizer&lt;4,&gt;=2 in /usr/local/lib/python3.12/dist-packages (from requests-&gt;dash&gt;=3.0.4-&gt;dash_bootstrap_components) (3.4.4)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/local/lib/python3.12/dist-packages (from requests-&gt;dash&gt;=3.0.4-&gt;dash_bootstrap_components) (3.11)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /usr/local/lib/python3.12/dist-packages (from requests-&gt;dash&gt;=3.0.4-&gt;dash_bootstrap_components) (2.5.0)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/local/lib/python3.12/dist-packages (from requests-&gt;dash&gt;=3.0.4-&gt;dash_bootstrap_components) (2025.10.5)
+Downloading dash_bootstrap_components-2.0.4-py3-none-any.whl (204 kB)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 204.0/204.0 kB 5.2 MB/s eta 0:00:00
+ponents
+Successfully installed dash_bootstrap_components-2.0.4
+Requirement already satisfied: pandas in /usr/local/lib/python3.12/dist-packages (2.2.2)
+Requirement already satisfied: numpy&gt;=1.26.0 in /usr/local/lib/python3.12/dist-packages (from pandas) (2.0.2)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in /usr/local/lib/python3.12/dist-packages (from pandas) (2.9.0.post0)
+Requirement already satisfied: pytz&gt;=2020.1 in /usr/local/lib/python3.12/dist-packages (from pandas) (2025.2)
+Requirement already satisfied: tzdata&gt;=2022.7 in /usr/local/lib/python3.12/dist-packages (from pandas) (2025.2)
+Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.12/dist-packages (from python-dateutil&gt;=2.8.2-&gt;pandas) (1.17.0)
+</code></pre>
+</div>
+</div>
+<div class="cell code"
+data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:671}"
+id="nxfnJo56vBoo" data-outputId="ea066b27-9f58-47c0-b406-5ba47496bbd2">
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dash</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dash <span class="im">import</span> html</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dash_bootstrap_components <span class="im">as</span> dbc</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Nos saltamos la introducción del usuario, para que no parezca complejo el paso</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x<span class="op">**</span><span class="dv">2</span> <span class="co"># Ponemos una función en formato Python</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>suma, datitos <span class="op">=</span> sumaInferior(f, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">10</span>) <span class="co"># Llamamos a la función y guardamos la suma inferior total, y la lista de datos.</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>datos<span class="op">=</span> pd.DataFrame(datitos) <span class="co"># Data Frame de Pandas Cambia de lista a diccionario con la forma {columna:[filas]} y no requiere declarar columns(palabra reservada)</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>app <span class="op">=</span> dash.Dash(<span class="va">__name__</span>, external_stylesheets<span class="op">=</span>[dbc.themes.BOOTSTRAP]) <span class="co"># Creación de la Dash app con estilo bootstrap</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>tabla <span class="op">=</span> dbc.Table.from_dataframe(datos, striped <span class="op">=</span> <span class="va">True</span>, bordered <span class="op">=</span> <span class="va">True</span>, hover <span class="op">=</span> <span class="va">True</span>,) <span class="co"># Tabla ahora con columnas y filas alimentadas por la funcion</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>app.layout <span class="op">=</span> html.Div([tabla]) <span class="co"># La web dash app con su contenido una tabla con columnas y filas</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>    app.run(port<span class="op">=</span><span class="st">&quot;8050&quot;</span>, debug<span class="op">=</span><span class="dv">0</span>) <span class="co"># Levantar web server para ejecutar la app</span></span></code></pre></div>
+<div class="output display_data">
+<pre><code>&lt;IPython.core.display.Javascript object&gt;</code></pre>
+</div>
+</div>
+<div class="cell markdown" id="f8SpGB9WoNCp">
+<p>$ \color{red}{ \textbf{Se repite para suma superior.} }$</p>
+<h1 id="propuesta-2-suma-superior"><strong>Propuesta 2</strong> Suma
+Superior:</h1>
+</div>
+<div class="cell code" id="d1I7g7vTn_05">
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sumaSuperior(funcion, desde, hasta, rectangulos):</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> rectangulos <span class="op">&lt;=</span> <span class="dv">0</span>:</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">&quot;En la primaria no te enseñaron que no podes dividir algo por cero?&quot;</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> hasta <span class="op">&lt;=</span> desde:</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">&quot;Estas en tu casa y para ir a la Uni, vas desde la Uni a tu Casa?&quot;</span>)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> desde</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> hasta</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> rectangulos</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    delta <span class="op">=</span> (b <span class="op">-</span> a) <span class="op">/</span> n</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    sumatoria <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>        izq <span class="op">=</span> a <span class="op">+</span> k <span class="op">*</span> delta</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>        der <span class="op">=</span> izq <span class="op">+</span> delta</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>        M_k <span class="op">=</span> <span class="bu">max</span>(funcion(izq), funcion(der))</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>        sumatoria <span class="op">+=</span> M_k <span class="op">*</span> delta</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sumatoria</span></code></pre></div>
+</div>
+<div class="cell markdown" id="PV-4c-oAop5S">
+<p><strong>Ejecución:</strong></p>
+<p>Definimos una función de Python que devuelva una función
+matemática</p>
+</div>
+<div class="cell code"
+data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}"
+id="MOVHl-1JopGV" data-outputId="c2b0818c-6675-4c55-dd99-771dddcf33a6">
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sumaSuperior(f, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">20</span>))</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>2.8700000000000006
+</code></pre>
+</div>
+</div>
+<section id="propuesta-2-v2-suma-superior" class="cell markdown"
+id="Nq0YUh8ZpNRx">
+<h1><strong>Propuesta 2 v2</strong> Suma Superior:</h1>
+<p>Se solicita introducir la función con ejemplos de como ingresarla,
+luego se formatea la entrada para que Python pueda realizar los
+calculos.</p>
+</section>
+<div class="cell code" id="-lgOSetIo9qF">
+<div class="sourceCode" id="cb19"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>entradas <span class="op">=</span> {</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;sen&quot;</span>: <span class="st">&quot;math.sin&quot;</span>,</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;sin&quot;</span>: <span class="st">&quot;math.sin&quot;</span>,</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;cos&quot;</span>: <span class="st">&quot;math.cos&quot;</span>,</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;tan&quot;</span>: <span class="st">&quot;math.tan&quot;</span>,</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;e^&quot;</span>: <span class="st">&quot;math.exp&quot;</span>,</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;ln&quot;</span>: <span class="st">&quot;math.log&quot;</span>,</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;log&quot;</span>: <span class="st">&quot;math.log10&quot;</span>,</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;x^&quot;</span>: <span class="st">&quot;x**&quot;</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sanitizar(sintaxis):</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> clave, valor <span class="kw">in</span> entradas.items():</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>        sintaxis <span class="op">=</span> sintaxis.replace(clave, valor)</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sintaxis</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sumaSuperior(funcion, desde, hasta, rectangulos):</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> rectangulos <span class="op">&lt;=</span> <span class="dv">0</span>:</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">&quot;En la primaria no te enseñaron que no podes dividir algo por cero?&quot;</span>)</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> hasta <span class="op">&lt;=</span> desde:</span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">&quot;Estas en tu casa y para ir a la Uni, vas desde la Uni a tu Casa?&quot;</span>)</span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> desde</span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> hasta</span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> rectangulos</span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>    delta <span class="op">=</span> (b <span class="op">-</span> a) <span class="op">/</span> n</span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>    sumatoria <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a>        izq <span class="op">=</span> a <span class="op">+</span> k <span class="op">*</span> delta</span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a>        der <span class="op">=</span> izq <span class="op">+</span> delta</span>
+<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a>        M_k <span class="op">=</span> <span class="bu">max</span>(funcion(izq), funcion(der))</span>
+<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a>        sumatoria <span class="op">+=</span> M_k <span class="op">*</span> delta</span>
+<span id="cb19-39"><a href="#cb19-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-40"><a href="#cb19-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sumatoria</span></code></pre></div>
+</div>
+<div class="cell markdown" id="wxtp5X43pdmD">
+<p><strong>Ejecución:</strong></p>
+</div>
+<div class="cell code"
+data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}"
+id="Udqj9Vu-pZcF" data-outputId="a10fa88d-dbe4-4c7d-8fad-171fe26f4706">
+<div class="sourceCode" id="cb20"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> main():</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;Suma Superior de Riemann&quot;</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    ingreso <span class="op">=</span> <span class="bu">input</span>(<span class="st">&quot;Ingrese la función f(x) [Ejemplo: x^3, sin(x), e^x, ln(x), log(x)]: &quot;</span>)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    f <span class="op">=</span> sanitizar(ingreso)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    funcion <span class="op">=</span> <span class="kw">lambda</span> x: <span class="bu">eval</span>(f, {<span class="st">&quot;x&quot;</span>: x, <span class="st">&quot;math&quot;</span>: math})</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    desde <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">&quot;Desde (a): &quot;</span>))</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    hasta <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">&quot;Hasta (b): &quot;</span>))</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    rectangulos <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">&quot;Número de rectángulos: &quot;</span>))</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>    inferior <span class="op">=</span> sumaSuperior(funcion, desde, hasta, rectangulos)</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&quot;</span><span class="ch">\n</span><span class="ss">La suma superior de Riemann es: </span><span class="sc">{</span>inferior<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>main()</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>Suma Superior de Riemann
+Ingrese la función f(x) [Ejemplo: x^3, sin(x), e^x, ln(x), log(x)]: x^2
+Desde (a): 0
+Hasta (b): 2
+Número de rectángulos: 10
+
+La suma superior de Riemann es: 3.08
+</code></pre>
+</div>
+</div>
+<section id="propuesta-2-v3-suma-superior" class="cell markdown"
+id="MZ35WH5RzKhY">
+<h1><strong>Propuesta 2 v3</strong> Suma Superior:</h1>
+<p>En lugar de mostrar con un print el resultado final, mostrar cada
+iteración en una tabla, mediante el uso de Plotly Dash.</p>
+<p>En el código original solo nos interesaba replicar GeoGebra, es
+decir, ingresamos los parámetros a la función y que nos dé la solución
+para los <span class="math inline">\(n\)</span> rectángulos en un
+intervalo [a, b].</p>
+<p>Ahora nos interesa conocer cada cálculo intermedio al que llegó, no
+sólo la última iteración, estos valores debemos guardarlos para ser
+utilizados por esto, debemos modificar un poco lo realizado.</p>
+</section>
+<div class="cell code" id="4usyCeMpzRsz">
+<div class="sourceCode" id="cb22"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>entradas <span class="op">=</span> {</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;sen&quot;</span>: <span class="st">&quot;math.sin&quot;</span>,</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;sin&quot;</span>: <span class="st">&quot;math.sin&quot;</span>,</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;cos&quot;</span>: <span class="st">&quot;math.cos&quot;</span>,</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;tan&quot;</span>: <span class="st">&quot;math.tan&quot;</span>,</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;e^&quot;</span>: <span class="st">&quot;math.exp&quot;</span>,</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;ln&quot;</span>: <span class="st">&quot;math.log&quot;</span>,</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;log&quot;</span>: <span class="st">&quot;math.log10&quot;</span>,</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;x^&quot;</span>: <span class="st">&quot;x**&quot;</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sanitizar(sintaxis):</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> clave, valor <span class="kw">in</span> entradas.items():</span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>        sintaxis <span class="op">=</span> sintaxis.replace(clave, valor)</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sintaxis</span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sumaSuperior(funcion, desde, hasta, rectangulos):</span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> rectangulos <span class="op">&lt;=</span> <span class="dv">0</span>:</span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">&quot;En la primaria no te enseñaron que no podes dividir algo por cero?&quot;</span>)</span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> hasta <span class="op">&lt;=</span> desde:</span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">&quot;Estas en tu casa y para ir a la Uni, vas desde la Uni a tu Casa?&quot;</span>)</span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> desde</span>
+<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> hasta</span>
+<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> rectangulos</span>
+<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a>    delta <span class="op">=</span> (b <span class="op">-</span> a) <span class="op">/</span> n</span>
+<span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a>    sumatoria <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb22-31"><a href="#cb22-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-32"><a href="#cb22-32" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> [] <span class="co"># El almacén. Nueva línea!</span></span>
+<span id="cb22-33"><a href="#cb22-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-34"><a href="#cb22-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb22-35"><a href="#cb22-35" aria-hidden="true" tabindex="-1"></a>        izq <span class="op">=</span> a <span class="op">+</span> k <span class="op">*</span> delta</span>
+<span id="cb22-36"><a href="#cb22-36" aria-hidden="true" tabindex="-1"></a>        der <span class="op">=</span> izq <span class="op">+</span> delta</span>
+<span id="cb22-37"><a href="#cb22-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-38"><a href="#cb22-38" aria-hidden="true" tabindex="-1"></a>        <span class="co"># M_k = max(funcion(izq), funcion(der))</span></span>
+<span id="cb22-39"><a href="#cb22-39" aria-hidden="true" tabindex="-1"></a>        <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb22-40"><a href="#cb22-40" aria-hidden="true" tabindex="-1"></a><span class="co">        max(a,b) Nos oculta el valor de x ganador asi que toca reevaluar,</span></span>
+<span id="cb22-41"><a href="#cb22-41" aria-hidden="true" tabindex="-1"></a><span class="co">        antes no nos importaba este dato, solo saber cual era el valor máximo al evaluar x por izquierda o por derecha, ahora si nos interesa.</span></span>
+<span id="cb22-42"><a href="#cb22-42" aria-hidden="true" tabindex="-1"></a><span class="co">        Es por eso, que debemos desahcer la eficacia de max(valor a, valor b) por un ternario o un bucle if.</span></span>
+<span id="cb22-43"><a href="#cb22-43" aria-hidden="true" tabindex="-1"></a><span class="co">        &quot;&quot;&quot;</span></span>
+<span id="cb22-44"><a href="#cb22-44" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Nuevas líneas</span></span>
+<span id="cb22-45"><a href="#cb22-45" aria-hidden="true" tabindex="-1"></a>        f_izq <span class="op">=</span> funcion(izq) <span class="co"># Guardamos el f(x) para x izquierda</span></span>
+<span id="cb22-46"><a href="#cb22-46" aria-hidden="true" tabindex="-1"></a>        f_der <span class="op">=</span> funcion(der) <span class="co"># Guardamos el f(x) para x derecha</span></span>
+<span id="cb22-47"><a href="#cb22-47" aria-hidden="true" tabindex="-1"></a>        M_k, x_ganador <span class="op">=</span> (f_izq, izq) <span class="cf">if</span> f_izq <span class="op">&gt;=</span> f_der <span class="cf">else</span> (f_der, der) <span class="co"># Según se cumpla la coindicion central, se asigna (la altura f_izq o f_der en M_k, x ganador izq o der en x_ganador)</span></span>
+<span id="cb22-48"><a href="#cb22-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-49"><a href="#cb22-49" aria-hidden="true" tabindex="-1"></a>        sumatoria <span class="op">+=</span> M_k <span class="op">*</span> delta</span>
+<span id="cb22-50"><a href="#cb22-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-51"><a href="#cb22-51" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Nueva línea</span></span>
+<span id="cb22-52"><a href="#cb22-52" aria-hidden="true" tabindex="-1"></a>        <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb22-53"><a href="#cb22-53" aria-hidden="true" tabindex="-1"></a><span class="co">        Agrega a la lista de datos (data)</span></span>
+<span id="cb22-54"><a href="#cb22-54" aria-hidden="true" tabindex="-1"></a><span class="co">        - Cada iteración k</span></span>
+<span id="cb22-55"><a href="#cb22-55" aria-hidden="true" tabindex="-1"></a><span class="co">        - El valor del x que fue máximo al evaluar f(izq) y f(der)</span></span>
+<span id="cb22-56"><a href="#cb22-56" aria-hidden="true" tabindex="-1"></a><span class="co">        - El máximo valor f(x) guardado en m_k</span></span>
+<span id="cb22-57"><a href="#cb22-57" aria-hidden="true" tabindex="-1"></a><span class="co">        - El delta x.</span></span>
+<span id="cb22-58"><a href="#cb22-58" aria-hidden="true" tabindex="-1"></a><span class="co">        - El área parcial.</span></span>
+<span id="cb22-59"><a href="#cb22-59" aria-hidden="true" tabindex="-1"></a><span class="co">        - La suma superior parcial en cada iteración.</span></span>
+<span id="cb22-60"><a href="#cb22-60" aria-hidden="true" tabindex="-1"></a><span class="co">        &quot;&quot;&quot;</span></span>
+<span id="cb22-61"><a href="#cb22-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-62"><a href="#cb22-62" aria-hidden="true" tabindex="-1"></a>        data.append({<span class="st">&quot;Iteración&quot;</span>: k <span class="op">+</span> <span class="dv">1</span>, <span class="st">&quot;x evaluado&quot;</span>: <span class="bu">round</span>(x_ganador, <span class="dv">4</span>), <span class="st">&quot;f(x)=(x evaluado)^2&quot;</span>: <span class="bu">round</span>(M_k, <span class="dv">4</span>), <span class="st">&quot;Delta x&quot;</span>: <span class="bu">round</span>(delta, <span class="dv">4</span>), <span class="st">&quot;Área parcial=f(x) * Delta x&quot;</span>: <span class="bu">round</span>(M_k <span class="op">*</span> delta, <span class="dv">6</span>), <span class="st">&quot;Suma superior hasta el momento = S_n + s_(n-1)&quot;</span>: <span class="bu">round</span>(sumatoria, <span class="dv">6</span>)}) <span class="co"># Para agregar al almacen</span></span>
+<span id="cb22-63"><a href="#cb22-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-64"><a href="#cb22-64" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sumatoria, data <span class="co"># Al almacen! Se agrega data como lo que retorna nuestra función.</span></span></code></pre></div>
+</div>
+<div class="cell markdown" id="Van8BfnIztXi">
+<p><strong>Crear tabla con Dash</strong></p>
+<p>Acá comenzamos a requerir dependencias:</p>
+<ul>
+<li>Dash, Dash Bootstrap Components</li>
+<li>Pandas (Porque usamos un data frame que es en lo que se convierte la
+lista data)</li>
+</ul>
+<p>Para esto debemos indicar a a la VM de Google Colab que instale los
+requerimientos. Mediante pip, pero como estamos en Jupyter Notebook los
+comandos se introducen con un signo de exclamación al inicio, en nuestra
+PC si no utilizamos Jupyter, esa exclamación no va.</p>
+</div>
+<div class="cell code"
+data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}"
+id="zBRCTiNWzxlN" data-outputId="c1d99f64-e0c9-4bab-92e4-723dfdad4766">
+<div class="sourceCode" id="cb23"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install dash</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install dash_bootstrap_components</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install pandas</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Que copada la AI relleno esto sola</span></span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>Requirement already satisfied: dash in /usr/local/lib/python3.12/dist-packages (3.3.0)
+Requirement already satisfied: Flask&lt;3.2,&gt;=1.0.4 in /usr/local/lib/python3.12/dist-packages (from dash) (3.1.2)
+Requirement already satisfied: Werkzeug&lt;3.2 in /usr/local/lib/python3.12/dist-packages (from dash) (3.1.3)
+Requirement already satisfied: plotly&gt;=5.0.0 in /usr/local/lib/python3.12/dist-packages (from dash) (5.24.1)
+Requirement already satisfied: importlib-metadata in /usr/local/lib/python3.12/dist-packages (from dash) (8.7.0)
+Requirement already satisfied: typing_extensions&gt;=4.1.1 in /usr/local/lib/python3.12/dist-packages (from dash) (4.15.0)
+Requirement already satisfied: requests in /usr/local/lib/python3.12/dist-packages (from dash) (2.32.4)
+Requirement already satisfied: retrying in /usr/local/lib/python3.12/dist-packages (from dash) (1.4.2)
+Requirement already satisfied: nest-asyncio in /usr/local/lib/python3.12/dist-packages (from dash) (1.6.0)
+Requirement already satisfied: setuptools in /usr/local/lib/python3.12/dist-packages (from dash) (75.2.0)
+Requirement already satisfied: blinker&gt;=1.9.0 in /usr/local/lib/python3.12/dist-packages (from Flask&lt;3.2,&gt;=1.0.4-&gt;dash) (1.9.0)
+Requirement already satisfied: click&gt;=8.1.3 in /usr/local/lib/python3.12/dist-packages (from Flask&lt;3.2,&gt;=1.0.4-&gt;dash) (8.3.0)
+Requirement already satisfied: itsdangerous&gt;=2.2.0 in /usr/local/lib/python3.12/dist-packages (from Flask&lt;3.2,&gt;=1.0.4-&gt;dash) (2.2.0)
+Requirement already satisfied: jinja2&gt;=3.1.2 in /usr/local/lib/python3.12/dist-packages (from Flask&lt;3.2,&gt;=1.0.4-&gt;dash) (3.1.6)
+Requirement already satisfied: markupsafe&gt;=2.1.1 in /usr/local/lib/python3.12/dist-packages (from Flask&lt;3.2,&gt;=1.0.4-&gt;dash) (3.0.3)
+Requirement already satisfied: tenacity&gt;=6.2.0 in /usr/local/lib/python3.12/dist-packages (from plotly&gt;=5.0.0-&gt;dash) (8.5.0)
+Requirement already satisfied: packaging in /usr/local/lib/python3.12/dist-packages (from plotly&gt;=5.0.0-&gt;dash) (25.0)
+Requirement already satisfied: zipp&gt;=3.20 in /usr/local/lib/python3.12/dist-packages (from importlib-metadata-&gt;dash) (3.23.0)
+Requirement already satisfied: charset_normalizer&lt;4,&gt;=2 in /usr/local/lib/python3.12/dist-packages (from requests-&gt;dash) (3.4.4)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/local/lib/python3.12/dist-packages (from requests-&gt;dash) (3.11)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /usr/local/lib/python3.12/dist-packages (from requests-&gt;dash) (2.5.0)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/local/lib/python3.12/dist-packages (from requests-&gt;dash) (2025.10.5)
+Requirement already satisfied: dash_bootstrap_components in /usr/local/lib/python3.12/dist-packages (2.0.4)
+Requirement already satisfied: dash&gt;=3.0.4 in /usr/local/lib/python3.12/dist-packages (from dash_bootstrap_components) (3.3.0)
+Requirement already satisfied: Flask&lt;3.2,&gt;=1.0.4 in /usr/local/lib/python3.12/dist-packages (from dash&gt;=3.0.4-&gt;dash_bootstrap_components) (3.1.2)
+Requirement already satisfied: Werkzeug&lt;3.2 in /usr/local/lib/python3.12/dist-packages (from dash&gt;=3.0.4-&gt;dash_bootstrap_components) (3.1.3)
+Requirement already satisfied: plotly&gt;=5.0.0 in /usr/local/lib/python3.12/dist-packages (from dash&gt;=3.0.4-&gt;dash_bootstrap_components) (5.24.1)
+Requirement already satisfied: importlib-metadata in /usr/local/lib/python3.12/dist-packages (from dash&gt;=3.0.4-&gt;dash_bootstrap_components) (8.7.0)
+Requirement already satisfied: typing_extensions&gt;=4.1.1 in /usr/local/lib/python3.12/dist-packages (from dash&gt;=3.0.4-&gt;dash_bootstrap_components) (4.15.0)
+Requirement already satisfied: requests in /usr/local/lib/python3.12/dist-packages (from dash&gt;=3.0.4-&gt;dash_bootstrap_components) (2.32.4)
+Requirement already satisfied: retrying in /usr/local/lib/python3.12/dist-packages (from dash&gt;=3.0.4-&gt;dash_bootstrap_components) (1.4.2)
+Requirement already satisfied: nest-asyncio in /usr/local/lib/python3.12/dist-packages (from dash&gt;=3.0.4-&gt;dash_bootstrap_components) (1.6.0)
+Requirement already satisfied: setuptools in /usr/local/lib/python3.12/dist-packages (from dash&gt;=3.0.4-&gt;dash_bootstrap_components) (75.2.0)
+Requirement already satisfied: blinker&gt;=1.9.0 in /usr/local/lib/python3.12/dist-packages (from Flask&lt;3.2,&gt;=1.0.4-&gt;dash&gt;=3.0.4-&gt;dash_bootstrap_components) (1.9.0)
+Requirement already satisfied: click&gt;=8.1.3 in /usr/local/lib/python3.12/dist-packages (from Flask&lt;3.2,&gt;=1.0.4-&gt;dash&gt;=3.0.4-&gt;dash_bootstrap_components) (8.3.0)
+Requirement already satisfied: itsdangerous&gt;=2.2.0 in /usr/local/lib/python3.12/dist-packages (from Flask&lt;3.2,&gt;=1.0.4-&gt;dash&gt;=3.0.4-&gt;dash_bootstrap_components) (2.2.0)
+Requirement already satisfied: jinja2&gt;=3.1.2 in /usr/local/lib/python3.12/dist-packages (from Flask&lt;3.2,&gt;=1.0.4-&gt;dash&gt;=3.0.4-&gt;dash_bootstrap_components) (3.1.6)
+Requirement already satisfied: markupsafe&gt;=2.1.1 in /usr/local/lib/python3.12/dist-packages (from Flask&lt;3.2,&gt;=1.0.4-&gt;dash&gt;=3.0.4-&gt;dash_bootstrap_components) (3.0.3)
+Requirement already satisfied: tenacity&gt;=6.2.0 in /usr/local/lib/python3.12/dist-packages (from plotly&gt;=5.0.0-&gt;dash&gt;=3.0.4-&gt;dash_bootstrap_components) (8.5.0)
+Requirement already satisfied: packaging in /usr/local/lib/python3.12/dist-packages (from plotly&gt;=5.0.0-&gt;dash&gt;=3.0.4-&gt;dash_bootstrap_components) (25.0)
+Requirement already satisfied: zipp&gt;=3.20 in /usr/local/lib/python3.12/dist-packages (from importlib-metadata-&gt;dash&gt;=3.0.4-&gt;dash_bootstrap_components) (3.23.0)
+Requirement already satisfied: charset_normalizer&lt;4,&gt;=2 in /usr/local/lib/python3.12/dist-packages (from requests-&gt;dash&gt;=3.0.4-&gt;dash_bootstrap_components) (3.4.4)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/local/lib/python3.12/dist-packages (from requests-&gt;dash&gt;=3.0.4-&gt;dash_bootstrap_components) (3.11)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /usr/local/lib/python3.12/dist-packages (from requests-&gt;dash&gt;=3.0.4-&gt;dash_bootstrap_components) (2.5.0)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/local/lib/python3.12/dist-packages (from requests-&gt;dash&gt;=3.0.4-&gt;dash_bootstrap_components) (2025.10.5)
+Requirement already satisfied: pandas in /usr/local/lib/python3.12/dist-packages (2.2.2)
+Requirement already satisfied: numpy&gt;=1.26.0 in /usr/local/lib/python3.12/dist-packages (from pandas) (2.0.2)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in /usr/local/lib/python3.12/dist-packages (from pandas) (2.9.0.post0)
+Requirement already satisfied: pytz&gt;=2020.1 in /usr/local/lib/python3.12/dist-packages (from pandas) (2025.2)
+Requirement already satisfied: tzdata&gt;=2022.7 in /usr/local/lib/python3.12/dist-packages (from pandas) (2025.2)
+Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.12/dist-packages (from python-dateutil&gt;=2.8.2-&gt;pandas) (1.17.0)
+</code></pre>
+</div>
+</div>
+<div class="cell code"
+data-colab="{&quot;background_save&quot;:true,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}"
+id="1mdi4Sv_z2VU" data-outputId="e1755bd9-7009-490f-be66-3c39d09054d7">
+<div class="sourceCode" id="cb25"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dash</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dash <span class="im">import</span> html</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dash_bootstrap_components <span class="im">as</span> dbc</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Nos saltamos la introducción del usuario, para que no parezca complejo el paso</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x<span class="op">**</span><span class="dv">2</span> <span class="co"># Ponemos una función en formato Python</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>suma, datitos <span class="op">=</span> sumaSuperior(f, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">10</span>) <span class="co"># Llamamos a la función y guardamos la suma superior total, y la lista de datos.</span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>datos<span class="op">=</span> pd.DataFrame(datitos) <span class="co"># Data Frame de Pandas Cambia de lista a diccionario con la forma {columna:[filas]} y no requiere declarar columns(palabra reservada)</span></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>app <span class="op">=</span> dash.Dash(<span class="va">__name__</span>, external_stylesheets<span class="op">=</span>[dbc.themes.BOOTSTRAP]) <span class="co"># Creación de la Dash app con estilo bootstrap</span></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>tabla <span class="op">=</span> dbc.Table.from_dataframe(datos, striped <span class="op">=</span> <span class="va">True</span>, bordered <span class="op">=</span> <span class="va">True</span>, hover <span class="op">=</span> <span class="va">True</span>) <span class="co"># Tabla ahora con columnas y filas alimentadas por la funcion</span></span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>app.layout <span class="op">=</span> html.Div([tabla]) <span class="co"># La web dash app con su contenido una tabla con columnas y filas.</span></span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a>    app.run(port<span class="op">=</span><span class="st">&quot;8051&quot;</span>, debug<span class="op">=</span><span class="dv">0</span>) <span class="co"># Levantar web server para ejecutar la app</span></span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Agregado parametro de port, variandolo en +1 por cada app, para que no se sobreescriban las anteriores, pasa con las tablas y en jupyter da error de puerto en uso</span></span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>Dash is running on http://127.0.0.1:8051/
+
+</code></pre>
+</div>
+<div class="output stream stderr">
+<pre><code>INFO:dash.dash:Dash is running on http://127.0.0.1:8051/
+
+</code></pre>
+</div>
+<div class="output stream stdout">
+<pre><code> * Serving Flask app &#39;__main__&#39;
+ * Debug mode: off
+</code></pre>
+</div>
+<div class="output stream stderr">
+<pre><code>INFO:werkzeug:WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on http://127.0.0.1:8051
+INFO:werkzeug:Press CTRL+C to quit
+</code></pre>
+</div>
+</div>
+<section id="objetivo-extra" class="cell markdown" id="sm0lgs9RDLKL">
+<h1><strong>Objetivo Extra:</strong></h1>
+<p>Otro desafío: una función SumaSupSumaInf(función, mínimo, máximo,
+eps) que haga esto: eps es un número chiquito. Por ejemplo eps=0.001. La
+función hace lo siguiente: busca un número de rectángulos N, tal que
+sumaSuperior-sumaInferior, para ese N, sea menor que eps. Y después
+imprime, desde k=1 hasta k=N este texto</p>
+<ul>
+<li><span class="math inline">\(\text{sumaInferior(k) &lt;Integral &lt;
+sumaSuperior(k)}\)</span></li>
+</ul>
+<p>quedan N líneas de texto, donde las dos columnas se van acercando,
+hasta que su diferencia es menor que eps.</p>
+</section>
+<section id="propuesta-3-v1-objetivo-extra" class="cell markdown"
+id="wHbYJGdQEMM9">
+<h1><strong>Propuesta 3 v1:</strong> Objetivo Extra</h1>
+</section>
+<div class="cell code" id="aAxz0X_yA-WI">
+<div class="sourceCode" id="cb30"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>entradas <span class="op">=</span> {</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;sen&quot;</span>: <span class="st">&quot;math.sin&quot;</span>,</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;sin&quot;</span>: <span class="st">&quot;math.sin&quot;</span>,</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;cos&quot;</span>: <span class="st">&quot;math.cos&quot;</span>,</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;tan&quot;</span>: <span class="st">&quot;math.tan&quot;</span>,</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;e^&quot;</span>: <span class="st">&quot;math.exp&quot;</span>,</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;ln&quot;</span>: <span class="st">&quot;math.log&quot;</span>,</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;log&quot;</span>: <span class="st">&quot;math.log10&quot;</span>,</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;x^&quot;</span>: <span class="st">&quot;x**&quot;</span></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sanitizar(sintaxis):</span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> clave, valor <span class="kw">in</span> entradas.items():</span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>        sintaxis <span class="op">=</span> sintaxis.replace(clave, valor)</span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sintaxis</span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sumaInferior(funcion, desde, hasta, rectangulos):</span>
+<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> rectangulos <span class="op">&lt;=</span> <span class="dv">0</span>:</span>
+<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">&quot;En la primaria no te enseñaron que no podes dividir algo por cero?&quot;</span>)</span>
+<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> hasta <span class="op">&lt;=</span> desde:</span>
+<span id="cb30-24"><a href="#cb30-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">&quot;Estas en tu casa y para ir a la Uni, vas desde la Uni a tu Casa?&quot;</span>)</span>
+<span id="cb30-25"><a href="#cb30-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-26"><a href="#cb30-26" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> desde</span>
+<span id="cb30-27"><a href="#cb30-27" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> hasta</span>
+<span id="cb30-28"><a href="#cb30-28" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> rectangulos</span>
+<span id="cb30-29"><a href="#cb30-29" aria-hidden="true" tabindex="-1"></a>    delta <span class="op">=</span> (b <span class="op">-</span> a) <span class="op">/</span> n</span>
+<span id="cb30-30"><a href="#cb30-30" aria-hidden="true" tabindex="-1"></a>    sumatoria <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb30-31"><a href="#cb30-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-32"><a href="#cb30-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb30-33"><a href="#cb30-33" aria-hidden="true" tabindex="-1"></a>        izq <span class="op">=</span> a <span class="op">+</span> k <span class="op">*</span> delta</span>
+<span id="cb30-34"><a href="#cb30-34" aria-hidden="true" tabindex="-1"></a>        der <span class="op">=</span> izq <span class="op">+</span> delta</span>
+<span id="cb30-35"><a href="#cb30-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-36"><a href="#cb30-36" aria-hidden="true" tabindex="-1"></a>        m_k <span class="op">=</span> <span class="bu">min</span>(funcion(izq), funcion(der))</span>
+<span id="cb30-37"><a href="#cb30-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-38"><a href="#cb30-38" aria-hidden="true" tabindex="-1"></a>        sumatoria <span class="op">+=</span> m_k <span class="op">*</span> delta</span>
+<span id="cb30-39"><a href="#cb30-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-40"><a href="#cb30-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sumatoria</span>
+<span id="cb30-41"><a href="#cb30-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-42"><a href="#cb30-42" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sumaSuperior(funcion, desde, hasta, rectangulos):</span>
+<span id="cb30-43"><a href="#cb30-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> rectangulos <span class="op">&lt;=</span> <span class="dv">0</span>:</span>
+<span id="cb30-44"><a href="#cb30-44" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">&quot;En la primaria no te enseñaron que no podes dividir algo por cero?&quot;</span>)</span>
+<span id="cb30-45"><a href="#cb30-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-46"><a href="#cb30-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> hasta <span class="op">&lt;=</span> desde:</span>
+<span id="cb30-47"><a href="#cb30-47" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">&quot;Estas en tu casa y para ir a la Uni, vas desde la Uni a tu Casa?&quot;</span>)</span>
+<span id="cb30-48"><a href="#cb30-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-49"><a href="#cb30-49" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> desde</span>
+<span id="cb30-50"><a href="#cb30-50" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> hasta</span>
+<span id="cb30-51"><a href="#cb30-51" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> rectangulos</span>
+<span id="cb30-52"><a href="#cb30-52" aria-hidden="true" tabindex="-1"></a>    delta <span class="op">=</span> (b <span class="op">-</span> a) <span class="op">/</span> n</span>
+<span id="cb30-53"><a href="#cb30-53" aria-hidden="true" tabindex="-1"></a>    sumatoria <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb30-54"><a href="#cb30-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-55"><a href="#cb30-55" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb30-56"><a href="#cb30-56" aria-hidden="true" tabindex="-1"></a>        izq <span class="op">=</span> a <span class="op">+</span> k <span class="op">*</span> delta</span>
+<span id="cb30-57"><a href="#cb30-57" aria-hidden="true" tabindex="-1"></a>        der <span class="op">=</span> izq <span class="op">+</span> delta</span>
+<span id="cb30-58"><a href="#cb30-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-59"><a href="#cb30-59" aria-hidden="true" tabindex="-1"></a>        M_k <span class="op">=</span> <span class="bu">max</span>(funcion(izq), funcion(der))</span>
+<span id="cb30-60"><a href="#cb30-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-61"><a href="#cb30-61" aria-hidden="true" tabindex="-1"></a>        sumatoria <span class="op">+=</span> M_k <span class="op">*</span> delta</span>
+<span id="cb30-62"><a href="#cb30-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-63"><a href="#cb30-63" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sumatoria</span>
+<span id="cb30-64"><a href="#cb30-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-65"><a href="#cb30-65" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> SumaSupSumaInf(funcion, minimo, maximo, eps):</span>
+<span id="cb30-66"><a href="#cb30-66" aria-hidden="true" tabindex="-1"></a>    N <span class="op">=</span> <span class="dv">1</span> <span class="co"># Rectángulos iniciales</span></span>
+<span id="cb30-67"><a href="#cb30-67" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb30-68"><a href="#cb30-68" aria-hidden="true" tabindex="-1"></a>        inf <span class="op">=</span> sumaInferior(funcion, minimo, maximo, N)</span>
+<span id="cb30-69"><a href="#cb30-69" aria-hidden="true" tabindex="-1"></a>        sup <span class="op">=</span> sumaSuperior(funcion, minimo, maximo, N)</span>
+<span id="cb30-70"><a href="#cb30-70" aria-hidden="true" tabindex="-1"></a>        integral <span class="op">=</span> (inf <span class="op">+</span> sup) <span class="op">/</span> <span class="dv">2</span> <span class="co"># Nueva línea</span></span>
+<span id="cb30-71"><a href="#cb30-71" aria-hidden="true" tabindex="-1"></a>        diferencia <span class="op">=</span> <span class="bu">abs</span>(sup <span class="op">-</span> inf)</span>
+<span id="cb30-72"><a href="#cb30-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-73"><a href="#cb30-73" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f&quot;</span><span class="sc">{</span>N<span class="sc">:3d}</span><span class="ss">: </span><span class="sc">{</span>inf<span class="sc">:.6f}</span><span class="ss"> &lt; </span><span class="sc">{</span>integral<span class="sc">:.6f}</span><span class="ss"> &lt; </span><span class="sc">{</span>sup<span class="sc">:.6f}</span><span class="ss">&quot;</span>) <span class="co"># Cambiado el texto literal por una variable</span></span>
+<span id="cb30-74"><a href="#cb30-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-75"><a href="#cb30-75" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> diferencia <span class="op">&lt;</span> eps:</span>
+<span id="cb30-76"><a href="#cb30-76" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f&quot;</span><span class="ch">\n</span><span class="ss">→ Con N = </span><span class="sc">{</span>N<span class="sc">}</span><span class="ss">, la diferencia </span><span class="sc">{</span>diferencia<span class="sc">:.6f}</span><span class="ss"> &lt; ε = </span><span class="sc">{</span>eps<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb30-77"><a href="#cb30-77" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
+<span id="cb30-78"><a href="#cb30-78" aria-hidden="true" tabindex="-1"></a>        N <span class="op">+=</span> <span class="dv">1</span> <span class="co"># Evalua para N y en esta linea le suma 1, para que en la siguiente iteración N=2 y asi sucesivamente hasta romper el bucle</span></span></code></pre></div>
+</div>
+<div class="cell markdown" id="BZBlj_p8Fbv1">
+<p><strong>Ejecución:</strong></p>
+</div>
+<div class="cell code"
+data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}"
+id="d0HsbdItFftj" data-outputId="650a5151-9fe8-4c10-aac5-e953546ce9dc">
+<div class="sourceCode" id="cb31"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> main():</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;Aproximación de la integral con suma superior e inferior&quot;</span>)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    ingreso <span class="op">=</span> <span class="bu">input</span>(<span class="st">&quot;Ingrese la función f(x): &quot;</span>)</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>    f <span class="op">=</span> sanitizar(ingreso)</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>    funcion <span class="op">=</span> <span class="kw">lambda</span> x: <span class="bu">eval</span>(f, {<span class="st">&quot;x&quot;</span>: x, <span class="st">&quot;math&quot;</span>: math})</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>    minimo <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">&quot;Desde (a): &quot;</span>))</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>    maximo <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">&quot;Hasta (b): &quot;</span>))</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>    eps <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">&quot;Epsilon (tolerancia, ej: 0.01): &quot;</span>))</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">Suma inferior y superior por número de rectángulos:</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>    SumaSupSumaInf(funcion, minimo, maximo, eps)</span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>main()</span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>Aproximación de la integral con suma superior e inferior
+Ingrese la función f(x): x**2
+Desde (a): 0
+Hasta (b): 2
+Epsilon (tolerancia, ej: 0.01): 0.1
+
+Suma inferior y superior por número de rectángulos:
+
+  1: 0.000000 &lt; 4.000000 &lt; 8.000000
+  2: 1.000000 &lt; 3.000000 &lt; 5.000000
+  3: 1.481481 &lt; 2.814815 &lt; 4.148148
+  4: 1.750000 &lt; 2.750000 &lt; 3.750000
+  5: 1.920000 &lt; 2.720000 &lt; 3.520000
+  6: 2.037037 &lt; 2.703704 &lt; 3.370370
+  7: 2.122449 &lt; 2.693878 &lt; 3.265306
+  8: 2.187500 &lt; 2.687500 &lt; 3.187500
+  9: 2.238683 &lt; 2.683128 &lt; 3.127572
+ 10: 2.280000 &lt; 2.680000 &lt; 3.080000
+ 11: 2.314050 &lt; 2.677686 &lt; 3.041322
+ 12: 2.342593 &lt; 2.675926 &lt; 3.009259
+ 13: 2.366864 &lt; 2.674556 &lt; 2.982249
+ 14: 2.387755 &lt; 2.673469 &lt; 2.959184
+ 15: 2.405926 &lt; 2.672593 &lt; 2.939259
+ 16: 2.421875 &lt; 2.671875 &lt; 2.921875
+ 17: 2.435986 &lt; 2.671280 &lt; 2.906574
+ 18: 2.448560 &lt; 2.670782 &lt; 2.893004
+ 19: 2.459834 &lt; 2.670360 &lt; 2.880886
+ 20: 2.470000 &lt; 2.670000 &lt; 2.870000
+ 21: 2.479214 &lt; 2.669690 &lt; 2.860166
+ 22: 2.487603 &lt; 2.669421 &lt; 2.851240
+ 23: 2.495274 &lt; 2.669187 &lt; 2.843100
+ 24: 2.502315 &lt; 2.668981 &lt; 2.835648
+ 25: 2.508800 &lt; 2.668800 &lt; 2.828800
+ 26: 2.514793 &lt; 2.668639 &lt; 2.822485
+ 27: 2.520348 &lt; 2.668496 &lt; 2.816644
+ 28: 2.525510 &lt; 2.668367 &lt; 2.811224
+ 29: 2.530321 &lt; 2.668252 &lt; 2.806183
+ 30: 2.534815 &lt; 2.668148 &lt; 2.801481
+ 31: 2.539022 &lt; 2.668054 &lt; 2.797086
+ 32: 2.542969 &lt; 2.667969 &lt; 2.792969
+ 33: 2.546679 &lt; 2.667891 &lt; 2.789103
+ 34: 2.550173 &lt; 2.667820 &lt; 2.785467
+ 35: 2.553469 &lt; 2.667755 &lt; 2.782041
+ 36: 2.556584 &lt; 2.667695 &lt; 2.778807
+ 37: 2.559533 &lt; 2.667641 &lt; 2.775749
+ 38: 2.562327 &lt; 2.667590 &lt; 2.772853
+ 39: 2.564979 &lt; 2.667543 &lt; 2.770107
+ 40: 2.567500 &lt; 2.667500 &lt; 2.767500
+ 41: 2.569899 &lt; 2.667460 &lt; 2.765021
+ 42: 2.572184 &lt; 2.667423 &lt; 2.762661
+ 43: 2.574365 &lt; 2.667388 &lt; 2.760411
+ 44: 2.576446 &lt; 2.667355 &lt; 2.758264
+ 45: 2.578436 &lt; 2.667325 &lt; 2.756214
+ 46: 2.580340 &lt; 2.667297 &lt; 2.754253
+ 47: 2.582164 &lt; 2.667270 &lt; 2.752377
+ 48: 2.583912 &lt; 2.667245 &lt; 2.750579
+ 49: 2.585589 &lt; 2.667222 &lt; 2.748855
+ 50: 2.587200 &lt; 2.667200 &lt; 2.747200
+ 51: 2.588748 &lt; 2.667179 &lt; 2.745611
+ 52: 2.590237 &lt; 2.667160 &lt; 2.744083
+ 53: 2.591670 &lt; 2.667141 &lt; 2.742613
+ 54: 2.593050 &lt; 2.667124 &lt; 2.741198
+ 55: 2.594380 &lt; 2.667107 &lt; 2.739835
+ 56: 2.595663 &lt; 2.667092 &lt; 2.738520
+ 57: 2.596902 &lt; 2.667077 &lt; 2.737252
+ 58: 2.598098 &lt; 2.667063 &lt; 2.736029
+ 59: 2.599253 &lt; 2.667050 &lt; 2.734846
+ 60: 2.600370 &lt; 2.667037 &lt; 2.733704
+ 61: 2.601451 &lt; 2.667025 &lt; 2.732599
+ 62: 2.602497 &lt; 2.667014 &lt; 2.731530
+ 63: 2.603511 &lt; 2.667003 &lt; 2.730495
+ 64: 2.604492 &lt; 2.666992 &lt; 2.729492
+ 65: 2.605444 &lt; 2.666982 &lt; 2.728521
+ 66: 2.606367 &lt; 2.666973 &lt; 2.727579
+ 67: 2.607262 &lt; 2.666964 &lt; 2.726665
+ 68: 2.608131 &lt; 2.666955 &lt; 2.725779
+ 69: 2.608976 &lt; 2.666947 &lt; 2.724918
+ 70: 2.609796 &lt; 2.666939 &lt; 2.724082
+ 71: 2.610593 &lt; 2.666931 &lt; 2.723269
+ 72: 2.611368 &lt; 2.666924 &lt; 2.722479
+ 73: 2.612122 &lt; 2.666917 &lt; 2.721711
+ 74: 2.612856 &lt; 2.666910 &lt; 2.720964
+ 75: 2.613570 &lt; 2.666904 &lt; 2.720237
+ 76: 2.614266 &lt; 2.666898 &lt; 2.719529
+ 77: 2.614943 &lt; 2.666892 &lt; 2.718840
+ 78: 2.615604 &lt; 2.666886 &lt; 2.718168
+ 79: 2.616247 &lt; 2.666880 &lt; 2.717513
+ 80: 2.616875 &lt; 2.666875 &lt; 2.716875
+ 81: 2.617487 &lt; 2.666870 &lt; 2.716253
+
+→ Con N = 81, la diferencia 0.098765 &lt; ε = 0.1
+</code></pre>
+</div>
+</div>
+<section id="propuesta-3-v2-objetivo-extra" class="cell markdown"
+id="pvZYwVOpG_LM">
+<h1><strong>Propuesta 3 v2:</strong> Objetivo Extra</h1>
+<p>Presentar en tabla</p>
+</section>
+<div class="cell code" id="5FkmMsFiG5u9">
+<div class="sourceCode" id="cb33"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>entradas <span class="op">=</span> {</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;sen&quot;</span>: <span class="st">&quot;math.sin&quot;</span>,</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;sin&quot;</span>: <span class="st">&quot;math.sin&quot;</span>,</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;cos&quot;</span>: <span class="st">&quot;math.cos&quot;</span>,</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;tan&quot;</span>: <span class="st">&quot;math.tan&quot;</span>,</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;e^&quot;</span>: <span class="st">&quot;math.exp&quot;</span>,</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;ln&quot;</span>: <span class="st">&quot;math.log&quot;</span>,</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;log&quot;</span>: <span class="st">&quot;math.log10&quot;</span>,</span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;x^&quot;</span>: <span class="st">&quot;x**&quot;</span></span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sanitizar(sintaxis):</span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> clave, valor <span class="kw">in</span> entradas.items():</span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>        sintaxis <span class="op">=</span> sintaxis.replace(clave, valor)</span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sintaxis</span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sumaInferior(funcion, desde, hasta, rectangulos):</span>
+<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> rectangulos <span class="op">&lt;=</span> <span class="dv">0</span>:</span>
+<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">&quot;En la primaria no te enseñaron que no podes dividir algo por cero?&quot;</span>)</span>
+<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> hasta <span class="op">&lt;=</span> desde:</span>
+<span id="cb33-24"><a href="#cb33-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">&quot;Estas en tu casa y para ir a la Uni, vas desde la Uni a tu Casa?&quot;</span>)</span>
+<span id="cb33-25"><a href="#cb33-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-26"><a href="#cb33-26" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> desde</span>
+<span id="cb33-27"><a href="#cb33-27" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> hasta</span>
+<span id="cb33-28"><a href="#cb33-28" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> rectangulos</span>
+<span id="cb33-29"><a href="#cb33-29" aria-hidden="true" tabindex="-1"></a>    delta <span class="op">=</span> (b <span class="op">-</span> a) <span class="op">/</span> n</span>
+<span id="cb33-30"><a href="#cb33-30" aria-hidden="true" tabindex="-1"></a>    sumatoria <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb33-31"><a href="#cb33-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-32"><a href="#cb33-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb33-33"><a href="#cb33-33" aria-hidden="true" tabindex="-1"></a>        izq <span class="op">=</span> a <span class="op">+</span> k <span class="op">*</span> delta</span>
+<span id="cb33-34"><a href="#cb33-34" aria-hidden="true" tabindex="-1"></a>        der <span class="op">=</span> izq <span class="op">+</span> delta</span>
+<span id="cb33-35"><a href="#cb33-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-36"><a href="#cb33-36" aria-hidden="true" tabindex="-1"></a>        m_k <span class="op">=</span> <span class="bu">min</span>(funcion(izq), funcion(der))</span>
+<span id="cb33-37"><a href="#cb33-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-38"><a href="#cb33-38" aria-hidden="true" tabindex="-1"></a>        sumatoria <span class="op">+=</span> m_k <span class="op">*</span> delta</span>
+<span id="cb33-39"><a href="#cb33-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-40"><a href="#cb33-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sumatoria</span>
+<span id="cb33-41"><a href="#cb33-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-42"><a href="#cb33-42" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sumaSuperior(funcion, desde, hasta, rectangulos):</span>
+<span id="cb33-43"><a href="#cb33-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> rectangulos <span class="op">&lt;=</span> <span class="dv">0</span>:</span>
+<span id="cb33-44"><a href="#cb33-44" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">&quot;En la primaria no te enseñaron que no podes dividir algo por cero?&quot;</span>)</span>
+<span id="cb33-45"><a href="#cb33-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-46"><a href="#cb33-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> hasta <span class="op">&lt;=</span> desde:</span>
+<span id="cb33-47"><a href="#cb33-47" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">&quot;Estas en tu casa y para ir a la Uni, vas desde la Uni a tu Casa?&quot;</span>)</span>
+<span id="cb33-48"><a href="#cb33-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-49"><a href="#cb33-49" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> desde</span>
+<span id="cb33-50"><a href="#cb33-50" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> hasta</span>
+<span id="cb33-51"><a href="#cb33-51" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> rectangulos</span>
+<span id="cb33-52"><a href="#cb33-52" aria-hidden="true" tabindex="-1"></a>    delta <span class="op">=</span> (b <span class="op">-</span> a) <span class="op">/</span> n</span>
+<span id="cb33-53"><a href="#cb33-53" aria-hidden="true" tabindex="-1"></a>    sumatoria <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb33-54"><a href="#cb33-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-55"><a href="#cb33-55" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb33-56"><a href="#cb33-56" aria-hidden="true" tabindex="-1"></a>        izq <span class="op">=</span> a <span class="op">+</span> k <span class="op">*</span> delta</span>
+<span id="cb33-57"><a href="#cb33-57" aria-hidden="true" tabindex="-1"></a>        der <span class="op">=</span> izq <span class="op">+</span> delta</span>
+<span id="cb33-58"><a href="#cb33-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-59"><a href="#cb33-59" aria-hidden="true" tabindex="-1"></a>        M_k <span class="op">=</span> <span class="bu">max</span>(funcion(izq), funcion(der))</span>
+<span id="cb33-60"><a href="#cb33-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-61"><a href="#cb33-61" aria-hidden="true" tabindex="-1"></a>        sumatoria <span class="op">+=</span> M_k <span class="op">*</span> delta</span>
+<span id="cb33-62"><a href="#cb33-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-63"><a href="#cb33-63" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sumatoria</span>
+<span id="cb33-64"><a href="#cb33-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-65"><a href="#cb33-65" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> SumaSupSumaInf(funcion, minimo, maximo, eps):</span>
+<span id="cb33-66"><a href="#cb33-66" aria-hidden="true" tabindex="-1"></a>    N <span class="op">=</span> <span class="dv">1</span> <span class="co"># Rectángulos iniciales</span></span>
+<span id="cb33-67"><a href="#cb33-67" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> [] <span class="co"># El almacén. Nueva línea!</span></span>
+<span id="cb33-68"><a href="#cb33-68" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb33-69"><a href="#cb33-69" aria-hidden="true" tabindex="-1"></a>        inf <span class="op">=</span> sumaInferior(funcion, minimo, maximo, N)</span>
+<span id="cb33-70"><a href="#cb33-70" aria-hidden="true" tabindex="-1"></a>        sup <span class="op">=</span> sumaSuperior(funcion, minimo, maximo, N)</span>
+<span id="cb33-71"><a href="#cb33-71" aria-hidden="true" tabindex="-1"></a>        integral <span class="op">=</span> (inf <span class="op">+</span> sup) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb33-72"><a href="#cb33-72" aria-hidden="true" tabindex="-1"></a>        diferencia <span class="op">=</span> <span class="bu">abs</span>(sup <span class="op">-</span> inf)</span>
+<span id="cb33-73"><a href="#cb33-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-74"><a href="#cb33-74" aria-hidden="true" tabindex="-1"></a>        <span class="co">#print(f&quot;{N:3d}: {inf:.6f} &lt; Integral &lt; {sup:.6f}&quot;) reemplazada por tabla</span></span>
+<span id="cb33-75"><a href="#cb33-75" aria-hidden="true" tabindex="-1"></a>        data.append({<span class="st">&quot;Rectángulos&quot;</span>:N, <span class="st">&quot;Suma Inferior&quot;</span>:inf, <span class="st">&quot;Integral&quot;</span>: <span class="bu">round</span>(integral, <span class="dv">6</span>), <span class="st">&quot;Suma Superior&quot;</span>:sup, <span class="st">&quot;Diferencia&quot;</span>:diferencia}) <span class="co"># Nueva línea, duda con la Integral, lo tome literal en el anterior</span></span>
+<span id="cb33-76"><a href="#cb33-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-77"><a href="#cb33-77" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> diferencia <span class="op">&lt;</span> eps:</span>
+<span id="cb33-78"><a href="#cb33-78" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f&quot;</span><span class="ch">\n</span><span class="ss">→ Con N = </span><span class="sc">{</span>N<span class="sc">}</span><span class="ss">, la diferencia </span><span class="sc">{</span>diferencia<span class="sc">:.6f}</span><span class="ss"> &lt; ε = </span><span class="sc">{</span>eps<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb33-79"><a href="#cb33-79" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
+<span id="cb33-80"><a href="#cb33-80" aria-hidden="true" tabindex="-1"></a>        N <span class="op">+=</span> <span class="dv">1</span> <span class="co"># Evalua para N y en esta linea le suma 1, para que en la siguiente iteración N=2 y asi sucesivamente hasta romper el bucle</span></span>
+<span id="cb33-81"><a href="#cb33-81" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> data <span class="co"># Nueva línea, ahora guardamos datos que queremos en la tabla, asi que la función debe devolverlo</span></span></code></pre></div>
+</div>
+<div class="cell markdown" id="dUEpbUX7Htso">
+<p><strong>Crear tabla</strong>:</p>
+<p>Requiere correr la celda con !pip install</p>
+</div>
+<div class="cell code"
+data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}"
+id="qhMUxucaHxGq" data-outputId="0464ce17-7bf6-4ab8-f30e-6de36184d157">
+<div class="sourceCode" id="cb34"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dash</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dash <span class="im">import</span> html</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dash_bootstrap_components <span class="im">as</span> dbc</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Nos saltamos la introducción del usuario, para que no parezca complejo el paso</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x<span class="op">**</span><span class="dv">2</span> <span class="co"># Ponemos una función en formato Python</span></span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>datitos <span class="op">=</span> SumaSupSumaInf(f, <span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.1</span>) <span class="co"># Llamamos a la función</span></span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>datos<span class="op">=</span> pd.DataFrame(datitos) <span class="co"># Data Frame de Pandas Cambia de lista a diccionario con la forma {columna:[filas]} y no requiere declarar columns(palabra reservada)</span></span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>app <span class="op">=</span> dash.Dash(<span class="va">__name__</span>, external_stylesheets<span class="op">=</span>[dbc.themes.BOOTSTRAP]) <span class="co"># Creación de la Dash app con estilo bootstrap</span></span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a>tabla <span class="op">=</span> dbc.Table.from_dataframe(datos, striped <span class="op">=</span> <span class="va">True</span>, bordered <span class="op">=</span> <span class="va">True</span>, hover <span class="op">=</span> <span class="va">True</span>) <span class="co"># Tabla ahora con columnas y filas alimentadas por la funcion</span></span>
+<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a>app.layout <span class="op">=</span> html.Div([tabla]) <span class="co"># La web dash app con su contenido una tabla con columnas y filas.</span></span>
+<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
+<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a>    app.run(port<span class="op">=</span><span class="st">&#39;8052&#39;</span>, debug<span class="op">=</span><span class="va">False</span>) <span class="co"># Levantar web server para ejecutar la app</span></span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>
+→ Con N = 81, la diferencia 0.098765 &lt; ε = 0.1
+Dash is running on http://127.0.0.1:8052/
+
+</code></pre>
+</div>
+<div class="output stream stderr">
+<pre><code>INFO:dash.dash:Dash is running on http://127.0.0.1:8052/
+
+</code></pre>
+</div>
+<div class="output stream stdout">
+<pre><code> * Serving Flask app &#39;__main__&#39;
+ * Debug mode: off
+</code></pre>
+</div>
+<div class="output stream stderr">
+<pre><code>INFO:werkzeug:WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on http://127.0.0.1:8052
+INFO:werkzeug:Press CTRL+C to quit
+</code></pre>
+</div>
+</div>
+<section id="graficar" class="cell markdown" id="ksOUn3CHDjqg">
+<h1><strong>Graficar</strong></h1>
+<p><strong>Requiere:</strong></p>
+<ul>
+<li>Ejecutar celda <a
+href="#scrollTo=2G1odJIEGGXF">Dependencias</a></li>
+<li>Ejecutar celda Propuesta 3 v2: <a
+href="#scrollTo=5FkmMsFiG5u9">Presentar tabla</a></li>
+<li>Ejecutar celda Propuesta 3 v2: <a
+href="#scrollTo=qhMUxucaHxGq">Crear tabla</a></li>
+<li>Ejecutar celda Propuesta 3 v2: <a
+href="#scrollTo=sK3O2C7neZ5Z">Graficar</a></li>
+</ul>
+<p><em>Tip:</em></p>
+<ul>
+<li><p><em>Bookmarks internos, como en Google Docs, en Colab se generan
+automáticamente por cada celda, sin importar el tipo que sea,
+<strong>observar</strong> que en la barra de direccion aparece al final
+tras authuser=0, lo siguiente:</em></p>
+<ul>
+<li>#scrollTo=clave alfa númerica</li>
+</ul></li>
+<li><p>Copiamos desde el numeral hasta el final, y en la celda de Texto
+en la que queremos enlazar una palabra o una frase, usamos
+MarkDown.</p></li>
+</ul>
+<p><strong>Ejemplo esta misma celda:</strong></p>
+<ul>
+<li>#scrollTo=ksOUn3CHDjqg</li>
+<li>Enlazamos a <a href="#scrollTo=ksOUn3CHDjqg">éste texto</a>
+encerrando el texto que contendrá el enlace entre corchetes [Texto],
+seguido de parentesis (#scrollTo=ksOUn3CHDjqg).</li>
+</ul>
+<p><strong>Sintaxis:</strong> <span
+class="math display">\[[Texto](#scrollTo=bjba765784njdf8)\]</span></p>
+</section>
+<div class="cell code"
+data-colab="{&quot;background_save&quot;:true,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}"
+id="sK3O2C7neZ5Z" data-outputId="b3be8bf4-90c6-4bf6-c405-7974876747f4">
+<div class="sourceCode" id="cb39"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dash</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dash <span class="im">import</span> html, dcc</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dash_bootstrap_components <span class="im">as</span> dbc</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.graph_objects <span class="im">as</span> go</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x<span class="op">**</span><span class="dv">2</span> <span class="co"># Ponemos una función en formato que Python entienda</span></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>datitos <span class="op">=</span> SumaSupSumaInf(f, <span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.1</span>)</span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>datos<span class="op">=</span> pd.DataFrame(datitos)</span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Usamos las columnas del DataFrame para definir los valores de x e y</span></span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>val_x <span class="op">=</span> datos[<span class="st">&quot;Rectángulos&quot;</span>]</span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>val_y_inf <span class="op">=</span> datos[<span class="st">&quot;Suma Inferior&quot;</span>]</span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>val_y_sup <span class="op">=</span> datos[<span class="st">&quot;Suma Superior&quot;</span>]</span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a>val_y_int <span class="op">=</span> datos[<span class="st">&quot;Integral&quot;</span>]</span>
+<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a>colores <span class="op">=</span> [<span class="st">&quot;blue&quot;</span>] <span class="op">*</span> (<span class="bu">len</span>(val_x) <span class="op">-</span> <span class="dv">1</span>) <span class="op">+</span> [<span class="st">&quot;orange&quot;</span>]</span>
+<span id="cb39-21"><a href="#cb39-21" aria-hidden="true" tabindex="-1"></a>trazo <span class="op">=</span> go.Figure() <span class="co"># Creamos un objeto gráfico llamado trazo para guardar los datos y estilos del gráfico</span></span>
+<span id="cb39-22"><a href="#cb39-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Inferior                             Opcional: mode=&quot;markers&quot; para solo ver puntos</span></span>
+<span id="cb39-23"><a href="#cb39-23" aria-hidden="true" tabindex="-1"></a>trazo.add_trace(go.Scatter(x<span class="op">=</span>val_x, y<span class="op">=</span>val_y_inf, mode<span class="op">=</span><span class="st">&quot;lines+markers&quot;</span>, marker<span class="op">=</span><span class="bu">dict</span>(color<span class="op">=</span>colores, size<span class="op">=</span><span class="dv">8</span>), name<span class="op">=</span><span class="st">&quot;Suma inferior&quot;</span>)) <span class="co"># Agregamos los x e y unidos por lineas y le asignamos un nombre</span></span>
+<span id="cb39-24"><a href="#cb39-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Integral</span></span>
+<span id="cb39-25"><a href="#cb39-25" aria-hidden="true" tabindex="-1"></a>trazo.add_trace(go.Scatter(x<span class="op">=</span>val_x, y<span class="op">=</span>val_y_int, mode<span class="op">=</span><span class="st">&quot;lines+markers&quot;</span>, marker<span class="op">=</span><span class="bu">dict</span>(color<span class="op">=</span><span class="st">&quot;red&quot;</span>, size<span class="op">=</span><span class="dv">8</span>), name<span class="op">=</span><span class="st">&quot;Integral&quot;</span>)) <span class="co"># Agregamos los x e y unidos por lineas y le asignamos un nombre</span></span>
+<span id="cb39-26"><a href="#cb39-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Superior</span></span>
+<span id="cb39-27"><a href="#cb39-27" aria-hidden="true" tabindex="-1"></a>trazo.add_trace(go.Scatter(x<span class="op">=</span>val_x, y<span class="op">=</span>val_y_sup, mode<span class="op">=</span><span class="st">&quot;lines+markers&quot;</span>, marker<span class="op">=</span><span class="bu">dict</span>(color<span class="op">=</span><span class="st">&quot;green&quot;</span>, size<span class="op">=</span><span class="dv">8</span>), name<span class="op">=</span><span class="st">&quot;Suma superior&quot;</span>)) <span class="co"># Agregamos los x e y unidos por lineas y le asignamos un nombre</span></span>
+<span id="cb39-28"><a href="#cb39-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-29"><a href="#cb39-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Maquillaje</span></span>
+<span id="cb39-30"><a href="#cb39-30" aria-hidden="true" tabindex="-1"></a>trazo.update_layout(</span>
+<span id="cb39-31"><a href="#cb39-31" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">&quot;Convergencia de las Sumas de Riemann&quot;</span>,</span>
+<span id="cb39-32"><a href="#cb39-32" aria-hidden="true" tabindex="-1"></a>    xaxis_title<span class="op">=</span><span class="st">&quot;Número de rectángulos (N)&quot;</span>,</span>
+<span id="cb39-33"><a href="#cb39-33" aria-hidden="true" tabindex="-1"></a>    yaxis_title<span class="op">=</span><span class="st">&quot;Suma&quot;</span>,</span>
+<span id="cb39-34"><a href="#cb39-34" aria-hidden="true" tabindex="-1"></a>    legend_title<span class="op">=</span><span class="st">&quot;Gráficas&quot;</span>,</span>
+<span id="cb39-35"><a href="#cb39-35" aria-hidden="true" tabindex="-1"></a>    template<span class="op">=</span><span class="st">&quot;plotly_dark&quot;</span> <span class="co"># Con import plotly.io as pio print(pio.template.keys()) en una celda aislada, podremos saber las opciones disponibles para template</span></span>
+<span id="cb39-36"><a href="#cb39-36" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb39-37"><a href="#cb39-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-38"><a href="#cb39-38" aria-hidden="true" tabindex="-1"></a>app <span class="op">=</span> dash.Dash(<span class="va">__name__</span>, external_stylesheets<span class="op">=</span>[dbc.themes.BOOTSTRAP]) <span class="co"># Creación de la Dash app con estilo bootstrap</span></span>
+<span id="cb39-39"><a href="#cb39-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-40"><a href="#cb39-40" aria-hidden="true" tabindex="-1"></a>grafico <span class="op">=</span> dcc.Graph(<span class="bu">id</span> <span class="op">=</span> <span class="st">&quot;grafico_plantilla&quot;</span>, figure<span class="op">=</span>trazo) <span class="co"># grafico pasando figura</span></span>
+<span id="cb39-41"><a href="#cb39-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-42"><a href="#cb39-42" aria-hidden="true" tabindex="-1"></a>app.layout <span class="op">=</span> html.Div([grafico]) <span class="co"># La web dash app con su contenido un grafico</span></span>
+<span id="cb39-43"><a href="#cb39-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-44"><a href="#cb39-44" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:</span>
+<span id="cb39-45"><a href="#cb39-45" aria-hidden="true" tabindex="-1"></a>    app.run(port<span class="op">=</span><span class="st">&quot;8053&quot;</span>, debug<span class="op">=</span><span class="va">False</span>) <span class="co"># Levantar web server para ejecutar la app</span></span></code></pre></div>
+<div class="output stream stdout">
+<pre><code>
+→ Con N = 81, la diferencia 0.098765 &lt; ε = 0.1
+Dash is running on http://127.0.0.1:8053/
+
+</code></pre>
+</div>
+<div class="output stream stderr">
+<pre><code>INFO:dash.dash:Dash is running on http://127.0.0.1:8053/
+
+</code></pre>
+</div>
+<div class="output stream stdout">
+<pre><code> * Serving Flask app &#39;__main__&#39;
+ * Debug mode: off
+</code></pre>
+</div>
+<div class="output stream stderr">
+<pre><code>INFO:werkzeug:WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on http://127.0.0.1:8053
+INFO:werkzeug:Press CTRL+C to quit
+</code></pre>
+</div>
+</div>
+<div class="cell code" id="bsp7RsUo9f3U">
+<div class="sourceCode" id="cb44"><pre
+class="sourceCode python"><code class="sourceCode python"></code></pre></div>
+</div>
+<script src="js/script.js"></script>
+<footer class="nav-footer">
+<a class="nav-btn" href="1_Objetivo_1.html">⬅ Back</a>
+<a class="nav-btn" href="/webclub/">Home</a>
+<a class="nav-btn" href="Creacion de tabla mediante Plotly Dash prograsivamente.html">Next ➡</a>
+</footer>
+</body>
+</html>
