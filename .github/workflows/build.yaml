@@ -60,8 +60,9 @@ jobs:
             REL=""
             for ((i=0; i<DIR_DEPTH; i++)); do REL="../$REL"; done
 
-            pandoc "$FILE" -s -o "$OUT" --extract-media="media" --mathjax="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"
-            
+            pandoc "$FILE" -s -o "$OUT" --extract-media="$(dirname "$OUT")/media" --mathjax="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"
+            sed -i 's|src="html/media/|src="media/|g' "$OUT"
+
             awk -v s="<script src=\"${REL}js/script.js\"></script>" '
               /<\/body>/ { print s; }
               { print; }
