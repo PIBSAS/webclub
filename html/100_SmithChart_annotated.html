@@ -248,7 +248,7 @@ Dr. Bingsen Wang
 2/1/2025
 </center>
 </div>
-<div class="cell code" data-execution_count="3">
+<div class="cell code" data-execution_count="1">
 <div class="sourceCode" id="cb1"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install matplotlib</span></code></pre></div>
 <div class="output stream stdout">
@@ -266,7 +266,7 @@ Requirement already satisfied: six&gt;=1.5 in c:\users\black\downloads\revistas\
 </code></pre>
 </div>
 </div>
-<div class="cell code" data-execution_count="4"
+<div class="cell code" data-execution_count="3"
 data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:1000}"
 id="XeGsHYTt8IXU" data-outputId="f708151e-5f73-43f0-d940-ce6bc243e8e1">
 <div class="sourceCode" id="cb3"><pre
@@ -299,7 +299,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a hr
 <span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>[ax.plot(<span class="op">*</span>c2ir(f(zr1[k]<span class="op">+</span><span class="ot">1j</span><span class="op">*</span>ym1[k]<span class="op">*</span>y)),lw<span class="op">=</span><span class="dv">1</span>,c<span class="op">=</span><span class="st">&#39;.6&#39;</span>,zorder<span class="op">=-</span><span class="dv">3</span>)<span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(zr1))] <span class="co">#re=zr1</span></span>
 <span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>[ax.plot(<span class="op">*</span>c2ir(f(ym1[k]<span class="op">*</span>x<span class="op">+</span>(<span class="op">-</span><span class="dv">1</span>)<span class="op">**</span>i<span class="op">*</span><span class="ot">1j</span><span class="op">*</span>zr1[k])),lw<span class="op">=</span><span class="dv">1</span>,c<span class="op">=</span><span class="st">&#39;.6&#39;</span>,zorder<span class="op">=-</span><span class="dv">3</span>)<span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(zr1)) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>)] <span class="co">#im=zr1</span></span>
 <span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>ax.text(np.average(ax.get_xlim()),ax.get_ylim()[<span class="dv">0</span>]<span class="op">*</span><span class="fl">.99</span><span class="op">+</span>ax.get_ylim()[<span class="dv">1</span>]<span class="op">*</span><span class="fl">.01</span>,<span class="vs">r&#39;@eeanimation&#39;</span>,size<span class="op">=</span><span class="dv">16</span>,c<span class="op">=</span><span class="st">&#39;.2&#39;</span>,alpha<span class="op">=</span><span class="fl">.3</span>,ha<span class="op">=</span><span class="st">&#39;center&#39;</span>,va<span class="op">=</span><span class="st">&#39;bottom&#39;</span>)</span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>fig.savefig(<span class="st">&#39;SmithChart.pdf&#39;</span>)</span></code></pre></div>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>fig.savefig(<span class="st">&#39;SmithChart.png&#39;</span>)</span></code></pre></div>
 <div class="output display_data">
 <p><img src="cc8e7198371a162782a7aa17c905d64e8dfbb4d6.png" /></p>
 </div>
