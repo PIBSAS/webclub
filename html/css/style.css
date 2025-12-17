@@ -84,6 +84,13 @@ code.section-code {
     font-weight: 500;
 }
 
+code.cmd {
+    background-color: #f5f7fa;
+    border-left: 3px solid #3776ab;
+    padding: 0.2em 0.5em;
+    color: #1f2937;
+}
+
 header, footer {
     text-align: center;
     margin: 2em 0;
