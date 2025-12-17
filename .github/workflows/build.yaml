@@ -63,9 +63,9 @@ jobs:
             pandoc "$FILE" -s -o "$OUT" --extract-media="$(dirname "$OUT")/media" --mathjax="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"
             sed -i 's|src="html/media/|src="media/|g' "$OUT"
 
-            awk -v s="<link rel=\"icon\" href=\"${REL}logo.webp\">" '
-              /<\/head>/ { print s; }
-              { print; }
+            awk -v s="<link rel=\"icon\" href=\"${REL}logo.webp\" type=\"image/webp\">\n    <link rel=\"shortcut icon\" href=\"${REL}logo.webp\">" '
+              /<\/head>/ { print s }
+              { print }
             ' "$OUT" > "$OUT.tmp"
             mv "$OUT.tmp" "$OUT"
             
