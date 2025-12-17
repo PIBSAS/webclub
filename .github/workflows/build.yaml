@@ -60,23 +60,8 @@ jobs:
             REL=""
             for ((i=0; i<DIR_DEPTH; i++)); do REL="../$REL"; done
 
-            pandoc "$FILE" -s -o "$OUT" --mathjax="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"
+            pandoc "$FILE" -s -o "$OUT" --extract-media="$(dirname "$OUT")/media" --mathjax="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"
             
-            awk '
-              /fig\.savefig/ {
-                  match($0, /savefig\([\"\x27]([^\"\x27]+)[\"\x27]\)/, m)
-                  img = m[1]
-                  print
-                  getline
-                  sub(/<img src="[^"]+"/, "<img src=\"" img "\"")
-                  print
-                  next
-              }
-              { print }
-              ' "$OUT" > "$OUT.tmp" && mv "$OUT.tmp" "$OUT"
-
-
-
             awk -v s="<script src=\"${REL}js/script.js\"></script>" '
               /<\/body>/ { print s; }
               { print; }
