@@ -90,7 +90,7 @@ pre {
     background-color: #f5f7fa;
     border-left: 4px solid #3776ab; /* azul python */
     margin: 1.5em 0;
-    padding: 0.9em 1.1em;
+    padding: 0.9em;
     border-radius: 6px;
     overflow-x: auto;
 }
@@ -109,7 +109,7 @@ section pre {
     background-color: #f5f7fa;
     border-left: 4px solid #3776ab; /* azul python */
     margin: 1.5em 0;
-    padding: 0.9em 1.1em;
+    padding: 0.9em;
     border-radius: 6px;
     overflow-x: auto;
 }
@@ -124,6 +124,25 @@ section pre code {
     padding: 0 !important;
     border-radius: 0 !important;
 }
+pre.code-block {
+    background-color: #f5f7fa;
+    border-left: 4px solid #3776ab;
+    margin: 1.5em 0;
+    padding: 0.9em;
+    border-radius: 6px;
+    overflow-x: auto;
+}
+
+pre.code-block code {
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    display: block;
+    white-space: pre;
+    line-height: 1.45;
+    border-radius: 0;
+}
+
 header, footer {
     text-align: center;
     margin: 2em 0;
