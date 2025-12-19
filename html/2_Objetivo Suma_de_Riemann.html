@@ -242,6 +242,14 @@
 <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+<section id="objetivo-2-suma-de-riemann" class="cell markdown">
+<h1>Objetivo 2: Suma de Riemann</h1>
+</section>
+<div class="cell markdown" data-colab_type="text" id="view-in-github">
+<p><a href="https://colab.research.google.com/drive/154dhLLZOEZJYEZaP4BYzH-cFEuvPxOaZ?usp=sharing" 
+    target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+<p>Para ver todas las ejecuciones, usar Google Colab</p></p>
+</div>
 <section id="dependencias" class="cell markdown" id="2G1odJIEGGXF">
 <h1><strong>Dependencias</strong>:</h1>
 <ul>
@@ -250,7 +258,7 @@
 <li>Pandas</li>
 </ul>
 </section>
-<div class="cell code" data-execution_count="9"
+<div class="cell code" data-execution_count="3"
 data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}"
 id="SCv_WjHXGGuz" data-outputId="68738bd4-42ba-4723-c586-04e1a6952a4f">
 <div class="sourceCode" id="cb1"><pre
@@ -428,7 +436,7 @@ eliminará.</p>
 <section id="suma-inferior" class="cell markdown" id="5ID_tguhKO_L">
 <h1>Suma Inferior:</h1>
 </section>
-<div class="cell code" data-execution_count="10" id="2z7KJd3HKM-w">
+<div class="cell code" data-execution_count="4" id="2z7KJd3HKM-w">
 <div class="sourceCode" id="cb3"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sumaInferior(funcion, desde, hasta, rectangulos):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">pass</span></span></code></pre></div>
@@ -436,7 +444,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a hr
 <section id="suma-superior" class="cell markdown" id="2KeBKExGKfIk">
 <h1>Suma Superior:</h1>
 </section>
-<div class="cell code" data-execution_count="11" id="uaiOq4GrKs7t">
+<div class="cell code" data-execution_count="5" id="uaiOq4GrKs7t">
 <div class="sourceCode" id="cb4"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sumaSuperior(funcion, desde, hasta, rectangulos):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">pass</span></span></code></pre></div>
@@ -450,7 +458,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a hr
 id="MWEVI7GugGXm">
 <h1><strong>Propuesta 1</strong> Suma Inferior:</h1>
 </section>
-<div class="cell code" data-execution_count="12" id="24Llkd-igFDR">
+<div class="cell code" data-execution_count="6" id="24Llkd-igFDR">
 <div class="sourceCode" id="cb5"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sumaInferior(funcion, desde, hasta, rectangulos):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> rectangulos <span class="op">&lt;=</span> <span class="dv">0</span>:</span>
@@ -480,7 +488,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a hr
 <p>Definimos una función de Python que devuelva una función
 matemática</p>
 </div>
-<div class="cell code" data-execution_count="13"
+<div class="cell code" data-execution_count="7"
 data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}"
 id="F71M_yZqmL4K" data-outputId="35ac81e5-8031-479c-af0c-35f50bd15cd6">
 <div class="sourceCode" id="cb6"><pre
@@ -505,7 +513,7 @@ id="UA9K1wIpmpYf">
 luego se formatea la entrada para que Python pueda realizar los
 calculos.</p>
 </section>
-<div class="cell code" data-execution_count="14" id="M-n6DrnimR4U">
+<div class="cell code" data-execution_count="8" id="M-n6DrnimR4U">
 <div class="sourceCode" id="cb8"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -553,7 +561,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a hr
 <div class="cell markdown" id="m5ScQBV4nyuN">
 <p><strong>Ejecución:</strong></p>
 </div>
-<div class="cell code" data-execution_count="15"
+<div class="cell code" data-execution_count="10"
 data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}"
 id="aPhSQVsPmnJ5" data-outputId="2e4b7d41-689c-4b14-a5cd-8267918c58bc">
 <div class="sourceCode" id="cb9"><pre
@@ -578,15 +586,15 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a hr
 </code></pre>
 </div>
 <div class="output stream stdin">
-<pre><code>Ingrese la función f(x) [Ejemplo: x^3, sin(x), e^x, ln(x), log(x)]:  x**2
-Desde (a):  0
-Hasta (b):  2
-Número de rectángulos:  20
+<pre><code>Ingrese la función f(x) [Ejemplo: x^3, sin(x), e^x, ln(x), log(x)]:  -2*x**3+3*x^2+1
+Desde (a):  1
+Hasta (b):  4
+Número de rectángulos:  10
 </code></pre>
 </div>
 <div class="output stream stdout">
 <pre><code>
-La suma inferior de Riemann es: 2.4700000000000006
+La suma inferior de Riemann es: -74.18999999999998
 </code></pre>
 </div>
 </div>
@@ -608,7 +616,7 @@ intervalo [a, b].</p>
 sólo la última iteración, estos valores debemos guardarlos para ser
 utilizados por esto, debemos modificar un poco lo realizado.</p>
 </section>
-<div class="cell code" data-execution_count="16" id="jHhCYFGSq28j">
+<div class="cell code" data-execution_count="11" id="jHhCYFGSq28j">
 <div class="sourceCode" id="cb13"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -687,7 +695,7 @@ requerimientos. Mediante pip, pero como estamos en Jupyter Notebook los
 comandos se introducen con un signo de exclamación al inicio, en nuestra
 PC si no utilizamos Jupyter, esa exclamación no va.</p>
 </div>
-<div class="cell code" data-execution_count="17"
+<div class="cell code" data-execution_count="12"
 data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}"
 id="hjZfl_V3wbfh" data-outputId="f718788d-a117-44ec-e7df-1ecf37b1f7b9">
 <div class="sourceCode" id="cb14"><pre
@@ -752,7 +760,7 @@ Requirement already satisfied: six&gt;=1.5 in c:\users\black\downloads\revistas\
 </code></pre>
 </div>
 </div>
-<div class="cell code" data-execution_count="18"
+<div class="cell code" data-execution_count="13"
 data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:671}"
 id="nxfnJo56vBoo" data-outputId="ea066b27-9f58-47c0-b406-5ba47496bbd2">
 <div class="sourceCode" id="cb16"><pre
@@ -802,7 +810,7 @@ superior</span></p>
 <h1 id="propuesta-2-suma-superior"><strong>Propuesta 2</strong> Suma
 Superior:</h1>
 </div>
-<div class="cell code" data-execution_count="19" id="d1I7g7vTn_05">
+<div class="cell code" data-execution_count="14" id="d1I7g7vTn_05">
 <div class="sourceCode" id="cb17"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sumaSuperior(funcion, desde, hasta, rectangulos):</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> rectangulos <span class="op">&lt;=</span> <span class="dv">0</span>:</span>
@@ -832,7 +840,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a h
 <p>Definimos una función de Python que devuelva una función
 matemática</p>
 </div>
-<div class="cell code" data-execution_count="20"
+<div class="cell code" data-execution_count="15"
 data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}"
 id="MOVHl-1JopGV" data-outputId="c2b0818c-6675-4c55-dd99-771dddcf33a6">
 <div class="sourceCode" id="cb18"><pre
@@ -857,7 +865,7 @@ id="Nq0YUh8ZpNRx">
 luego se formatea la entrada para que Python pueda realizar los
 calculos.</p>
 </section>
-<div class="cell code" data-execution_count="21" id="-lgOSetIo9qF">
+<div class="cell code" data-execution_count="16" id="-lgOSetIo9qF">
 <div class="sourceCode" id="cb20"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -903,7 +911,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a h
 <div class="cell markdown" id="wxtp5X43pdmD">
 <p><strong>Ejecución:</strong></p>
 </div>
-<div class="cell code" data-execution_count="24"
+<div class="cell code" data-execution_count="17"
 data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}"
 id="Udqj9Vu-pZcF" data-outputId="a10fa88d-dbe4-4c7d-8fad-171fe26f4706">
 <div class="sourceCode" id="cb21"><pre
@@ -928,15 +936,15 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a h
 </code></pre>
 </div>
 <div class="output stream stdin">
-<pre><code>Ingrese la función f(x) [Ejemplo: x^3, sin(x), e^x, ln(x), log(x)]:  x**2
-Desde (a):  0
-Hasta (b):  2
-Número de rectángulos:  20
+<pre><code>Ingrese la función f(x) [Ejemplo: x^3, sin(x), e^x, ln(x), log(x)]:  -2*x**3+3*x^2+1
+Desde (a):  1
+Hasta (b):  4
+Número de rectángulos:  10
 </code></pre>
 </div>
 <div class="output stream stdout">
 <pre><code>
-La suma superior de Riemann es: 2.8700000000000006
+La suma superior de Riemann es: -49.89
 </code></pre>
 </div>
 </div>
@@ -958,7 +966,7 @@ intervalo [a, b].</p>
 sólo la última iteración, estos valores debemos guardarlos para ser
 utilizados por esto, debemos modificar un poco lo realizado.</p>
 </section>
-<div class="cell code" data-execution_count="25" id="4usyCeMpzRsz">
+<div class="cell code" data-execution_count="18" id="4usyCeMpzRsz">
 <div class="sourceCode" id="cb25"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1038,7 +1046,7 @@ requerimientos. Mediante pip, pero como estamos en Jupyter Notebook los
 comandos se introducen con un signo de exclamación al inicio, en nuestra
 PC si no utilizamos Jupyter, esa exclamación no va.</p>
 </div>
-<div class="cell code" data-execution_count="26"
+<div class="cell code" data-execution_count="19"
 data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}"
 id="zBRCTiNWzxlN" data-outputId="c1d99f64-e0c9-4bab-92e4-723dfdad4766">
 <div class="sourceCode" id="cb26"><pre
@@ -1103,7 +1111,7 @@ Requirement already satisfied: six&gt;=1.5 in c:\users\black\downloads\revistas\
 </code></pre>
 </div>
 </div>
-<div class="cell code" data-execution_count="27"
+<div class="cell code" data-execution_count="20"
 data-colab="{&quot;background_save&quot;:true,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}"
 id="1mdi4Sv_z2VU" data-outputId="e1755bd9-7009-490f-be66-3c39d09054d7">
 <div class="sourceCode" id="cb28"><pre
@@ -1171,7 +1179,7 @@ hasta que su diferencia es menor que eps.</p>
 id="wHbYJGdQEMM9">
 <h1><strong>Propuesta 3 v1:</strong> Objetivo Extra</h1>
 </section>
-<div class="cell code" data-execution_count="28" id="aAxz0X_yA-WI">
+<div class="cell code" data-execution_count="24" id="aAxz0X_yA-WI">
 <div class="sourceCode" id="cb29"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1255,7 +1263,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a h
 <div class="cell markdown" id="BZBlj_p8Fbv1">
 <p><strong>Ejecución:</strong></p>
 </div>
-<div class="cell code" data-execution_count="29"
+<div class="cell code" data-execution_count="25"
 data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}"
 id="d0HsbdItFftj" data-outputId="650a5151-9fe8-4c10-aac5-e953546ce9dc">
 <div class="sourceCode" id="cb30"><pre
@@ -1279,7 +1287,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a h
 </code></pre>
 </div>
 <div class="output stream stdin">
-<pre><code>Ingrese la función f(x):  x**2
+<pre><code>Ingrese la función f(x):  x^2
 Desde (a):  0
 Hasta (b):  2
 Epsilon (tolerancia, ej: 0.01):  0.1
@@ -1385,7 +1393,7 @@ id="pvZYwVOpG_LM">
 <h1><strong>Propuesta 3 v2:</strong> Objetivo Extra</h1>
 <p>Presentar en tabla</p>
 </section>
-<div class="cell code" data-execution_count="30" id="5FkmMsFiG5u9">
+<div class="cell code" data-execution_count="26" id="5FkmMsFiG5u9">
 <div class="sourceCode" id="cb34"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1473,7 +1481,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a h
 <p><strong>Crear tabla</strong>:</p>
 <p>Requiere correr la celda con !pip install</p>
 </div>
-<div class="cell code" data-execution_count="31"
+<div class="cell code" data-execution_count="27"
 data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}"
 id="qhMUxucaHxGq" data-outputId="0464ce17-7bf6-4ab8-f30e-6de36184d157">
 <div class="sourceCode" id="cb35"><pre
@@ -1556,7 +1564,7 @@ seguido de parentesis (#scrollTo=ksOUn3CHDjqg).</li>
 #scrollTo=bjba765784njdf8 </span> </div></p>
 <p><br></p>
 </section>
-<div class="cell code" data-execution_count="32"
+<div class="cell code" data-execution_count="28"
 data-colab="{&quot;background_save&quot;:true,&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}"
 id="sK3O2C7neZ5Z" data-outputId="b3be8bf4-90c6-4bf6-c405-7974876747f4">
 <div class="sourceCode" id="cb37"><pre
@@ -1622,6 +1630,10 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a h
         ></iframe>
         
 </div>
+</div>
+<div class="cell code">
+<div class="sourceCode" id="cb39"><pre
+class="sourceCode python"><code class="sourceCode python"></code></pre></div>
 </div>
 <script src="js/script.js"></script>
 <footer class="nav-footer">

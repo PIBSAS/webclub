@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Teoria 2: Graficar con Plotly Dash</title>
+  <title>Teoria 2_ Graficar con Plotly Dash</title>
   <style>
     /* Default styles provided by pandoc.
     ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -239,12 +239,21 @@
 <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+<div id="ab085e95-2ed4-4dda-8c15-d6c5705c27e1" class="cell markdown">
+<h1 id="graficar-con-plotly-dash">Graficar con Plotly Dash</h1>
+</div>
+<div id="f88faaec-b811-4011-b612-b8e30a52d653" class="cell markdown"
+data-colab_type="text" id="view-in-github">
+<p><a href="https://colab.research.google.com/github/pibsas/webclub/blob/main/Teoria 2_Graficar con Plotly Dash.ipynb" 
+    target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+<p>Para ver todas las ejecuciones, usar Google Colab</p></p>
+</div>
 <div id="f01b83be-98f6-42da-b685-ac5502894260" class="cell markdown">
 <h1 id="suma-inferior-base">Suma Inferior base</h1>
 <hr />
 </div>
 <div id="95c617a5-9380-41ec-af36-17dbb4082069" class="cell code"
-data-execution_count="37">
+data-execution_count="2">
 <div class="sourceCode" id="cb1"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -295,12 +304,12 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a hr
 <hr />
 </div>
 <div id="ba2929ba-5470-4857-b331-0b1a2a92ee8e" class="cell code"
-data-execution_count="38">
+data-execution_count="3">
 <div class="sourceCode" id="cb2"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x<span class="op">**</span><span class="dv">2</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>sumaInferior(f, <span class="dv">0</span>, <span class="dv">2</span>,<span class="dv">10</span>)</span></code></pre></div>
-<div class="output execute_result" data-execution_count="38">
+<div class="output execute_result" data-execution_count="3">
 <pre><code>2.2800000000000007</code></pre>
 </div>
 </div>
@@ -312,7 +321,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a hr
 <hr />
 </div>
 <div id="6fa02c94-6303-4343-b696-42c367be0fab" class="cell code"
-data-execution_count="39" data-scrolled="true">
+data-execution_count="4" data-scrolled="true">
 <div class="sourceCode" id="cb4"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dash</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dash <span class="im">import</span> html, dcc</span>
@@ -325,13 +334,13 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a hr
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>app.layout <span class="op">=</span> html.Div([grafico]) <span class="co"># La web dash app con su contenido un grafico</span></span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    app.run( port<span class="op">=</span><span class="st">&quot;8080&quot;</span>,debug<span class="op">=</span><span class="va">False</span>) <span class="co"># Levantar web server para ejecutar la app</span></span></code></pre></div>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    app.run( port<span class="op">=</span><span class="st">&quot;8070&quot;</span>,debug<span class="op">=</span><span class="va">False</span>) <span class="co"># Levantar web server para ejecutar la app</span></span></code></pre></div>
 <div class="output display_data">
 
         <iframe
             width="100%"
             height="650"
-            src="http://127.0.0.1:8080/"
+            src="http://127.0.0.1:8070/"
             frameborder="0"
             allowfullscreen
             
@@ -347,7 +356,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a hr
 <hr />
 </div>
 <div id="ad3bb332-d07b-4c9e-ad9a-517065eb2ea0" class="cell code"
-data-execution_count="40">
+data-execution_count="5">
 <div class="sourceCode" id="cb5"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dash</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dash <span class="im">import</span> html, dcc</span>
@@ -367,13 +376,13 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a hr
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>app.layout <span class="op">=</span> html.Div([grafico]) <span class="co"># La web dash app con su contenido un grafico</span></span>
 <span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    app.run(port<span class="op">=</span><span class="st">&quot;8081&quot;</span>, debug<span class="op">=</span><span class="va">False</span>) <span class="co"># Levantar web server para ejecutar la app</span></span></code></pre></div>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    app.run(port<span class="op">=</span><span class="st">&quot;8071&quot;</span>, debug<span class="op">=</span><span class="va">False</span>) <span class="co"># Levantar web server para ejecutar la app</span></span></code></pre></div>
 <div class="output display_data">
 
         <iframe
             width="100%"
             height="650"
-            src="http://127.0.0.1:8081/"
+            src="http://127.0.0.1:8071/"
             frameborder="0"
             allowfullscreen
             
@@ -390,7 +399,7 @@ matemática</h1>
 <hr />
 </div>
 <div id="af7f6fcd-2932-4e7d-a393-841f993ff0e0" class="cell code"
-data-execution_count="41">
+data-execution_count="6">
 <div class="sourceCode" id="cb6"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dash</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dash <span class="im">import</span> html, dcc</span>
@@ -414,13 +423,13 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a hr
 <span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>app.layout <span class="op">=</span> html.Div([grafico]) <span class="co"># La web dash app con su contenido un grafico</span></span>
 <span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:</span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    app.run(port<span class="op">=</span><span class="st">&quot;8082&quot;</span>, debug<span class="op">=</span><span class="va">False</span>) <span class="co"># Levantar web server para ejecutar la app</span></span></code></pre></div>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    app.run(port<span class="op">=</span><span class="st">&quot;8072&quot;</span>, debug<span class="op">=</span><span class="va">False</span>) <span class="co"># Levantar web server para ejecutar la app</span></span></code></pre></div>
 <div class="output display_data">
 
         <iframe
             width="100%"
             height="650"
-            src="http://127.0.0.1:8082/"
+            src="http://127.0.0.1:8072/"
             frameborder="0"
             allowfullscreen
             
@@ -437,7 +446,7 @@ sumaInferior</h1>
 <hr />
 </div>
 <div id="7d93a8b6-1eed-47f2-9da9-a7a74870ea2d" class="cell code"
-data-execution_count="42">
+data-execution_count="7">
 <div class="sourceCode" id="cb7"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -494,7 +503,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a hr
 <hr />
 </div>
 <div id="a2d3ab49-725f-4001-b3d9-517fddfdbcea" class="cell code"
-data-execution_count="43">
+data-execution_count="8">
 <div class="sourceCode" id="cb8"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dash</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dash <span class="im">import</span> html, dcc</span>
@@ -521,13 +530,13 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a hr
 <span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>app.layout <span class="op">=</span> html.Div([grafico]) <span class="co"># La web dash app con su contenido un grafico</span></span>
 <span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:</span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    app.run(port<span class="op">=</span><span class="st">&quot;8083&quot;</span>, debug<span class="op">=</span><span class="va">False</span>) <span class="co"># Levantar web server para ejecutar la app</span></span></code></pre></div>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    app.run(port<span class="op">=</span><span class="st">&quot;8073&quot;</span>, debug<span class="op">=</span><span class="va">False</span>) <span class="co"># Levantar web server para ejecutar la app</span></span></code></pre></div>
 <div class="output display_data">
 
         <iframe
             width="100%"
             height="650"
-            src="http://127.0.0.1:8083/"
+            src="http://127.0.0.1:8073/"
             frameborder="0"
             allowfullscreen
             
@@ -543,7 +552,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a hr
 <hr />
 </div>
 <div id="94b08c4d-3d5d-4591-9158-e08869efa579" class="cell code"
-data-execution_count="44">
+data-execution_count="9">
 <div class="sourceCode" id="cb9"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -601,7 +610,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a hr
 <hr />
 </div>
 <div id="64b3a8e6-17d9-45d3-b19a-e931d003fda3" class="cell code"
-data-execution_count="45">
+data-execution_count="10">
 <div class="sourceCode" id="cb10"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dash</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dash <span class="im">import</span> html, dcc</span>
@@ -628,13 +637,13 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a h
 <span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>app.layout <span class="op">=</span> html.Div([grafico]) <span class="co"># La web dash app con su contenido un grafico</span></span>
 <span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:</span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>    app.run(port<span class="op">=</span><span class="st">&quot;8084&quot;</span>,debug<span class="op">=</span><span class="va">False</span>) <span class="co"># Levantar web server para ejecutar la app</span></span></code></pre></div>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>    app.run(port<span class="op">=</span><span class="st">&quot;8074&quot;</span>,debug<span class="op">=</span><span class="va">False</span>) <span class="co"># Levantar web server para ejecutar la app</span></span></code></pre></div>
 <div class="output display_data">
 
         <iframe
             width="100%"
             height="650"
-            src="http://127.0.0.1:8084/"
+            src="http://127.0.0.1:8074/"
             frameborder="0"
             allowfullscreen
             
@@ -650,7 +659,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a h
 <hr />
 </div>
 <div id="ada65c17-4280-45bd-8f54-f63aa1667d49" class="cell code"
-data-execution_count="46">
+data-execution_count="11">
 <div class="sourceCode" id="cb11"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dash</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dash <span class="im">import</span> html, dcc</span>
@@ -683,13 +692,13 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a h
 <span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>app.layout <span class="op">=</span> html.Div([grafico]) <span class="co"># La web dash app con su contenido un grafico</span></span>
 <span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:</span>
-<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>    app.run(port<span class="op">=</span><span class="st">&quot;8085&quot;</span>,debug<span class="op">=</span><span class="va">False</span>) <span class="co"># Levantar web server para ejecutar la app</span></span></code></pre></div>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>    app.run(port<span class="op">=</span><span class="st">&quot;8075&quot;</span>,debug<span class="op">=</span><span class="va">False</span>) <span class="co"># Levantar web server para ejecutar la app</span></span></code></pre></div>
 <div class="output display_data">
 
         <iframe
             width="100%"
             height="650"
-            src="http://127.0.0.1:8085/"
+            src="http://127.0.0.1:8075/"
             frameborder="0"
             allowfullscreen
             
@@ -705,7 +714,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a h
 <hr />
 </div>
 <div id="25446fa8-e62d-47a9-88a1-95dbf25bb192" class="cell code"
-data-execution_count="47">
+data-execution_count="12">
 <div class="sourceCode" id="cb12"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dash</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dash <span class="im">import</span> html, dcc</span>
@@ -741,13 +750,13 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a h
 <span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>app.layout <span class="op">=</span> html.Div([grafico]) <span class="co"># La web dash app con su contenido un grafico</span></span>
 <span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:</span>
-<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>    app.run(port<span class="op">=</span><span class="st">&quot;8086&quot;</span>,debug<span class="op">=</span><span class="va">False</span>) <span class="co"># Levantar web server para ejecutar la app</span></span></code></pre></div>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>    app.run(port<span class="op">=</span><span class="st">&quot;8076&quot;</span>,debug<span class="op">=</span><span class="va">False</span>) <span class="co"># Levantar web server para ejecutar la app</span></span></code></pre></div>
 <div class="output display_data">
 
         <iframe
             width="100%"
             height="650"
-            src="http://127.0.0.1:8086/"
+            src="http://127.0.0.1:8076/"
             frameborder="0"
             allowfullscreen
             
@@ -757,9 +766,9 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a h
 </div>
 <script src="js/script.js"></script>
 <footer class="nav-footer">
-<a class="nav-btn" href="Teoria 1_ Creacion de tabla mediante Plotly Dash.html">⬅ Back</a>
+<a class="nav-btn" href="Teoria 2: Graficar con Plotly Dash.html">⬅ Back</a>
 <a class="nav-btn" href="/webclub/">Home</a>
-<a class="nav-btn" href="Teoria 2_ Graficar con Plotly Dash.html">Next ➡</a>
+<a class="nav-btn" href="Z_Ejemplo: SmithChart_annotated.html">Next ➡</a>
 </footer>
 </body>
 </html>

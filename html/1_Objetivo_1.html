@@ -242,8 +242,16 @@
 <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+<section id="objetivo-1-newton-raphson" class="cell markdown">
+<h1>Objetivo 1: Newton Raphson</h1>
+</section>
+<div class="cell markdown" data-colab_type="text" id="view-in-github">
+<p><a href="https://colab.research.google.com/drive/1b_TGR2hdC7dk6jryivhr6IQdD-k_1qkW?usp=sharing" 
+    target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+<p>Para ver todas las ejecuciones, usar Google Colab</p></p>
+</div>
 <section id="cómo-reutilizar-la-notebook" class="cell markdown"
-id="2uK6S4U0dNm5">
+id="2uK6S4U0dNm5" data-jp-MarkdownHeadingCollapsed="true">
 <h1>¡Cómo reutilizar la notebook?:</h1>
 <p>Archivo --&gt; Guardar una copia en Drive</p>
 <hr />
@@ -363,15 +371,15 @@ chequeamos el signo del número, de esta forma evitamos el
 usamos el método <a
 href="https://docs.python.org/3/library/functions.html#abs">abs(x)</a>
 el cuál nos devuelve el valor absoluto de un número, además manejamos si
-es <code>int</code> o <code>float</code>, pero si es negativo
-esccribimos el signo <code>-</code>, tengamos en cuenta que es solo
-texto, no nos sirve para realizar operaciones. También tenemos en cuenta
-que el número sea distinto de cero, si lo es, omitimos que salga en el
+es <code>int</code> o <code>float</code>, pero si es negativo escribimos
+el signo <code>-</code>, tengamos en cuenta que es solo texto, no nos
+sirve para realizar operaciones. También tenemos en cuenta que el número
+sea distinto de cero, si lo es, omitimos que salga en el
 <code>print</code> ya que antes de evaluar si es positivo o negativo,
 nos fijamos que no sea cero.</p>
 <hr />
 </section>
-<div class="cell code" data-execution_count="1"
+<div class="cell code" data-execution_count="5"
 data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}"
 id="8f6WMJGfLyip" data-outputId="6f23da08-1bb5-4d26-e320-a2231572bb12">
 <div class="sourceCode" id="cb2"><pre
@@ -413,16 +421,16 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a hr
 <span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;</span><span class="ch">\n</span><span class="ss">La ecuación ingresada es: f(x) = </span><span class="sc">{</span>funcion<span class="sc">}</span><span class="ss">&quot;</span>)</span></code></pre></div>
 <div class="output stream stdin">
 <pre><code>Ingrese el coeficiente principal:  2
-Ingrese el coeficiente cuadrático:  3
-Ingrese el coeficiente lineal:  4
+Ingrese el coeficiente cuadrático:  -3
+Ingrese el coeficiente lineal:  -4
 Ingrese el término independiente:  -2
 Ingrese un valor inicial de x:  1
-Ingrese el número de iteraciones que desea ejecutar:  10
+Ingrese el número de iteraciones que desea ejecutar:  9
 </code></pre>
 </div>
 <div class="output stream stdout">
 <pre><code>
-La ecuación ingresada es: f(x) = 2x^3 + 3x^2 + 4x - 2
+La ecuación ingresada es: f(x) = 2x^3 - 3x^2 - 4x - 2
 </code></pre>
 </div>
 </div>
@@ -485,7 +493,7 @@ guardó en <code>float</code>, lo que observamos a la derecha en el
 operador ternario.</p>
 <p><br></p>
 </section>
-<div class="cell code" data-execution_count="2"
+<div class="cell code" data-execution_count="6"
 data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}"
 id="5AHP0df0Q3SI" data-outputId="3f990018-4269-4c02-925f-47a9c96ff1f0">
 <div class="sourceCode" id="cb7"><pre
@@ -515,16 +523,16 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a hr
 <span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;</span><span class="ch">\n</span><span class="ss">La ecuación ingresada es: f(x) = </span><span class="sc">{</span>funcion<span class="sc">}</span><span class="ss">&quot;</span>)</span></code></pre></div>
 <div class="output stream stdin">
 <pre><code>Ingrese el coeficiente principal:  2
-Ingrese el coeficiente cuadrático:  3
-Ingrese el coeficiente lineal:  4
-Ingrese el término independiente:  -3
-Ingrese un valor inicial de x:  2
-Ingrese el número de iteraciones que desea ejecutar:  10
+Ingrese el coeficiente cuadrático:  -3
+Ingrese el coeficiente lineal:  -4
+Ingrese el término independiente:  -2
+Ingrese un valor inicial de x:  1
+Ingrese el número de iteraciones que desea ejecutar:  9
 </code></pre>
 </div>
 <div class="output stream stdout">
 <pre><code>
-La ecuación ingresada es: f(x) = 2x^3 + 3x^2 + 4x- 3
+La ecuación ingresada es: f(x) = 2x^3 - 3x^2 - 4x- 2
 </code></pre>
 </div>
 </div>
@@ -542,7 +550,7 @@ id="s39I-b7fIKJg">
 </ul>
 <p>Entonces: <br></p>
 </section>
-<div class="cell code" data-execution_count="3"
+<div class="cell code" data-execution_count="7"
 data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}"
 id="Obw3YsESRsKH" data-outputId="551fdd51-70af-4f46-dc24-db850957734b">
 <div class="sourceCode" id="cb10"><pre
@@ -570,16 +578,16 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a h
 <span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;</span><span class="ch">\n</span><span class="ss">La ecuación ingresada es f(x) = </span><span class="sc">{</span>funcion<span class="sc">}</span><span class="ss">&quot;</span>)</span></code></pre></div>
 <div class="output stream stdin">
 <pre><code>Ingrese el coeficiente principal:  2
-Ingrese el coeficiente cuadrático:  3
-Ingrese el coeficiente lineal:  4
-Ingrese el término independiente:  1.2
-Ingrese un valor inicial de x:  0.3
-Ingrese el número de iteraciones que desea ejecutar:  10
+Ingrese el coeficiente cuadrático:  -3
+Ingrese el coeficiente lineal:  -4
+Ingrese el término independiente:  -2
+Ingrese un valor inicial de x:  1
+Ingrese el número de iteraciones que desea ejecutar:  9
 </code></pre>
 </div>
 <div class="output stream stdout">
 <pre><code>
-La ecuación ingresada es f(x) = 2x³ + 3x² + 4x+ 1.2
+La ecuación ingresada es f(x) = 2x³ - 3x² - 4x- 2
 </code></pre>
 </div>
 </div>
@@ -598,7 +606,7 @@ string sign</a> el cuál maneja el signo de los coeficientes, pero no es
 aplicable al primer coeficiente, ya que agrega el <code>+</code> o el
 <code>-</code> sí o sí.</p>
 </section>
-<div class="cell code" data-execution_count="4"
+<div class="cell code" data-execution_count="8"
 data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}"
 id="gwa6ZTh3IW_8" data-outputId="d0caad7a-dc8e-4ff0-8ccd-165b2b29b08c">
 <div class="sourceCode" id="cb13"><pre
@@ -625,17 +633,17 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a h
 <span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;</span><span class="ch">\n</span><span class="ss">La ecuación ingresada es f(x) = </span><span class="sc">{</span>funcion<span class="sc">}</span><span class="ss">&quot;</span>)</span></code></pre></div>
 <div class="output stream stdin">
-<pre><code>Ingrese el coeficiente principal:  -2
+<pre><code>Ingrese el coeficiente principal:  2
 Ingrese el coeficiente cuadrático:  -3
 Ingrese el coeficiente lineal:  4
-Ingrese el término independiente:  3
-Ingrese un valor inicial de x:  1.4
-Ingrese el número de iteraciones que desea ejecutar:  10
+Ingrese el término independiente:  -2
+Ingrese un valor inicial de x:  1
+Ingrese el número de iteraciones que desea ejecutar:  9
 </code></pre>
 </div>
 <div class="output stream stdout">
 <pre><code>
-La ecuación ingresada es f(x) = -2x³ -3x² +4x +3
+La ecuación ingresada es f(x) = 2x³ -3x² +4x -2
 </code></pre>
 </div>
 </div>
@@ -662,7 +670,7 @@ href="https://ipython.readthedocs.io/en/stable/index.html">Ipython</a></p>
 a:</p>
 <p><br></p>
 </section>
-<div class="cell code" data-execution_count="5"
+<div class="cell code" data-execution_count="9"
 data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:163}"
 id="-3lGxwLDIiyP" data-outputId="7e47722a-50d2-4ada-be4d-a7f4ba8953e9">
 <div class="sourceCode" id="cb16"><pre
@@ -693,11 +701,11 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a h
 <span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>display(Math(<span class="vs">r&quot;</span><span class="ch">\t</span><span class="vs">ext{La ecuación ingresada es: } f</span><span class="kw">(</span><span class="vs">x</span><span class="kw">)</span><span class="vs"> = &quot;</span> <span class="op">+</span> funcion))</span></code></pre></div>
 <div class="output stream stdin">
 <pre><code>Ingrese el coeficiente principal:  -2
-Ingrese el coeficiente cuadrático:  -3
-Ingrese el coeficiente lineal:  4
-Ingrese el término independiente:  2
-Ingrese un valor inicial de x:  2
-Ingrese el número de iteraciones que desea ejecutar:  10
+Ingrese el coeficiente cuadrático:  2
+Ingrese el coeficiente lineal:  3
+Ingrese el término independiente:  4
+Ingrese un valor inicial de x:  1
+Ingrese el número de iteraciones que desea ejecutar:  9
 </code></pre>
 </div>
 <div class="output display_data">
@@ -724,7 +732,7 @@ hallar la raíz de la recta tangente que nos dará un nuevo
 \frac{-b}{f&#39;(x)}\]</span></p>
 <p><br></p>
 </section>
-<div class="cell code" data-execution_count="6" id="HsRTXWqNIrXX">
+<div class="cell code" data-execution_count="10" id="HsRTXWqNIrXX">
 <div class="sourceCode" id="cb20"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a<span class="op">*</span>x<span class="op">**</span><span class="dv">3</span> <span class="op">+</span> b<span class="op">*</span>x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> c<span class="op">*</span>x <span class="op">+</span> d</span>
@@ -750,7 +758,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a h
 <div class="cell markdown" id="1ei-rJ1vc6Wc">
 <p><br></p>
 </div>
-<div class="cell code" data-execution_count="7"
+<div class="cell code" data-execution_count="11"
 data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:246}"
 id="DCs17oHqIxU3" data-outputId="ec169c09-4cdf-4520-89f8-1ef67366c7c3">
 <div class="sourceCode" id="cb21"><pre
@@ -758,16 +766,15 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a h
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>display(Math(<span class="vs">fr&quot;</span><span class="ch">\t</span><span class="vs">ext</span><span class="ch">{{</span><span class="vs">La raíz es aproximadamente: </span><span class="ch">}}</span><span class="vs"> </span><span class="ch">\t</span><span class="vs">extbf</span><span class="ch">{{</span><span class="vs">x</span><span class="ch">}}</span><span class="vs"> </span><span class="ch">\a</span><span class="vs">pprox </span><span class="sc">{</span>newton<span class="sc">}</span><span class="vs"> </span><span class="ch">\t</span><span class="vs">ext</span><span class="ch">{{</span><span class="vs">, en </span><span class="ch">}}</span><span class="vs"> </span><span class="sc">{</span>i<span class="sc">}</span><span class="vs"> </span><span class="ch">\t</span><span class="vs">ext</span><span class="ch">{{</span><span class="vs"> iteraciones</span><span class="dv">.</span><span class="ch">}}</span><span class="vs">&quot;</span>))</span></code></pre></div>
 <div class="output stream stdout">
-<pre><code>1.4375
-1.179612207434603
-1.1149532153138004
-1.1108548589729568
-1.1108387090086198
-1.1108387087582563
-1.1108387087582565
-1.1108387087582563
-1.1108387087582565
-1.1108387087582563
+<pre><code>-6.0
+-3.932489451476793
+-2.560582439921068
+-1.6372876178570992
+-0.9635511489931292
+-0.22338847913070786
+-2.133667536224943
+-1.338192399909688
+-0.699916891250009
 
 
 </code></pre>
@@ -791,7 +798,7 @@ LaTeX para el armado de la tabla mediante un
 <code>\begin{array}</code>.</p>
 <p><br></p>
 </section>
-<div class="cell code" data-execution_count="8" id="JKcSHyNtI1t9">
+<div class="cell code" data-execution_count="12" id="JKcSHyNtI1t9">
 <div class="sourceCode" id="cb24"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display, Math, clear_output</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
@@ -827,7 +834,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a h
 <div class="cell markdown" id="YZsOVJ-zd4b7">
 <p><br></p>
 </div>
-<div class="cell code" data-execution_count="9"
+<div class="cell code" data-execution_count="13"
 data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:316}"
 id="pnJBKVfJJEFl" data-outputId="42aba72a-d57f-4ffd-9232-ec8f67194f4f">
 <div class="sourceCode" id="cb25"><pre
@@ -959,7 +966,7 @@ instalamos:</p></li>
 </ul>
 <p><br></p>
 </section>
-<div class="cell code" data-execution_count="10"
+<div class="cell code" data-execution_count="14"
 data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}"
 id="xuxZVN-qVOnk" data-outputId="14aaa453-1079-4afa-d915-23c057fd64ec">
 <div class="sourceCode" id="cb29"><pre
@@ -995,7 +1002,7 @@ Requirement already satisfied: certifi&gt;=2017.4.17 in c:\users\black\downloads
 <p><br></p>
 <hr />
 </div>
-<div class="cell code" data-execution_count="12"
+<div class="cell code" data-execution_count="16"
 data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}"
 id="fc4aF0HlFzJd" data-outputId="898f9ac3-5619-456f-a4ba-c13b8aa2506f">
 <div class="sourceCode" id="cb31"><pre
@@ -1158,7 +1165,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a h
 <span id="cb31-157"><a href="#cb31-157" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> dash.no_update</span>
 <span id="cb31-158"><a href="#cb31-158" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-159"><a href="#cb31-159" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:</span>
-<span id="cb31-160"><a href="#cb31-160" aria-hidden="true" tabindex="-1"></a>    app.run(host<span class="op">=</span><span class="st">&quot;0.0.0.0&quot;</span>,port<span class="op">=</span><span class="st">&quot;8085&quot;</span>,debug<span class="op">=</span><span class="va">False</span>)</span></code></pre></div>
+<span id="cb31-160"><a href="#cb31-160" aria-hidden="true" tabindex="-1"></a>    app.run(port<span class="op">=</span><span class="st">&quot;8085&quot;</span>,debug<span class="op">=</span><span class="va">False</span>)</span></code></pre></div>
 <div class="output display_data">
 
         <iframe
@@ -1187,7 +1194,7 @@ href="https://matplotlib.org/stable/index.html">Matpllotib</a></li>
 </ul>
 <p><br></p>
 </section>
-<div class="cell code" data-execution_count="14"
+<div class="cell code" data-execution_count="17"
 data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}"
 id="hayov1Q9JVQ2" data-outputId="560d4299-c32f-4abe-fb23-899274e25497">
 <div class="sourceCode" id="cb32"><pre
@@ -1430,7 +1437,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a h
 <span id="cb32-237"><a href="#cb32-237" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> dash.no_update</span>
 <span id="cb32-238"><a href="#cb32-238" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb32-239"><a href="#cb32-239" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:</span>
-<span id="cb32-240"><a href="#cb32-240" aria-hidden="true" tabindex="-1"></a>    app.run(host<span class="op">=</span><span class="st">&quot;0.0.0.0&quot;</span>,port<span class="op">=</span><span class="st">&quot;8086&quot;</span>,debug<span class="op">=</span><span class="va">False</span>)</span></code></pre></div>
+<span id="cb32-240"><a href="#cb32-240" aria-hidden="true" tabindex="-1"></a>    app.run(port<span class="op">=</span><span class="st">&quot;8086&quot;</span>,debug<span class="op">=</span><span class="va">False</span>)</span></code></pre></div>
 <div class="output display_data">
 
         <iframe
@@ -1451,7 +1458,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a h
 <h1>Mr/Mrs. GPT</h1>
 <hr />
 </section>
-<div class="cell code" data-execution_count="15"
+<div class="cell code" data-execution_count="18"
 data-colab="{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}"
 id="8JgPptG2JWYB" data-outputId="990324b0-5290-4b1a-a9a8-3a62c7836920">
 <div class="sourceCode" id="cb33"><pre
@@ -1496,27 +1503,28 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a h
 <span id="cb33-39"><a href="#cb33-39" aria-hidden="true" tabindex="-1"></a></span></code></pre></div>
 <div class="output stream stdin">
 <pre><code>Coeficiente cúbico (a):  2
-Coeficiente cuadrático (b):  -1
-Coeficiente lineal (c):  1
-Término independiente (d):  2
-Valor inicial x₀:  2
+Coeficiente cuadrático (b):  -2
+Coeficiente lineal (c):  3
+Término independiente (d):  -2
+Valor inicial x₀:  1
 Tolerancia (ej. 0.0001):  0.1
 Máximo número de iteraciones:  9
 </code></pre>
 </div>
 <div class="output stream stdout">
 <pre><code>
-Raíz aproximada: -0.727696
+Raíz aproximada: 0.760440
 
 Tabla de iteraciones:
 Iter |    x      |   f(x)    |  f&#39;(x)   |   Próximo x
-   1 |   2.00000 |  16.00000 |  21.00000 |   1.23810
-   2 |   1.23810 |   5.50092 |   7.72109 |   0.52564
-   3 |   0.52564 |   2.53981 |   1.60651 |  -1.05531
-   4 |  -1.05531 |  -2.51951 |   9.79265 |  -0.79802
-   5 |  -0.79802 |  -0.45128 |   6.41706 |  -0.72770
+   1 |   1.00000 |   1.00000 |   5.00000 |   0.80000
+   2 |   0.80000 |   0.14400 |   3.64000 |   0.76044
 </code></pre>
 </div>
+</div>
+<div class="cell code">
+<div class="sourceCode" id="cb36"><pre
+class="sourceCode python"><code class="sourceCode python"></code></pre></div>
 </div>
 <script src="js/script.js"></script>
 <footer class="nav-footer">
