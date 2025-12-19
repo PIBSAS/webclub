@@ -38,26 +38,25 @@ body:not(.index-body) {
 }
 
 /* Celda de código */
-.cell.code {
+/*.cell.code {
     background-color: #f5f7fa;
-    border-left: 4px solid #3776ab; /* azul python */
+    border-left: 4px solid #3776ab;
     margin: 1.5em 0;
     padding: 0.5em;
     border-radius: 6px;
 }
 
-/* Bloque de código */
 .cell.code .sourceCode {
     background-color: #f5f7fa;
 }
 
-/* pre */
+
 .cell.code pre {
     background-color: transparent;
     margin: 0;
 }
 
-/* texto */
+
 .cell.code code {
     font-family: "JetBrains Mono", "Fira Code", monospace;
     font-size: 0.9em;
@@ -72,13 +71,13 @@ code {
 }
 
 code.section-code {
-    background-color: #eef4fb;        /* azul MUY suave */
+    background-color: #eef4fb;  
     border: 1px solid #cfe2f3;
     color: #0b3c5d;
     padding: 0.25em 0.45em;
     font-weight: 500;
 }
-
+*/
 code.cmd {
     background-color: #f5f7fa;
     border-left: 3px solid #3776ab;
