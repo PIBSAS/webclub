@@ -274,23 +274,21 @@
         <b>Ej:</b>
     </p>
 
-    <pre><code>print(f"La pendiente es: {m}")</code></pre>
+    <pre><code class="language-python">print(f"La pendiente es: {m}")</code></pre>
 
     <p>
         Entonces, podemos comenzar declarando algunas variables:
     </p> 
 
-    <pre><code>
-    # Declaramos algunas variables y una CONSTANTE.
-    # Así indicamos comentarios de una línea que no serán ejecutados por el intérprete.
-    MENSAJE="Python para Mates!" 
-    y="f(x)" 
-    m=3.5 
-    b=2
-
-    print(f"{MENSAJE}")
-    print("") # Así realizamos un salto de línea, aunque como en C podríamos usar \n 
-    print(f"Una función lineal se expresa de la siguiente manera: {y}={m}x + {b}") 
+    <pre><code class="language-python"># Declaramos algunas variables y una CONSTANTE.
+      # Así indicamos comentarios de una línea que no serán ejecutados por el intérprete.
+      MENSAJE="Python para Mates!"
+      y="f(x)"
+      m=3.5
+      b=2
+      print(f"{MENSAJE}")
+      print("") # Así realizamos un salto de línea, aunque como en C podríamos usar \n
+      print(f"Una función lineal se expresa de la siguiente manera: {y}={m}x + {b}")
     </code></pre> 
 
     <p>
@@ -343,9 +341,10 @@
     </ul>
 
     <ul>
-        <li><b>Las colecciones, que existen 2 tipos:</b>
+        <li><b>Las colecciones, existen 2 tipos:</b>
             <ul>
-                <li><b>Diccionarios:</b> Este es simple, en un diccionario que vas a buscar? Una palabra y su definición!.  Ejemplo: <code class="cmd">funciones = {"Lineal": "y=mx+b", "Cuadrática":"ax<sup>2</sup>+bx+c","Polinomica":"ax<sup>impar</sup>+bx<sup>par</sup>+cx<sup>impar</sup>+...+d"}</code></li>
+                <li><b>Diccionarios:</b> Este es simple, en un diccionario que vas a buscar? Una palabra y su definición!.
+                  Ejemplo: <code class="cmd">funciones = {"Lineal": "y=mx+b", "Cuadrática":"ax<sup>2</sup>+bx+c","Polinomica":"ax<sup>impar</sup>+bx<sup>par</sup>+cx<sup>impar</sup>+...+d"}</code></li>
                 <li><b>Sets:</b> Conjuntos de elementos desordenados, que no admiten elementos duplicados <code class="cmd">conjunto = {1, "uno", "phi", 99}</code></li>
             </ul>
         </li>
@@ -377,11 +376,11 @@
         El bucle <b>if</b> tiene una forma reducida llamada operador ternario. 
         En la que usamos una sola línea de código para evaluar la condición con la siguiente sintaxis:
     </p> 
-        <pre><code>(valor si es True) if condición else (valor si es False)</code></pre>
+        <pre><code class="language-python">(valor si es True) if condición else (valor si es False)</code></pre>
     <p>
         De esta manera evitamos escribir:
     </p>
-    <pre><code>
+    <pre><code class="language-python">
     if condición:
         hace algo
     else:
@@ -404,7 +403,7 @@
 
 <h2>El programa:</h2>
 
-    <pre><code>
+    <pre><code class="language-python">
     print("A continuación ingrese lo solicitado para evaluar una función lineal")
 
     while True:
@@ -498,4 +497,5 @@
 </body>
 
 </html>
+
 
