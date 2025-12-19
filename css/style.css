@@ -24,6 +24,18 @@ body:not(.index-body) {
         background-color: #fdfdf3;
         /* border: 3px solid red !important; Linea comentada es solo para ver el tamaño real de la pagina*/
       }
+.doc-title {
+  text-align: center;
+  margin-bottom: 0.2em;
+}
+
+.doc-subtitle {
+  text-align: center;
+  font-size: 0.9em;
+  color: #777;
+  margin-top: 0;
+  margin-bottom: 2em;
+}
 
 section pre {
     background-color: #f5f7fa;
