@@ -87,12 +87,12 @@
       border-left: 2px solid #e6e6e6;
       color: #606060;
     }
-    code {
+    /*code {
       font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
       font-size: 85%;
       margin: 0;
       hyphens: manual;
-    }
+    }*/
     /*pre {
       margin: 1em 0;
       overflow: auto;
@@ -275,21 +275,21 @@
         <b>Ej:</b>
     </p>
 
-    <pre><code class="language-python">print(f"La pendiente es: {m}")</code></pre>
+    <pre><code>print(f"La pendiente es: {m}")</code></pre>
 
     <p>
         Entonces, podemos comenzar declarando algunas variables:
     </p> 
 
     <pre><code># Declaramos algunas variables y una CONSTANTE.
-    # Así indicamos comentarios de una línea que no serán ejecutados por el intérprete.
-    MENSAJE="Python para Mates!"
-    y="f(x)"
-    m=3.5
-    b=2
-    print(f"{MENSAJE}")
-    print("") # Así realizamos un salto de línea, aunque como en C podríamos usar \n
-    print(f"Una función lineal se expresa de la siguiente manera: {y}={m}x + {b}")</code></pre> 
+# Así indicamos comentarios de una línea que no serán ejecutados por el intérprete.
+MENSAJE="Python para Mates!"
+y="f(x)"
+m=3.5
+b=2
+print(f"{MENSAJE}")
+print("") # Así realizamos un salto de línea, aunque como en C podríamos usar \n
+print(f"Una función lineal se expresa de la siguiente manera: {y}={m}x + {b}")</code></pre> 
 
     <p>
         Ahora podes escribir ese trozo de código en una nueva celda de <b>Código</b> y ejecutarla con
@@ -376,16 +376,14 @@
         El bucle <b>if</b> tiene una forma reducida llamada operador ternario. 
         En la que usamos una sola línea de código para evaluar la condición con la siguiente sintaxis:
     </p> 
-        <pre><code class="language-python">(valor si es True) if condición else (valor si es False)</code></pre>
+        <pre><code>(valor si es True) if condición else (valor si es False)</code></pre>
     <p>
         De esta manera evitamos escribir:
     </p>
-    <pre><code class="language-python">
-    if condición:
-        hace algo
-    else:
-        no hace nada
-    </code></pre>
+    <pre><code>if condición:
+    hace algo
+else:
+    no hace nada</code></pre>
 
     <p>
         No necesariamente debe o no hacer algo, es solo un ejemplo. 
@@ -403,53 +401,51 @@
 
 <h2>El programa:</h2>
 
-    <pre><code class="language-python">
-    print("A continuación ingrese lo solicitado para evaluar una función lineal")
+    <pre><code>print("A continuación ingrese lo solicitado para evaluar una función lineal")
 
-    while True:
-        m = float(input("\n¿Cuál es la pendiente de su función?: "))
-        if m != 0:
-            break
-        print("\nPor favor, la pendiente de una función lineal no puede ser cero!\n")
+while True:
+    m = float(input("\n¿Cuál es la pendiente de su función?: "))
+    if m != 0:
+        break
+    print("\nPor favor, la pendiente de una función lineal no puede ser cero!\n")
 
-    b = float(input("\n¿Cuál es la ordenada al origen?: "))
-    x = float(input("\nIndique que valor desea evaluar en la función: "))
+b = float(input("\n¿Cuál es la ordenada al origen?: "))
+x = float(input("\nIndique que valor desea evaluar en la función: "))
 
-    # Definimos la función
-    def lineal(m, x, b):
-        return m * x + b
+# Definimos la función
+def lineal(m, x, b):
+    return m * x + b
 
-    # Llamamos a la función y la guardamos en una variable
-    y = lineal(m, x, b)
+# Llamamos a la función y la guardamos en una variable
+y = lineal(m, x, b)
 
-    # Mostramos la ecuación, usamos \t para tabular el texto.
-    print(f"\t\nLa función ingresada es: f(x) = {m}x + {b}\n")
-    print(f"\t Si evaluamos la función en f({x})={m}{x}+{b}\n")
-    print(f"\t Su resultado es: f({x})={y}\n")
-    print("")
+# Mostramos la ecuación, usamos \t para tabular el texto.
+print(f"\t\nLa función ingresada es: f(x) = {m}x + {b}\n")
+print(f"\t Si evaluamos la función en f({x})={m}{x}+{b}\n")
+print(f"\t Su resultado es: f({x})={y}\n")
+print("")
 
-    # Le mostramos al usuario los resultados de evaluar los valores anteriores al que indicó para evaluar.
-    print("\n Estos son los valores de la función para los x anteriores a tu elección, desde 0 a x", (int(x) -1) if x > 0 else (int(x) + 1))
+# Le mostramos al usuario los resultados de evaluar los valores anteriores al que indicó para evaluar.
+print("\n Estos son los valores de la función para los x anteriores a tu elección, desde 0 a x", (int(x) -1) if x > 0 else (int(x) + 1))
 
-    """
-    En la línea anterior no usamos f-string,
-    presentamos el texto, y separado por la coma el valor que nos devuelve
-    el operador ternario,
-    si x es positivo <code class="cmd">x - 1</code> o negativo <code class="cmd">x + 1</code>.
-    Además, vemos esta nueva sintaxis, comillas triples, 
-    esto es un string literal usado normalmente para definir docstrings,
-    es decir, strings de documentación de funciones, clases o módulos.
-    """
+"""
+En la línea anterior no usamos f-string,
+presentamos el texto, y separado por la coma el valor que nos devuelve
+el operador ternario,
+si x es positivo <code class="cmd">x - 1</code> o negativo <code class="cmd">x + 1</code>.
+Además, vemos esta nueva sintaxis, comillas triples, 
+esto es un string literal usado normalmente para definir docstrings,
+es decir, strings de documentación de funciones, clases o módulos.
+"""
 
-    if x > 0:
-        for i in range(int(x)):
-            print(f"f({i}) = {lineal(m, i, b)}")
-    if x < 0:
-        for i in range(int(x)+1, 1):
-            print(f"f({i}) = {lineal(m, i, b)}")
-    </code></pre>
-
+if x > 0:
+    for i in range(int(x)):
+        print(f"f({i}) = {lineal(m, i, b)}")
+if x < 0:
+    for i in range(int(x)+1, 1):
+        print(f"f({i}) = {lineal(m, i, b)}")</code></pre>
 </div>
+  
 </div>
 
 <div class="cell markdown" id="rstW6uy8LjkA">
@@ -497,6 +493,7 @@
 </body>
 
 </html>
+
 
 
 
