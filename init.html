@@ -257,9 +257,56 @@ if x < 0:
     <a class="nav-btn" href="/webclub/">Home</a>
     <a class="nav-btn" href="Teoria 1: Creacion de tabla mediante Plotly Dash.html">Next ➡</a>
 </footer>
+  <footer class="index-footer">
+        <div class="footer-bottom">
+            <p>&copy; <span id="current-year">2025</span> - El Club de Python de AMI - Universidad Nacional de Moreno</p>
+            <p class="footer-sub">Todos los derechos reservados</p>
+        </div>
+    </footer>
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        const menuToggle = document.querySelector('.menu-toggle');
+        const closeMenu = document.querySelector('.close-menu');
+        const sidebar = document.querySelector('.sidebar');
+        const menuOverlay = document.querySelector('.menu-overlay');
+
+        if (menuToggle && closeMenu && sidebar && menuOverlay) {
+            
+            menuToggle.addEventListener('click', () => {
+                sidebar.classList.add('active');
+                menuOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden'; 
+            });
+        
+            closeMenu.addEventListener('click', () => {
+                sidebar.classList.remove('active');
+                menuOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        
+            menuOverlay.addEventListener('click', () => {
+                sidebar.classList.remove('active');
+                menuOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        
+            const sidebarLinks = document.querySelectorAll('.sidebar-links a');
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth <= 1024) {
+                        sidebar.classList.remove('active');
+                        menuOverlay.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                });
+            });
+        }
+    </script>
 </body>
 
 </html>
+
 
 
 
